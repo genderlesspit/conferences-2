@@ -1,0 +1,6 @@
+db_paramilitary_movement_category = {
+	icon = decision_category_icon_political_crisis
+	visible = {
+		has_idea = db_paramilitary_movement
+	}
+}

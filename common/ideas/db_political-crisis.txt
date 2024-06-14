@@ -9,6 +9,15 @@ ideas = {
 				has_stability > .25
 			}
 		}
+		db_paramilitary_movement = {
+			picture = antiwar_movement-1236
+			allowed = {
+				always = no # Added via event
+			}
+			cancel = {
+				has_stability > .25
+			}
+		}
 
 		db_intense_desertion = {
 			picture = intense_desertion-1847

@@ -365,17 +365,17 @@ country_event = {
 					has_stability < 0.01
 				}
 	}
-	trigger = {
-		has_idea = db_anti_war_movement
-		any_core_state = {
-			has_state_flag = db_anti_war_movement_presence
-			#any_neighbor_state = { 
-			#	NOT = { has_state_flag = db_anti_war_movement_presence }
-			#}
-		}
-		has_war_support < 0.75
-		has_stability < .4
-	}
+	#trigger = {
+	#	has_idea = db_anti_war_movement
+	#	any_core_state = {
+	#		has_state_flag = db_anti_war_movement_presence
+	#		#any_neighbor_state = { 
+	#		#	NOT = { has_state_flag = db_anti_war_movement_presence }
+	#		#}
+	#	}
+	#	has_war_support < 0.75
+	#	has_stability < .4
+	#}
 	picture = antiwar_movement_spreads_to_fromgetname-1012
 	
 	immediate = {
@@ -384,28 +384,18 @@ country_event = {
 	
 	option = {
 		name = political_crisis.6.a
-		random_core_state = {
-			limit = { 
-				any_neighbor_state = { has_state_flag = db_anti_war_movement_presence }
-			}
-			set_state_flag = db_anti_war_movement_presence
-			add_dynamic_modifier = {
-				modifier = anti_war_movement_state_dynamic_modifier
-				days = 365 # optional, will be removed after this many days passes
-			}
-		}
-		modify_timed_idea = {
-			idea = db_anti_war_movement	
-			days = 35
-		}
-		if = {
-			limit = { has_decision = impending_leadership_collapse }
-			add_days_remove  = {
-				decision = impending_leadership_collapse
-				days = -15
-			}
-			
-		}
+		#random_core_state = {
+		#	limit = { 
+		#		any_neighbor_state = { has_state_flag = db_anti_war_movement_presence }
+		#	}
+		#	set_state_flag = db_anti_war_movement_presence
+		#	add_dynamic_modifier = {
+		#		modifier = anti_war_movement_state_dynamic_modifier
+		#		days = 365 # optional, will be removed after this many days passes
+		#	}
+		#	save_event_target_as = anti_war_movement_state
+		#}
+		db_effect_spread_anti_war_movement = yes
 		custom_effect_tooltip = db_tt_anti_war_movement_spread 
 		trigger = {
 			
@@ -429,28 +419,7 @@ country_event = {
 	picture = fromgetname_placates_rootgetname_antiwar_movement-773
 	
 	immediate = {
-		random_core_state = {
-			limit = { 
-				any_neighbor_state = { has_state_flag = db_anti_war_movement_presence }
-			}
-			set_state_flag = db_anti_war_movement_presence
-			add_dynamic_modifier = {
-				modifier = anti_war_movement_state_dynamic_modifier
-				days = 365 # optional, will be removed after this many days passes
-			}
-		}
-		modify_timed_idea = {
-			idea = db_anti_war_movement	
-			days = 35
-		}
-		if = {
-			limit = { has_decision = impending_leadership_collapse }
-			add_days_remove  = {
-				decision = impending_leadership_collapse
-				days = -15
-			}
-			
-		}
+
 	}
 	option = { # do nothing
 		name = political_crisis.7.a
@@ -813,19 +782,44 @@ country_event = {
 	title = political_crisis.21.t
 	desc = political_crisis.21.d
 	trigger = {
-		has_country_flag = db_placeholder
+		has_war = no
+		NOT = { has_country_flag = db_war_hawkish_citizens }
+		has_war_support > 0.5
+		NOT = { has_country_flag = db_anti_war_movement_started }
+		has_stability < 0.25		
+	}
+	mean_time_to_happen = {
+			days = 15  #
+				modifier = {
+					factor = 1        
+					has_stability < 0.25
+				}
+				modifier = {
+					factor = 0.9       
+					has_stability < 0.20
+				}
+				modifier = {
+					factor = 0.8       
+					has_stability < 0.15
+				}
+				modifier = {
+					factor = 0.7       
+					has_stability < 0.10
+				}
+				modifier = {
+					factor = 0.6       
+					has_stability < 0.05
+				}
+				modifier = {
+					factor = 0.5       
+					has_stability < 0.01
+				}
 	}
 	picture = dissatisfaction_among_warhawkish_citizens-950
 	option = {
 		name = political_crisis.21.a
-		trigger = {
-			
-		}
 		ai_chance = { factor = 1 }
-		
-		hidden_effect = {
-			
-		}
+		set_country_flag = db_war_hawkish_citizens
 	}
 }
 
@@ -834,12 +828,43 @@ country_event = {
 	id = political_crisis.22
 	title = political_crisis.22.t
 	desc = political_crisis.22.d
+		mean_time_to_happen = {
+			days = 30  #
+				modifier = {
+					factor = 1        
+					has_stability < 0.25
+				}
+				modifier = {
+					factor = 0.9       
+					has_stability < 0.20
+				}
+				modifier = {
+					factor = 0.8       
+					has_stability < 0.15
+				}
+				modifier = {
+					factor = 0.7       
+					has_stability < 0.10
+				}
+				modifier = {
+					factor = 0.6       
+					has_stability < 0.05
+				}
+				modifier = {
+					factor = 0.5       
+					has_stability < 0.01
+				}
+	}
 	trigger = {
-		has_country_flag = db_placeholder
+		has_country_flag = db_war_hawkish_citizens
 	}
 	picture = xenophobic_sentiments_rampant-1013
 	option = {
 		name = political_crisis.22.a
+		add_timed_idea = {
+			idea = db_paramilitary_movement	
+			days = 365
+		}
 		trigger = {
 			
 		}
@@ -851,6 +876,11 @@ country_event = {
 	}
 	option = {
 		name = political_crisis.22.b
+		set_country_flag = db_war_hawkish_promise
+		country_event = { 
+			id = political_crisis.24 
+			days = 15 
+		}
 		trigger = {
 			
 		}
@@ -868,14 +898,24 @@ country_event = {
 	title = political_crisis.23.t
 	desc = political_crisis.23.d
 	trigger = {
-		has_country_flag = db_placeholder
+		has_idea = db_paramilitary_movement
+		NOT = { has_country_flag = db_paramilitary_movement }
+		NOT = { has_country_flag = db_war_hawkish_promise }
 	}
 	picture = paramilitaries_form_amongst_countryside-937
 	option = {
 		name = political_crisis.23.a
+		random_core_state = {
+			set_state_flag = db_anti_war_movement_presence
+			add_dynamic_modifier = {
+			modifier = anti_war_movement_state_dynamic_modifier
+			days = 365 # optional, will be removed after this many days passes
+			}
+		}
 		trigger = {
 			
 		}
+		set_country_flag = db_paramilitary_movement
 		ai_chance = { factor = 1 }
 		
 		hidden_effect = {
@@ -889,9 +929,7 @@ country_event = {
 	id = political_crisis.24
 	title = political_crisis.24.t
 	desc = political_crisis.24.d
-	trigger = {
-		has_country_flag = db_placeholder
-	}
+	is_triggered_only = yes
 	picture = rootgetleader_embraces_xenophobic_foreign_policy-1012
 	option = {
 		name = political_crisis.24.a
@@ -899,7 +937,7 @@ country_event = {
 			
 		}
 		ai_chance = { factor = 1 }
-		
+		db_trait_hawk_chance = yes
 		hidden_effect = {
 			
 		}
@@ -911,20 +949,11 @@ country_event = {
 	id = political_crisis.25
 	title = political_crisis.25.t
 	desc = political_crisis.25.d
-	trigger = {
-		has_country_flag = db_placeholder
-	}
+	is_triggered_only = yes
 	picture = paramilitaries_spread_to_fromgetstate-937
 	option = {
 		name = political_crisis.25.a
-		trigger = {
-			
-		}
-		ai_chance = { factor = 1 }
-		
-		hidden_effect = {
-			
-		}
+		db_effect_spread_paramilitary_movement = yes
 	}
 }
 
@@ -933,20 +962,11 @@ country_event = {
 	id = political_crisis.26
 	title = political_crisis.26.t
 	desc = political_crisis.26.d
-	trigger = {
-		has_country_flag = db_placeholder
-	}
+	is_triggered_only = yes
 	picture = paramilitaries_clash_with_antiwar_protestors-728
 	option = {
 		name = political_crisis.26.a
-		trigger = {
-			
-		}
-		ai_chance = { factor = 1 }
-		
-		hidden_effect = {
-			
-		}
+		db_effect_paramilitary_activity = yes
 	}
 }
 
@@ -987,7 +1007,7 @@ country_event = {
 			
 		}
 		ai_chance = { factor = 1 }
-		
+		db_effect_paramilitary_activity = yes
 		hidden_effect = {
 			
 		}
@@ -999,9 +1019,7 @@ country_event = {
 	id = political_crisis.29
 	title = political_crisis.29.t
 	desc = political_crisis.29.d
-	trigger = {
-		has_country_flag = db_placeholder
-	}
+	is_triggered_only = yes
 	picture = paramilitaries_present_politicians-790
 	option = {
 		name = political_crisis.29.a
@@ -1009,10 +1027,11 @@ country_event = {
 			
 		}
 		ai_chance = { factor = 1 }
-		
+		set_country_flag = db_paramilitary_politicians
 		hidden_effect = {
 			
 		}
+		db_effect_paramilitary_activity = yes
 	}
 }
 
@@ -1021,17 +1040,16 @@ country_event = {
 	id = political_crisis.30
 	title = political_crisis.30.t
 	desc = political_crisis.30.d
-	trigger = {
-		has_country_flag = db_placeholder
-	}
+	is_triggered_only = yes
 	picture = paramilitaries_stage_scenes_at_border_crossings-714
 	option = {
 		name = political_crisis.30.a
 		trigger = {
 			
 		}
+		every_country = { limit = { controls_state = event_target:border_skirmish_state } country_event = political_crisis.34 }
 		ai_chance = { factor = 1 }
-		
+		db_effect_paramilitary_activity = yes
 		hidden_effect = {
 			
 		}
@@ -1043,9 +1061,7 @@ country_event = {
 	id = political_crisis.31
 	title = political_crisis.31.t
 	desc = political_crisis.31.d
-	trigger = {
-		has_country_flag = db_placeholder
-	}
+	is_triggered_only = yes
 	picture = paramilitaries_intimidate_opposition_in_fromgetname-722
 	option = {
 		name = political_crisis.31.a
@@ -1053,7 +1069,7 @@ country_event = {
 			
 		}
 		ai_chance = { factor = 1 }
-		
+		db_effect_paramilitary_activity = yes
 		hidden_effect = {
 			
 		}
@@ -1074,6 +1090,7 @@ country_event = {
 		trigger = {
 			
 		}
+		db_trait_hawk_chance = yes
 		ai_chance = { factor = 1 }
 		
 		hidden_effect = {
@@ -1113,4 +1130,28 @@ news_event = {
 			
 		}
 	}
+}
+
+country_event = {
+    id = political_crisis.34
+    title = "Border Skirmish"
+    desc = "A Border Skirmish has erupted along the frontiers of [event_target:border_skirmish_state.GetName], our neighboring nation. Reports from the borderlands depict a sudden exchange of fire between our forces and theirs, escalating tensions to a critical point. The skirmish, while currently contained, presents a serious challenge to regional stability and our diplomatic relations. Initial assessments suggest that the incident may have been sparked by a misunderstanding or a deliberate provocation. As the situation unfolds, our leadership faces a crucial decision on how to respond. Swift action could demonstrate resolve and deter further aggression, but it risks escalating the conflict into full-scale hostilities. Alternatively, choosing a more cautious approach might help de-escalate tensions, though it could be perceived as weakness by our adversaries. Whatever course of action we choose, it is imperative that we navigate this crisis with prudence and foresight. The fate of our nation and the stability of the region hang in the balance."
+
+    picture = GFX_report_event_generic_border_conflict
+
+    is_triggered_only = yes
+
+    option = {
+        name = "React swiftly!"
+        add_country_modifier = {
+            name = border_skirmish_modifier
+            duration = 180
+        }
+        set_country_flag = { flag = border_skirmish_incident }
+    }
+
+    option = {
+        name = "Downplay the incident."
+        add_political_power = -50
+    }
 }
