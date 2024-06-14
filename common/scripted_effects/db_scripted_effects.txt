@@ -480,7 +480,7 @@ db_effect_paramilitary_activity_decision = {
 					limit = { event_target:paramilitary_movement_state = { any_neighbor_state = { NOT = { is_controlled_by = ROOT } } } }
 					country_event = political_crisis.30 #Border Crossing
 					event_target:paramilitary_movement_state = { if = { limit = { any_neighbor_state = { limit = { NOT = { is_controlled_by = ROOT } } } } save_event_target_as = border_skirmish_state } }
-					border_skirmish_state = { set_state_flag = border_skirmish_state days = 60 }
+					border_skirmish_state = { set_state_flag = border_skirmish_state_flag days = 60 }
 				}
 			}
 			10 = {
@@ -489,12 +489,12 @@ db_effect_paramilitary_activity_decision = {
 			60 = {
 				modifier = {
 					factor = 0
-					event_target:paramilitary_movement_state = { has_state_flag = border_skirmish_state }
+					event_target:paramilitary_movement_state = { has_state_flag = border_skirmish_state_flag }
 				}
 				if = { 
-					limit = { event_target:paramilitary_movement_state = { any_neighbor_state = { NOT = { is_controlled_by = ROOT } has_state_flag = border_skirmish_state } } }
+					limit = { event_target:paramilitary_movement_state = { any_neighbor_state = { NOT = { is_controlled_by = ROOT } has_state_flag = border_skirmish_state_flag_flag } } }
 					country_event = political_crisis.34 #Border Crossing
-					event_target:paramilitary_movement_state = { any_neighbor_state = { limit = { has_state_flag = border_skirmish_state NOT = { is_controlled_by = ROOT } } save_event_target_as = border_skirmish_state } }
+					event_target:paramilitary_movement_state = { any_neighbor_state = { limit = { has_state_flag = border_skirmish_state_flag_flag NOT = { is_controlled_by = ROOT } } save_event_target_as = border_skirmish_state } }
 					every_country = { limit = { controls_state = border_skirmish_state } country_event = political_crisis.34 }
 				}
 			}
@@ -554,3 +554,20 @@ db_effect_paramilitary_activity = {
 		}		
 	}
 }
+
+db_effect_paramilitary_escalation = {
+	news_event = political_crisis.33
+	modify_timed_idea = {
+		idea = db_paramilitary_movement	
+		days = 365
+	}
+	if = {
+		limit = { has_decision = impending_leadership_collapse }
+		add_days_remove  = {
+			decision = impending_leadership_collapse
+			days = -50
+		}		
+	}
+	
+}
+

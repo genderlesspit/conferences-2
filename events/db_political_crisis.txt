@@ -1084,15 +1084,39 @@ country_event = {
 	trigger = {
 		has_country_flag = db_placeholder
 	}
+	mean_time_to_happen = {
+        days = 5
+    }
 	picture = paramilitary_border_skirmish_escalates-673
 	option = {
 		name = political_crisis.32.a
 		trigger = {
-			
+			has_war_support > .75
 		}
 		db_trait_hawk_chance = yes
 		ai_chance = { factor = 1 }
-		
+		start_border_war = {
+			change_state_after_war = yes
+			attacker = {
+				state = event_target:paramilitary_movement_state
+				num_provinces = 4
+				#on_win = japan_border_conflict.2
+				#on_lose = japan_border_conflict.3
+				#on_cancel = japan_border_conflict.4
+				#modifier = 0.1
+				#dig_in_factor = 0
+				#terrain_factor = 0
+			}		
+			defender = {
+				state = event_target:border_skirmish_state
+				num_provinces = 4
+				#on_win = japan_border_conflict.3
+				#on_lose = japan_border_conflict.2
+				#on_cancel = japan_border_conflict.4
+				#db_effect_paramilitary_escalation = yes
+			}
+		}
+		add_stability = -0.05
 		hidden_effect = {
 			
 		}
@@ -1103,7 +1127,9 @@ country_event = {
 			
 		}
 		ai_chance = { factor = 1 }
-		
+		add_political_power = -50
+		add_stability = -0.01
+		FROM = { country_event = political_crisis.35 }
 		hidden_effect = {
 			
 		}
@@ -1136,18 +1162,17 @@ country_event = {
     id = political_crisis.34
     title = "Border Skirmish"
     desc = "A Border Skirmish has erupted along the frontiers of [event_target:border_skirmish_state.GetName], our neighboring nation. Reports from the borderlands depict a sudden exchange of fire between our forces and theirs, escalating tensions to a critical point. The skirmish, while currently contained, presents a serious challenge to regional stability and our diplomatic relations. Initial assessments suggest that the incident may have been sparked by a misunderstanding or a deliberate provocation. As the situation unfolds, our leadership faces a crucial decision on how to respond. Swift action could demonstrate resolve and deter further aggression, but it risks escalating the conflict into full-scale hostilities. Alternatively, choosing a more cautious approach might help de-escalate tensions, though it could be perceived as weakness by our adversaries. Whatever course of action we choose, it is imperative that we navigate this crisis with prudence and foresight. The fate of our nation and the stability of the region hang in the balance."
-
+    mean_time_to_happen = {
+        days = 5
+    }
     picture = GFX_report_event_generic_border_conflict
 
     is_triggered_only = yes
 
     option = {
-        name = "React swiftly!"
-        add_country_modifier = {
-            name = border_skirmish_modifier
-            duration = 180
-        }
-        set_country_flag = { flag = border_skirmish_incident }
+        name = "We must react swiftly!"
+		FROM = { country_event = political_crisis.32 }
+		db_trait_hawk_chance = yes
     }
 
     option = {
@@ -1155,3 +1180,46 @@ country_event = {
         add_political_power = -50
     }
 }
+
+country_event = {
+    id = political_crisis.35
+    title = "[FROM.GetName] Attempts to Deescalate Border Skirmish"
+    desc = "As tensions escalate following the recent border skirmish with [event_target:border_skirmish_state.GetName], [FROM.GetName] recognizes the urgency of restoring calm and preventing further escalation. Diplomatic efforts are underway to deescalate the situation and foster a peaceful resolution."
+    picture = GFX_report_event_diplomatic_efforts
+
+    is_triggered_only = yes
+
+    mean_time_to_happen = {
+        days = 5
+    }
+
+    option = {
+        name = "It is too late."
+		start_border_war = {
+			change_state_after_war = yes
+			attacker = {
+				state = event_target:paramilitary_movement_state
+				num_provinces = 4
+				#on_win = japan_border_conflict.2
+				#on_lose = japan_border_conflict.3
+				#on_cancel = japan_border_conflict.4
+				#modifier = 0.1
+				#dig_in_factor = 0
+				#terrain_factor = 0
+			}		
+			defender = {
+				state = event_target:border_skirmish_state
+				num_provinces = 4
+				#on_win = japan_border_conflict.3
+				#on_lose = japan_border_conflict.2
+				#on_cancel = japan_border_conflict.4
+				#db_effect_paramilitary_escalation = yes
+			}
+		}
+    option = {
+        name = "We will forgive you, this time."
+        add_stability = -0.01
+        border_skirmish_state = { clr_state_flag = border_skirmish_state_flag }
+    }
+}
+
