@@ -1,0 +1,256 @@
+add_namespace = conferences
+
+#[FROM.GetName] Organizes U.S.–British Staff Conference
+country_event = {
+	id = conferences.1
+	title = conferences.1.t
+	desc = conferences.1.d
+
+	picture = fromgetname_organizes_usbritish_staff_conference-824
+	fire_only_once = no
+	is_triggered_only = yes
+	mean_time_to_happen = { days = 3 }
+	option = { #Suggest the Sun Tzu
+		name = conferences.1.a
+		trigger = {
+			has_country_flag = usbritish_staff_conference_flag
+		}
+		ai_chance = { factor = 40 }
+		
+		hidden_effect = {
+			every_country = {
+					limit = {
+						OR = {
+							original_tag = CAN
+							original_tag = USA
+							original_tag = ENG
+						}
+						NOT = { has_country_flag = usbritish_staff_conference_flag }
+					} 
+				country_event = conferences.2
+			}
+		}
+	}
+	option = { #Suggest the Jomini
+		name = conferences.1.b
+		trigger = {
+			has_country_flag = usbritish_staff_conference_flag
+		}
+		ai_chance = { factor = 1 }
+		
+		hidden_effect = {
+			every_country = {
+					limit = {
+						OR = {
+							original_tag = CAN
+							original_tag = USA
+							original_tag = ENG
+						}
+						NOT = { has_country_flag = usbritish_staff_conference_flag }
+					} 
+				country_event = conferences.3
+			}
+		}
+	}
+	option = { #We watch
+		name = conferences.1.c
+		trigger = {
+			NOT = { has_country_flag = usbritish_staff_conference_flag }
+		}
+		ai_chance = { factor = 1 }
+		
+		hidden_effect = {
+			
+		}
+	}
+}
+
+#[FROM.GetName] Suggests the "Sun Tzu"
+country_event = {
+	id = conferences.2
+	title = conferences.2.t
+	desc = conferences.2.d
+
+	picture = fromgetname_suggests_the_sun_tzu-1000
+	is_triggered_only = yes
+	mean_time_to_happen = { days = 1 }
+	option = { #Accedes
+		name = conferences.2.a
+		trigger = {
+			NOT = { tag = CAN }
+		}
+		ai_chance = { factor = 1 }
+		
+		hidden_effect = {
+			every_country = {
+					limit = {
+						OR = {
+							original_tag = CAN
+							original_tag = USA
+							original_tag = ENG
+						}
+						has_country_flag = usbritish_staff_conference_flag
+					} 
+				country_event = conferences.4
+			}
+		}
+	}
+	option = { 
+		name = conferences.2.b
+		trigger = {
+			tag = CAN
+		}
+		ai_chance = { factor = 1 }
+		
+		hidden_effect = {
+			every_country = {
+					limit = {
+						OR = {
+							original_tag = CAN
+							original_tag = USA
+							original_tag = ENG
+						}
+						has_country_flag = usbritish_staff_conference_flag
+					} 
+				country_event = conferences.4
+			}
+		}
+	}
+	option = {
+		name = conferences.2.c
+		trigger = {
+			NOT = { tag = CAN }
+		}
+		ai_chance = { factor = 1 }
+		
+		hidden_effect = {
+			every_country = {
+					limit = {
+						OR = {
+							original_tag = CAN
+							original_tag = USA
+							original_tag = ENG
+						}
+						has_country_flag = usbritish_staff_conference_flag
+					} 
+				country_event = conferences.5
+			}
+		}
+	}
+}
+
+#[FROM.GETName] Suggests the "Jomini"
+country_event = {
+	id = conferences.3
+	title = conferences.3.t
+	desc = conferences.3.d
+
+	picture = fromgetname_suggests_the_jomini-1000
+	is_triggered_only = yes
+	mean_time_to_happen = { days = 1 }
+	option = {
+		name = conferences.3.a
+		trigger = {
+			NOT = { tag = CAN }
+		}
+		ai_chance = { factor = 1 }
+		
+		hidden_effect = {
+			every_country = {
+					limit = {
+						OR = {
+							original_tag = CAN
+							original_tag = USA
+							original_tag = ENG
+						}
+						has_country_flag = usbritish_staff_conference_flag
+					} 
+				country_event = conferences.4
+			}
+		}
+	}
+	option = {
+		name = conferences.3.b
+		trigger = {
+			tag = CAN
+		}
+		ai_chance = { factor = 1 }
+		
+		hidden_effect = {
+			every_country = {
+					limit = {
+						OR = {
+							original_tag = CAN
+							original_tag = USA
+							original_tag = ENG
+						}
+						has_country_flag = usbritish_staff_conference_flag
+					} 
+				country_event = conferences.4
+			}
+		}
+	}
+	option = {
+		name = conferences.3.c
+		trigger = {
+			NOT = { tag = CAN }
+		}
+		ai_chance = { factor = 1 }
+		
+		hidden_effect = {
+			every_country = {
+					limit = {
+						OR = {
+							original_tag = CAN
+							original_tag = USA
+							original_tag = ENG
+						}
+						has_country_flag = usbritish_staff_conference_flag
+					} 
+				country_event = conferences.5
+			}
+		}
+	}
+}
+
+#[FROM.GETName] Accedes to Strategy
+country_event = {
+	id = conferences.4
+	title = conferences.4.t
+	desc = conferences.4.d
+	is_triggered_only = yes
+	picture = fromgetname_accedes_to_strategy-972
+	mean_time_to_happen = { days = 1 }
+	option = {
+		name = conferences.4.a
+		trigger = {
+			
+		}
+		ai_chance = { factor = 1 }
+		
+		hidden_effect = {
+			
+		}
+	}
+}
+
+#[FROM.GetName] Prolongs Strategic Consensus
+country_event = {
+	id = conferences.5
+	title = conferences.5.t
+	desc = conferences.5.d
+	is_triggered_only = yes
+	mean_time_to_happen = { days = 1 }
+	picture = fromgetname_prolongs_strategic_consensus-1010
+	option = {
+		name = conferences.5.a
+		trigger = {
+			
+		}
+		ai_chance = { factor = 1 }
+		
+		hidden_effect = {
+			
+		}
+	}
+}

@@ -1,0 +1,30 @@
+@tier1 = 30
+@tier2 = 20
+@tier3 = 10
+
+@experience_gain_low = 0.03
+@experience_gain_medium = 0.06
+@experience_gain_high = 0.08
+
+@chief_experience_gain_low = 0.20
+@chief_experience_gain_medium = 0.30
+@chief_experience_gain_high = 0.40
+
+###Todo remove commented advisor experience gains
+
+leader_traits = {
+	hawk = {
+		ai_join_ally_desire_factor = 3
+		ai_get_ally_desire_factor = 3
+	}
+	db_incompetent = {
+		political_power_factor = -0.5
+		command_power_gain_mult = -0.2
+		training_time_army_factor = -0.2
+		subjects_autonomy_gain = -0.3
+		opinion_gain_monthly_factor = -0.8
+		drift_defence_factor = -0.1
+	}
+	db_leader_communist_sympathies = {
+	}
+}

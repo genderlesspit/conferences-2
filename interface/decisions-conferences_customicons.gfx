@@ -1,0 +1,14 @@
+spriteTypes = { 
+	##Icon For Category: Conferences
+	SpriteType = { 
+		name = "decision_category_icon_conferences"
+		texturefile = "gfx/interface/decisions/decision_category_icon_conferences.dds"
+	}
+
+	##Icon For: U.S.-British Staff Conference
+	SpriteType = { 
+		name = "decision_icon_usbritish_staff_conference"
+		texturefile = "gfx/interface/decisions/decision_icon_usbritish_staff_conference.dds"
+	}
+
+}

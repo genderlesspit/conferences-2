@@ -1,0 +1,49 @@
+political_crisis = {
+	impending_leadership_collapse = {
+		icon = decision_icon_impending_leadership_collapse
+		activation = {
+			NOT = { has_stability > .25 }
+			has_country_flag = db_political_crisis
+		}
+		available = {
+			has_stability > .25
+			NOT = { has_country_flag = db_political_crisis }
+		}
+		is_good = no
+		complete_effect = {
+		
+		}
+		timeout_effect = {
+			retire_country_leader = yes
+		}
+		days_mission_timeout = 365
+	}
+	flipflop_on_war_policy = {
+		icon = decision_icon_flipflop_on_war_policy
+		available = {
+			has_idea = db_anti_war_movement
+			NOT = { has_country_leader_with_trait = hawk }
+			NOT = { has_country_flag = db_anti_war_movement_accede }
+			NOT = { has_defensive_war = yes }
+		}
+		complete_effect = {
+			country_event = political_crisis.17
+			custom_effect_tooltip = db_tt_flipflop
+		}
+	}
+	loosen_conscription = {
+		icon = decision_icon_loosen_conscription
+	}
+	rally_around_the_flag = {
+		icon = decision_icon_rally_around_the_flag
+	}
+	embrace_xenophobia = {
+		icon = decision_icon_embrace_xenophobia
+	}
+	subsidize_universities = {
+		icon = decision_icon_subsidize_universities
+	}
+	increase_rations = {
+		icon = decision_icon_increase_rations
+	}
+}

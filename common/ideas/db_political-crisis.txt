@@ -1,0 +1,41 @@
+ideas = {
+	country = {
+		db_anti_war_movement = {
+			picture = antiwar_movement-1236
+			allowed = {
+				always = no # Added via event
+			}
+			cancel = {
+				has_stability > .25
+			}
+		}
+
+		db_intense_desertion = {
+			picture = intense_desertion-1847
+			allowed = {
+				always = no # Added via event
+			}
+			cancel = {
+				has_stability > 0.25
+			}
+			on_add = {
+				#intense desertion
+			}
+		}
+		db_communist_sympathies = {
+			picture = communist_sympathies-1076
+			allowed = {
+				#
+			}
+			allowed_civil_war = {
+				#
+			}
+			cancel = {
+				#
+			}
+			modifier = {
+				#
+			}
+		}
+	}
+}

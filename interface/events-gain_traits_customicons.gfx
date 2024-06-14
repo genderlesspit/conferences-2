@@ -1,0 +1,15 @@
+spriteTypes = { 
+	##Icon For: [ROOT.GetLeader]: War-Hawk
+	SpriteType = { 
+		name = "rootgetleader_warhawk-962"
+		texturefile = "gfx/interface/events/gain_traits-event/rootgetleader_warhawk-962.dds"
+	}
+
+	##Icon For: [ROOT.GetLeader]: Incompetent Fool
+	SpriteType = { 
+		name = "rootgetleader_incompetent_fool-1010"
+		texturefile = "gfx/interface/events/gain_traits-event/rootgetleader_incompetent_fool-1010.dds"
+	}
+
+ 
+ }

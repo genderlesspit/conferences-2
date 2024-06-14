@@ -1,0 +1,13 @@
+﻿l_english:
+political_crisis:0 "Political Crisis"
+political_crisis_desc:0 "Our mission is clear: we must do everything in our power to prevent the resignation of [ROOT.GetLeader] and ensure the continuity of leadership in [ROOT.GetName]. This will require a delicate balancing act, as we navigate through the complex web of political intrigue and external pressures that threaten to tear our nation apart."
+impending_leadership_collapse:0 "Impending Leadership Collapse"
+impending_leadership_collapse_desc:0 "Amidst the tumult of the ongoing political crisis, [ROOT.GetName] stands on the brink of leadership collapse. The calls for [ROOT.GetLeader]'s resignation grow louder by the day, and the stability of our nation hangs in the balance. As the situation reaches a critical juncture, a decision must be made to avert the impending leadership collapse and stabilize the government."
+flipflop_on_war_policy:0 "Flip-Flop on War Policy"
+flipflop_on_war_policy_desc:0 "In response to mounting anti-war sentiments and demands for a change in course, this decision entails a thorough reevaluation of [ROOT.GetName]'s involvement in the current conflict. Considering the outcry from the populace and the potential repercussions both domestically and internationally, [ROOT.GetLeader] must decide whether to persist in the war effort or pursue alternative avenues such as negotiation and withdrawal."
+loosen_conscription:0 "Loosen Conscription"
+rally_around_the_flag:0 "Rally Around the Flag"
+rally_around_the_flag_desc:0 "In times of crisis or conflict, the populace often experiences a phenomenon known as the "rally around the flag" effect, wherein public support for the government increases as a response to perceived external threats. This decision involves leveraging this effect to bolster national unity and morale, rallying the population behind [ROOT.GetLeader] and their policies. The decision may entail implementing propaganda campaigns, emphasizing patriotic symbols and rhetoric, and highlighting the need for solidarity in the face of adversity. Utilizing the rally around the flag effect can strengthen [ROOT.GetName]'s resolve and cohesion during times of uncertainty or crisis."
+embrace_xenophobia:0 "Embrace Xenophobia"
+subsidize_universities:0 "Subsidize Universities"
+increase_rations:0 "Increase Rations"

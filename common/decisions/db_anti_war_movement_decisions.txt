@@ -1,0 +1,96 @@
+db_anti_war_movement_category = {
+	anti_war_activity = {
+		icon = decision_icon_impending_leadership_collapse
+		activation = {
+			db_trigger_can_anti_war_movement_activity = yes
+		}
+		available = {
+			NOT = { db_trigger_can_anti_war_movement_activity = yes }
+		}
+		is_good = no
+		complete_effect = {
+			
+		}
+		timeout_effect = {
+			db_effect_anti_war_activity_decision = yes
+		}
+		days_mission_timeout = 30
+	}
+	suppress_resistance = {
+		icon = decision_icon_impending_leadership_collapse
+		available = {
+			ROOT = {
+				any_state = {
+					has_state_flag = db_anti_war_movement_presence
+				}
+				NOT = { has_country_flag = db_anti_war_movement_accede }
+			}
+		}
+		complete_effect = {
+			add_command_power = -30
+			random_controlled_state = {
+				limit = { has_state_flag = db_anti_war_movement_presence }
+				clr_state_flag = db_anti_war_movement_presence
+				owner = {
+					country_event = {
+						id = political_crisis.8
+						days = 1
+					}
+				}
+			}
+			modify_timed_idea = {
+				idea = db_anti_war_movement	
+				days = -35
+			}	
+		}
+		custom_cost_trigger = {
+			command_power > 30
+		}
+		custom_cost_text = decision_cost_CP_30
+	}
+	support_resistance = {
+		icon = decision_icon_impending_leadership_collapse
+		#visible = {
+		#	any_country = {
+		#		any_state = {
+		#			has_state_flag = db_anti_war_movement_presence
+		#		}
+		#	}
+		#	NOT = { has_state_flag = db_anti_war_movement_presence }
+		#}
+		target_root_trigger = { 
+			has_opinion = {
+				target = FROM
+				value < 0
+			}
+		}
+		target_trigger = {
+			any_state = { has_state_flag = db_anti_war_movement_presence }
+			has_idea = db_anti_war_movement
+		}
+		visible = {
+			FROM = {
+				any_state = { has_state_flag = db_anti_war_movement_presence }
+				has_idea = db_anti_war_movement
+			}
+		}
+		available = {
+			NOT = { has_country_flag = db_anti_war_movement_accede }
+			FROM = {
+				any_state = { has_state_flag = db_anti_war_movement_presence }
+				has_idea = db_anti_war_movement
+			}
+		}
+		complete_effect = {
+			add_command_power = -30
+			FROM = {
+				country_event = political_crisis.7
+			}
+		}
+		cost = 10
+		custom_cost_trigger = {
+			command_power > 30
+		}
+		custom_cost_text = decision_cost_CP_30
+	}
+}

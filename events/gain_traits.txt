@@ -1,0 +1,43 @@
+add_namespace = gain_traits
+
+#[ROOT.GetLeader]: War-Hawk
+country_event = {
+	id = gain_traits.1
+	title = gain_traits.1.t
+	desc = gain_traits.1.d
+
+	picture = rootgetleader_warhawk-962
+	is_triggered_only = yes
+	option = {
+		name = gain_traits.1.a
+		add_country_leader_trait = hawk
+		trigger = {
+			
+		}
+		ai_chance = { factor = 1 }
+		
+		hidden_effect = {
+			
+		}
+	}
+}
+
+country_event = {
+	id = gain_traits.2
+	title = gain_traits.2.t
+	desc = gain_traits.2.d
+	is_triggered_only = yes
+	picture = rootgetleader_incompetent_fool-1010
+	option = {
+		add_country_leader_trait = db_incompetent
+		name = gain_traits.2.a
+		trigger = {
+			
+		}
+		ai_chance = { factor = 1 }
+		
+		hidden_effect = {
+			
+		}
+	}
+}

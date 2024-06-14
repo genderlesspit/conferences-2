@@ -1,0 +1,50 @@
+spriteTypes = { 
+	##Icon For Category: Political Crisis
+	SpriteType = { 
+		name = "decision_category_icon_political_crisis"
+		texturefile = "gfx/interface/decisions/decision_category_icon_political_crisis.dds"
+	}
+
+	##Icon For: Impending Leadership Collapse
+	SpriteType = { 
+		name = "decision_icon_impending_leadership_collapse"
+		texturefile = "gfx/interface/decisions/decision_icon_impending_leadership_collapse.dds"
+	}
+
+	##Icon For: Flip-Flop on War Policy
+	SpriteType = { 
+		name = "decision_icon_flipflop_on_war_policy"
+		texturefile = "gfx/interface/decisions/decision_icon_flipflop_on_war_policy.dds"
+	}
+
+	##Icon For: Loosen Conscription
+	SpriteType = { 
+		name = "decision_icon_loosen_conscription"
+		texturefile = "gfx/interface/decisions/decision_icon_loosen_conscription.dds"
+	}
+
+	##Icon For: Rally Around the Flag
+	SpriteType = { 
+		name = "decision_icon_rally_around_the_flag"
+		texturefile = "gfx/interface/decisions/decision_icon_rally_around_the_flag.dds"
+	}
+
+	##Icon For: Embrace Xenophobia
+	SpriteType = { 
+		name = "decision_icon_embrace_xenophobia"
+		texturefile = "gfx/interface/decisions/decision_icon_embrace_xenophobia.dds"
+	}
+
+	##Icon For: Subsidize Universities
+	SpriteType = { 
+		name = "decision_icon_subsidize_universities"
+		texturefile = "gfx/interface/decisions/decision_icon_subsidize_universities.dds"
+	}
+
+	##Icon For: Increase Rations
+	SpriteType = { 
+		name = "decision_icon_increase_rations"
+		texturefile = "gfx/interface/decisions/decision_icon_increase_rations.dds"
+	}
+
+}

@@ -1,0 +1,75 @@
+db_diplomatic_mishap_small = {
+	valid_relation_trigger = {
+		has_opinion_modifier = { 
+			target = FROM
+			modifier = db_opinion_diplomatic_mishap_small 
+		}
+	}
+	ai_strategy = {
+		type = befriend
+		id = FROM
+		value = -15
+	}
+	ai_strategy = {
+		type = ignore
+		id = FROM
+		value = 10
+	}
+}
+
+db_diplomatic_mishap_medium = {
+	valid_relation_trigger = {
+		has_opinion_modifier = { 
+			target = FROM
+			modifier = db_opinion_diplomatic_mishap_medium 
+		}
+	}
+	ai_strategy = {
+		type = befriend
+		id = FROM
+		value = -50
+	}
+	ai_strategy = {
+		type = ignore
+		id = FROM
+		value = 50
+	}
+}
+
+db_diplomatic_mishap_large = {
+	valid_relation_trigger = {
+		has_opinion_modifier = { 
+			target = FROM
+			modifier = db_opinion_diplomatic_mishap_large 
+		}
+	}
+	ai_strategy = {
+		type = befriend
+		id = FROM
+		value = -100
+	}
+	ai_strategy = {
+		type = antagonize
+		id = FROM
+		value = 100
+	}
+}
+
+db_diplomatic_mishap_irreperable = {
+	valid_relation_trigger = {
+		has_opinion_modifier = { 
+			target = FROM
+			modifier = db_opinion_diplomatic_mishap_irreperable
+		}
+	}
+	ai_strategy = {
+		type = befriend
+		id = FROM
+		value = -300
+	}
+	ai_strategy = {
+		type = antagonize
+		id = FROM
+		value = 300
+	}
+}
