@@ -1,0 +1,115 @@
+db_startup_set_state_governor_1 = {
+	every_country = {
+	limit = { controls_state = 1 }
+	set_temp_variable = {
+		var = governor_chance_democratic
+		value = party_popularity_100@democratic	
+	}
+	set_temp_variable = {
+		var = governor_chance_neutrality
+		value = party_popularity_100@neutrality
+	}
+	set_temp_variable = {
+		var = governor_chance_communism
+		value = party_popularity_100@communism
+	}
+	set_temp_variable = {
+		var = governor_chance_fascism
+		value = party_popularity_100@fascism
+	}
+	random_list = {
+			var:governor_chance_democratic = {
+				random_list = {
+					10 = {
+						1 = { set_state_flag = state_1_conservative }
+						modifier = { factor = 2 has_country_leader_ideology = conservative }
+						generate_character = {
+							token_base = state_1_governor # token will be TAG_token_base
+							advisor = {
+								slot = political_advisor
+								traits = { liberal_governor }
+							available = {
+								1 = { has_state_flag = state_1_neutral }
+								ROOT = { controls_state = 1 }	
+							}
+							}		
+							portraits = { 
+								army = { small = GFX_idea_generic_fascist_demagogue }
+							}
+						}
+					}
+					10 = {
+						1 = { set_state_flag = state_1_liberal }
+						modifier = { factor = 2 has_country_leader_ideology = liberal }
+						generate_character = {
+							token_base = state_1_governor # token will be TAG_token_base
+							advisor = {
+								slot = political_advisor
+								traits = { liberal_governor }
+								available = {
+									1 = { has_state_flag = state_1_neutral }
+									ROOT = { controls_state = 1 }	
+								}
+							}		
+							portraits = { 
+								army = { small = GFX_idea_generic_fascist_demagogue }
+							}
+						}
+					}
+				}
+			}
+			var:governor_chance_neutrality = {
+				1 = { set_state_flag = state_1_neutrality }
+				generate_character = {
+					token_base = state_1_governor # token will be TAG_token_base
+					advisor = {
+						slot = political_advisor
+							traits = { liberal_governor }
+							available = {
+								1 = { has_state_flag = state_1_neutral }
+								ROOT = { controls_state = 1 }
+							}
+						}		
+					portraits = { 
+						army = { small = GFX_idea_generic_fascist_demagogue }
+					}
+				}
+			}	
+			var:governor_chance_communism = {
+				1 = { set_state_flag = state_1_communist }
+				add_war_support = 0.5
+				generate_character = {
+					token_base = state_1_governor # token will be TAG_token_base
+					advisor = {
+						slot = political_advisor
+							traits = { communist_governor }
+							available = {
+								1 = { has_state_flag = state_1_neutral }
+								ROOT = { controls_state = 1 }
+							}
+						}		
+					portraits = { 
+						army = { small = GFX_idea_generic_fascist_demagogue }
+					}
+				}
+			}
+			var:governor_chance_fascism = {
+				1 = { set_state_flag = state_1_neutrality }
+				generate_character = {
+					token_base = state_1_governor # token will be TAG_token_base
+					advisor = {
+						slot = political_advisor
+							traits = { fascist_governor }
+							available = {
+								1 = { has_state_flag = state_1_neutral }
+								ROOT = { controls_state = 1 }
+							}
+						}		
+					portraits = { 
+						army = { small = GFX_idea_generic_fascist_demagogue }
+					}
+				}
+			}
+		}
+	}
+}

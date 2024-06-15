@@ -1,0 +1,8 @@
+on_actions = {
+	# country
+	on_startup = {
+        effect = {
+            db_startup_set_state_governor_1 = yes
+        }
+    }
+
