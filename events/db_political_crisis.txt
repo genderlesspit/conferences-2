@@ -1216,10 +1216,11 @@ country_event = {
 				#db_effect_paramilitary_escalation = yes
 			}
 		}
+	}
     option = {
         name = "We will forgive you, this time."
         add_stability = -0.01
-        border_skirmish_state = { clr_state_flag = border_skirmish_state_flag }
+        event_target:border_skirmish_state = { clr_state_flag = border_skirmish_state_flag }
     }
 }
 

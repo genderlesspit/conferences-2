@@ -596,14 +596,6 @@ country_event = {
 	}
 }
 
-# FROM    Wartime?    event code    event number
-# Communist    Yes    diplomacy    23
-
-[FROM.GetLeader] Gives Speech on Unity
-
-# FROM    Wartime?    event code    event number
-# Communist    Yes    diplomacy    23
-# [FROM.GetLeader] Gives Speech on Unity
 country_event = {
     id = diplomacy.23
     title = "diplomacy.23.t"
@@ -615,13 +607,9 @@ country_event = {
         name = diplomacy.23.a
         ai_chance = {
             base = 1
-            set_temp_variable = { t = ROOT.opinion@FROM }
-            add_to_temp_variable = { t = ROOT.ai_strategy_alliance@FROM }
-            add_to_temp_variable = { t = ROOT.ai_strategy_befriend@FROM }
-            add_to_temp_variable = { t = ROOT.ai_strategy_influence@FROM } 	
-            add_to_temp_variable = { t = ROOT.ai_strategy_protect@FROM } 	
-            add_to_temp_variable = { t = ROOT.ai_strategy_support@FROM }
-            add_to_temp_variable = { t = ROOT.ai_strategy_send_volunteers_desire@FROM }	
+            modifier = { 
+                add = var:db_ai_chance_diplomacy_agree
+            }
         }
         hidden_effect = {}
     }
@@ -631,25 +619,13 @@ country_event = {
         ai_chance = {
             base = 1
             modifier = { 
-                add_to_temp_variable = { t = ROOT.ai_strategy_conquer@FROM }
-                add_to_temp_variable = { t = ROOT.ai_strategy_contain@FROM }	
-                add_to_temp_variable = { t = ROOT.ai_strategy_ignore@FROM }
-                add_to_temp_variable = { t = ROOT.ai_strategy_invade@FROM }
+                add = db_ai_chance_diplomacy_reject
             }
         }
         hidden_effect = {}
     }
 }
 
-
-# FROM    Wartime?    event code    event number
-# Communist    Yes    diplomacy    23
-
-
-
-# FROM    Wartime?    event code    event number
-# Communist    Yes    diplomacy    23
-# [FROM.GetLeader] Gives Speech on Unity
 country_event = {
     id = diplomacy.24
     title = "diplomacy.24.t"
@@ -661,13 +637,9 @@ country_event = {
         name = diplomacy.24.a
         ai_chance = {
             base = 1
-            set_temp_variable = { t = FROM.opinion }
-            add_to_temp_variable = { t = ai_strategy_alliance }
-            add_to_temp_variable = { t = ai_strategy_befriend }
-            add_to_temp_variable = { t = ai_strategy_influence } 	
-            add_to_temp_variable = { t = ai_strategy_protect } 	
-            add_to_temp_variable = { t = ai_strategy_support }
-            add_to_temp_variable = { t = ai_strategy_send_volunteers_desire }	
+            modifier = { 
+                add = var:db_ai_chance_diplomacy_agree
+            }
         }
         hidden_effect = {}
     }
@@ -677,25 +649,13 @@ country_event = {
         ai_chance = {
             base = 1
             modifier = { 
-                add_to_temp_variable = { t = ai_strategy_conquer }
-                add_to_temp_variable = { t = ai_strategy_contain }	
-                add_to_temp_variable = { t = ai_strategy_ignore }
-                add_to_temp_variable = { t = ai_strategy_invade }
+                add = db_ai_chance_diplomacy_reject
             }
         }
         hidden_effect = {}
     }
 }
 
-
-# FROM    Wartime?    event code    event number
-# Communist    Yes    diplomacy    23
-
-
-
-# FROM    Wartime?    event code    event number
-# Communist    Yes    diplomacy    23
-# [FROM.GetLeader] Gives Speech on Unity
 country_event = {
     id = diplomacy.25
     title = "diplomacy.25.t"
@@ -707,13 +667,9 @@ country_event = {
         name = diplomacy.25.a
         ai_chance = {
             base = 1
-            set_temp_variable = { t = FROM.opinion }
-            add_to_temp_variable = { t = ai_strategy_alliance }
-            add_to_temp_variable = { t = ai_strategy_befriend }
-            add_to_temp_variable = { t = ai_strategy_influence } 	
-            add_to_temp_variable = { t = ai_strategy_protect } 	
-            add_to_temp_variable = { t = ai_strategy_support }
-            add_to_temp_variable = { t = ai_strategy_send_volunteers_desire }	
+            modifier = { 
+                add = var:db_ai_chance_diplomacy_agree
+            }
         }
         hidden_effect = {}
     }
@@ -723,25 +679,13 @@ country_event = {
         ai_chance = {
             base = 1
             modifier = { 
-                add_to_temp_variable = { t = ai_strategy_conquer }
-                add_to_temp_variable = { t = ai_strategy_contain }	
-                add_to_temp_variable = { t = ai_strategy_ignore }
-                add_to_temp_variable = { t = ai_strategy_invade }
+                add = db_ai_chance_diplomacy_reject
             }
         }
         hidden_effect = {}
     }
 }
 
-
-# FROM    Wartime?    event code    event number
-# Communist    Yes    diplomacy    23
-
-
-
-# FROM    Wartime?    event code    event number
-# Communist    Yes    diplomacy    23
-# [FROM.GetLeader] Gives Speech on Unity
 country_event = {
     id = diplomacy.26
     title = "diplomacy.26.t"
@@ -753,13 +697,9 @@ country_event = {
         name = diplomacy.26.a
         ai_chance = {
             base = 1
-            set_temp_variable = { t = FROM.opinion }
-            add_to_temp_variable = { t = ai_strategy_alliance }
-            add_to_temp_variable = { t = ai_strategy_befriend }
-            add_to_temp_variable = { t = ai_strategy_influence } 	
-            add_to_temp_variable = { t = ai_strategy_protect } 	
-            add_to_temp_variable = { t = ai_strategy_support }
-            add_to_temp_variable = { t = ai_strategy_send_volunteers_desire }	
+            modifier = { 
+                add = var:db_ai_chance_diplomacy_agree
+            }
         }
         hidden_effect = {}
     }
@@ -769,25 +709,13 @@ country_event = {
         ai_chance = {
             base = 1
             modifier = { 
-                add_to_temp_variable = { t = ai_strategy_conquer }
-                add_to_temp_variable = { t = ai_strategy_contain }	
-                add_to_temp_variable = { t = ai_strategy_ignore }
-                add_to_temp_variable = { t = ai_strategy_invade }
+                add = db_ai_chance_diplomacy_reject
             }
         }
         hidden_effect = {}
     }
 }
 
-
-# FROM    Wartime?    event code    event number
-# Communist    Yes    diplomacy    23
-
-
-
-# FROM    Wartime?    event code    event number
-# Communist    Yes    diplomacy    23
-# [FROM.GetLeader] Gives Speech on Unity
 country_event = {
     id = diplomacy.27
     title = "diplomacy.27.t"
@@ -799,13 +727,9 @@ country_event = {
         name = diplomacy.27.a
         ai_chance = {
             base = 1
-            set_temp_variable = { t = FROM.opinion }
-            add_to_temp_variable = { t = ai_strategy_alliance }
-            add_to_temp_variable = { t = ai_strategy_befriend }
-            add_to_temp_variable = { t = ai_strategy_influence } 	
-            add_to_temp_variable = { t = ai_strategy_protect } 	
-            add_to_temp_variable = { t = ai_strategy_support }
-            add_to_temp_variable = { t = ai_strategy_send_volunteers_desire }	
+            modifier = { 
+                add = var:db_ai_chance_diplomacy_agree
+            }
         }
         hidden_effect = {}
     }
@@ -815,25 +739,13 @@ country_event = {
         ai_chance = {
             base = 1
             modifier = { 
-                add_to_temp_variable = { t = ai_strategy_conquer }
-                add_to_temp_variable = { t = ai_strategy_contain }	
-                add_to_temp_variable = { t = ai_strategy_ignore }
-                add_to_temp_variable = { t = ai_strategy_invade }
+                add = db_ai_chance_diplomacy_reject
             }
         }
         hidden_effect = {}
     }
 }
 
-
-# FROM    Wartime?    event code    event number
-# Communist    Yes    diplomacy    23
-
-
-
-# FROM    Wartime?    event code    event number
-# Communist    Yes    diplomacy    23
-# [FROM.GetLeader] Gives Speech on Unity
 country_event = {
     id = diplomacy.28
     title = "diplomacy.28.t"
@@ -845,13 +757,9 @@ country_event = {
         name = diplomacy.28.a
         ai_chance = {
             base = 1
-            set_temp_variable = { t = FROM.opinion }
-            add_to_temp_variable = { t = ai_strategy_alliance }
-            add_to_temp_variable = { t = ai_strategy_befriend }
-            add_to_temp_variable = { t = ai_strategy_influence } 	
-            add_to_temp_variable = { t = ai_strategy_protect } 	
-            add_to_temp_variable = { t = ai_strategy_support }
-            add_to_temp_variable = { t = ai_strategy_send_volunteers_desire }	
+            modifier = { 
+                add = var:db_ai_chance_diplomacy_agree
+            }
         }
         hidden_effect = {}
     }
@@ -861,25 +769,13 @@ country_event = {
         ai_chance = {
             base = 1
             modifier = { 
-                add_to_temp_variable = { t = ai_strategy_conquer }
-                add_to_temp_variable = { t = ai_strategy_contain }	
-                add_to_temp_variable = { t = ai_strategy_ignore }
-                add_to_temp_variable = { t = ai_strategy_invade }
+                add = db_ai_chance_diplomacy_reject
             }
         }
         hidden_effect = {}
     }
 }
 
-
-# FROM    Wartime?    event code    event number
-# Communist    Yes    diplomacy    23
-
-
-
-# FROM    Wartime?    event code    event number
-# Communist    Yes    diplomacy    23
-# [FROM.GetLeader] Gives Speech on Unity
 country_event = {
     id = diplomacy.29
     title = "diplomacy.29.t"
@@ -891,13 +787,9 @@ country_event = {
         name = diplomacy.29.a
         ai_chance = {
             base = 1
-            set_temp_variable = { t = FROM.opinion }
-            add_to_temp_variable = { t = ai_strategy_alliance }
-            add_to_temp_variable = { t = ai_strategy_befriend }
-            add_to_temp_variable = { t = ai_strategy_influence } 	
-            add_to_temp_variable = { t = ai_strategy_protect } 	
-            add_to_temp_variable = { t = ai_strategy_support }
-            add_to_temp_variable = { t = ai_strategy_send_volunteers_desire }	
+            modifier = { 
+                add = var:db_ai_chance_diplomacy_agree
+            }
         }
         hidden_effect = {}
     }
@@ -907,25 +799,13 @@ country_event = {
         ai_chance = {
             base = 1
             modifier = { 
-                add_to_temp_variable = { t = ai_strategy_conquer }
-                add_to_temp_variable = { t = ai_strategy_contain }	
-                add_to_temp_variable = { t = ai_strategy_ignore }
-                add_to_temp_variable = { t = ai_strategy_invade }
+                add = db_ai_chance_diplomacy_reject
             }
         }
         hidden_effect = {}
     }
 }
 
-
-# FROM    Wartime?    event code    event number
-# Communist    Yes    diplomacy    23
-
-
-
-# FROM    Wartime?    event code    event number
-# Communist    Yes    diplomacy    23
-# [FROM.GetLeader] Gives Speech on Unity
 country_event = {
     id = diplomacy.30
     title = "diplomacy.30.t"
@@ -937,13 +817,9 @@ country_event = {
         name = diplomacy.30.a
         ai_chance = {
             base = 1
-            set_temp_variable = { t = FROM.opinion }
-            add_to_temp_variable = { t = ai_strategy_alliance }
-            add_to_temp_variable = { t = ai_strategy_befriend }
-            add_to_temp_variable = { t = ai_strategy_influence } 	
-            add_to_temp_variable = { t = ai_strategy_protect } 	
-            add_to_temp_variable = { t = ai_strategy_support }
-            add_to_temp_variable = { t = ai_strategy_send_volunteers_desire }	
+            modifier = { 
+                add = var:db_ai_chance_diplomacy_agree
+            }
         }
         hidden_effect = {}
     }
@@ -953,25 +829,13 @@ country_event = {
         ai_chance = {
             base = 1
             modifier = { 
-                add_to_temp_variable = { t = ai_strategy_conquer }
-                add_to_temp_variable = { t = ai_strategy_contain }	
-                add_to_temp_variable = { t = ai_strategy_ignore }
-                add_to_temp_variable = { t = ai_strategy_invade }
+                add = db_ai_chance_diplomacy_reject
             }
         }
         hidden_effect = {}
     }
 }
 
-
-# FROM    Wartime?    event code    event number
-# Communist    Yes    diplomacy    23
-
-
-
-# FROM    Wartime?    event code    event number
-# Communist    Yes    diplomacy    23
-# [FROM.GetLeader] Gives Speech on Unity
 country_event = {
     id = diplomacy.31
     title = "diplomacy.31.t"
@@ -983,13 +847,9 @@ country_event = {
         name = diplomacy.31.a
         ai_chance = {
             base = 1
-            set_temp_variable = { t = FROM.opinion }
-            add_to_temp_variable = { t = ai_strategy_alliance }
-            add_to_temp_variable = { t = ai_strategy_befriend }
-            add_to_temp_variable = { t = ai_strategy_influence } 	
-            add_to_temp_variable = { t = ai_strategy_protect } 	
-            add_to_temp_variable = { t = ai_strategy_support }
-            add_to_temp_variable = { t = ai_strategy_send_volunteers_desire }	
+            modifier = { 
+                add = var:db_ai_chance_diplomacy_agree
+            }
         }
         hidden_effect = {}
     }
@@ -999,25 +859,13 @@ country_event = {
         ai_chance = {
             base = 1
             modifier = { 
-                add_to_temp_variable = { t = ai_strategy_conquer }
-                add_to_temp_variable = { t = ai_strategy_contain }	
-                add_to_temp_variable = { t = ai_strategy_ignore }
-                add_to_temp_variable = { t = ai_strategy_invade }
+                add = db_ai_chance_diplomacy_reject
             }
         }
         hidden_effect = {}
     }
 }
 
-
-# FROM    Wartime?    event code    event number
-# Communist    Yes    diplomacy    23
-
-
-
-# FROM    Wartime?    event code    event number
-# Communist    Yes    diplomacy    23
-# [FROM.GetLeader] Gives Speech on Unity
 country_event = {
     id = diplomacy.32
     title = "diplomacy.32.t"
@@ -1029,13 +877,9 @@ country_event = {
         name = diplomacy.32.a
         ai_chance = {
             base = 1
-            set_temp_variable = { t = FROM.opinion }
-            add_to_temp_variable = { t = ai_strategy_alliance }
-            add_to_temp_variable = { t = ai_strategy_befriend }
-            add_to_temp_variable = { t = ai_strategy_influence } 	
-            add_to_temp_variable = { t = ai_strategy_protect } 	
-            add_to_temp_variable = { t = ai_strategy_support }
-            add_to_temp_variable = { t = ai_strategy_send_volunteers_desire }	
+            modifier = { 
+                add = var:db_ai_chance_diplomacy_agree
+            }
         }
         hidden_effect = {}
     }
@@ -1045,25 +889,13 @@ country_event = {
         ai_chance = {
             base = 1
             modifier = { 
-                add_to_temp_variable = { t = ai_strategy_conquer }
-                add_to_temp_variable = { t = ai_strategy_contain }	
-                add_to_temp_variable = { t = ai_strategy_ignore }
-                add_to_temp_variable = { t = ai_strategy_invade }
+                add = db_ai_chance_diplomacy_reject
             }
         }
         hidden_effect = {}
     }
 }
 
-
-# FROM    Wartime?    event code    event number
-# Communist    Yes    diplomacy    23
-
-
-
-# FROM    Wartime?    event code    event number
-# Communist    Yes    diplomacy    23
-# [FROM.GetLeader] Gives Speech on Unity
 country_event = {
     id = diplomacy.33
     title = "diplomacy.33.t"
@@ -1075,13 +907,9 @@ country_event = {
         name = diplomacy.33.a
         ai_chance = {
             base = 1
-            set_temp_variable = { t = FROM.opinion }
-            add_to_temp_variable = { t = ai_strategy_alliance }
-            add_to_temp_variable = { t = ai_strategy_befriend }
-            add_to_temp_variable = { t = ai_strategy_influence } 	
-            add_to_temp_variable = { t = ai_strategy_protect } 	
-            add_to_temp_variable = { t = ai_strategy_support }
-            add_to_temp_variable = { t = ai_strategy_send_volunteers_desire }	
+            modifier = { 
+                add = var:db_ai_chance_diplomacy_agree
+            }
         }
         hidden_effect = {}
     }
@@ -1091,25 +919,13 @@ country_event = {
         ai_chance = {
             base = 1
             modifier = { 
-                add_to_temp_variable = { t = ai_strategy_conquer }
-                add_to_temp_variable = { t = ai_strategy_contain }	
-                add_to_temp_variable = { t = ai_strategy_ignore }
-                add_to_temp_variable = { t = ai_strategy_invade }
+                add = db_ai_chance_diplomacy_reject
             }
         }
         hidden_effect = {}
     }
 }
 
-
-# FROM    Wartime?    event code    event number
-# Communist    Yes    diplomacy    23
-
-
-
-# FROM    Wartime?    event code    event number
-# Communist    Yes    diplomacy    23
-# [FROM.GetLeader] Gives Speech on Unity
 country_event = {
     id = diplomacy.34
     title = "diplomacy.34.t"
@@ -1121,13 +937,9 @@ country_event = {
         name = diplomacy.34.a
         ai_chance = {
             base = 1
-            set_temp_variable = { t = FROM.opinion }
-            add_to_temp_variable = { t = ai_strategy_alliance }
-            add_to_temp_variable = { t = ai_strategy_befriend }
-            add_to_temp_variable = { t = ai_strategy_influence } 	
-            add_to_temp_variable = { t = ai_strategy_protect } 	
-            add_to_temp_variable = { t = ai_strategy_support }
-            add_to_temp_variable = { t = ai_strategy_send_volunteers_desire }	
+            modifier = { 
+                add = var:db_ai_chance_diplomacy_agree
+            }
         }
         hidden_effect = {}
     }
@@ -1137,25 +949,13 @@ country_event = {
         ai_chance = {
             base = 1
             modifier = { 
-                add_to_temp_variable = { t = ai_strategy_conquer }
-                add_to_temp_variable = { t = ai_strategy_contain }	
-                add_to_temp_variable = { t = ai_strategy_ignore }
-                add_to_temp_variable = { t = ai_strategy_invade }
+                add = db_ai_chance_diplomacy_reject
             }
         }
         hidden_effect = {}
     }
 }
 
-
-# FROM    Wartime?    event code    event number
-# Communist    Yes    diplomacy    23
-
-
-
-# FROM    Wartime?    event code    event number
-# Communist    Yes    diplomacy    23
-# [FROM.GetLeader] Gives Speech on Unity
 country_event = {
     id = diplomacy.35
     title = "diplomacy.35.t"
@@ -1167,13 +967,9 @@ country_event = {
         name = diplomacy.35.a
         ai_chance = {
             base = 1
-            set_temp_variable = { t = FROM.opinion }
-            add_to_temp_variable = { t = ai_strategy_alliance }
-            add_to_temp_variable = { t = ai_strategy_befriend }
-            add_to_temp_variable = { t = ai_strategy_influence } 	
-            add_to_temp_variable = { t = ai_strategy_protect } 	
-            add_to_temp_variable = { t = ai_strategy_support }
-            add_to_temp_variable = { t = ai_strategy_send_volunteers_desire }	
+            modifier = { 
+                add = var:db_ai_chance_diplomacy_agree
+            }
         }
         hidden_effect = {}
     }
@@ -1183,25 +979,13 @@ country_event = {
         ai_chance = {
             base = 1
             modifier = { 
-                add_to_temp_variable = { t = ai_strategy_conquer }
-                add_to_temp_variable = { t = ai_strategy_contain }	
-                add_to_temp_variable = { t = ai_strategy_ignore }
-                add_to_temp_variable = { t = ai_strategy_invade }
+                add = db_ai_chance_diplomacy_reject
             }
         }
         hidden_effect = {}
     }
 }
 
-
-# FROM    Wartime?    event code    event number
-# Communist    Yes    diplomacy    23
-
-
-
-# FROM    Wartime?    event code    event number
-# Communist    Yes    diplomacy    23
-# [FROM.GetLeader] Gives Speech on Unity
 country_event = {
     id = diplomacy.36
     title = "diplomacy.36.t"
@@ -1213,13 +997,9 @@ country_event = {
         name = diplomacy.36.a
         ai_chance = {
             base = 1
-            set_temp_variable = { t = FROM.opinion }
-            add_to_temp_variable = { t = ai_strategy_alliance }
-            add_to_temp_variable = { t = ai_strategy_befriend }
-            add_to_temp_variable = { t = ai_strategy_influence } 	
-            add_to_temp_variable = { t = ai_strategy_protect } 	
-            add_to_temp_variable = { t = ai_strategy_support }
-            add_to_temp_variable = { t = ai_strategy_send_volunteers_desire }	
+            modifier = { 
+                add = var:db_ai_chance_diplomacy_agree
+            }
         }
         hidden_effect = {}
     }
@@ -1229,25 +1009,13 @@ country_event = {
         ai_chance = {
             base = 1
             modifier = { 
-                add_to_temp_variable = { t = ai_strategy_conquer }
-                add_to_temp_variable = { t = ai_strategy_contain }	
-                add_to_temp_variable = { t = ai_strategy_ignore }
-                add_to_temp_variable = { t = ai_strategy_invade }
+                add = db_ai_chance_diplomacy_reject
             }
         }
         hidden_effect = {}
     }
 }
 
-
-# FROM    Wartime?    event code    event number
-# Communist    Yes    diplomacy    23
-
-
-
-# FROM    Wartime?    event code    event number
-# Communist    Yes    diplomacy    23
-# [FROM.GetLeader] Gives Speech on Unity
 country_event = {
     id = diplomacy.37
     title = "diplomacy.37.t"
@@ -1259,13 +1027,9 @@ country_event = {
         name = diplomacy.37.a
         ai_chance = {
             base = 1
-            set_temp_variable = { t = FROM.opinion }
-            add_to_temp_variable = { t = ai_strategy_alliance }
-            add_to_temp_variable = { t = ai_strategy_befriend }
-            add_to_temp_variable = { t = ai_strategy_influence } 	
-            add_to_temp_variable = { t = ai_strategy_protect } 	
-            add_to_temp_variable = { t = ai_strategy_support }
-            add_to_temp_variable = { t = ai_strategy_send_volunteers_desire }	
+            modifier = { 
+                add = var:db_ai_chance_diplomacy_agree
+            }
         }
         hidden_effect = {}
     }
@@ -1275,25 +1039,13 @@ country_event = {
         ai_chance = {
             base = 1
             modifier = { 
-                add_to_temp_variable = { t = ai_strategy_conquer }
-                add_to_temp_variable = { t = ai_strategy_contain }	
-                add_to_temp_variable = { t = ai_strategy_ignore }
-                add_to_temp_variable = { t = ai_strategy_invade }
+                add = db_ai_chance_diplomacy_reject
             }
         }
         hidden_effect = {}
     }
 }
 
-
-# FROM    Wartime?    event code    event number
-# Communist    Yes    diplomacy    23
-
-
-
-# FROM    Wartime?    event code    event number
-# Communist    Yes    diplomacy    23
-# [FROM.GetLeader] Gives Speech on Unity
 country_event = {
     id = diplomacy.38
     title = "diplomacy.38.t"
@@ -1305,13 +1057,9 @@ country_event = {
         name = diplomacy.38.a
         ai_chance = {
             base = 1
-            set_temp_variable = { t = FROM.opinion }
-            add_to_temp_variable = { t = ai_strategy_alliance }
-            add_to_temp_variable = { t = ai_strategy_befriend }
-            add_to_temp_variable = { t = ai_strategy_influence } 	
-            add_to_temp_variable = { t = ai_strategy_protect } 	
-            add_to_temp_variable = { t = ai_strategy_support }
-            add_to_temp_variable = { t = ai_strategy_send_volunteers_desire }	
+            modifier = { 
+                add = var:db_ai_chance_diplomacy_agree
+            }
         }
         hidden_effect = {}
     }
@@ -1321,25 +1069,13 @@ country_event = {
         ai_chance = {
             base = 1
             modifier = { 
-                add_to_temp_variable = { t = ai_strategy_conquer }
-                add_to_temp_variable = { t = ai_strategy_contain }	
-                add_to_temp_variable = { t = ai_strategy_ignore }
-                add_to_temp_variable = { t = ai_strategy_invade }
+                add = db_ai_chance_diplomacy_reject
             }
         }
         hidden_effect = {}
     }
 }
 
-
-# FROM    Wartime?    event code    event number
-# Communist    Yes    diplomacy    23
-
-
-
-# FROM    Wartime?    event code    event number
-# Communist    Yes    diplomacy    23
-# [FROM.GetLeader] Gives Speech on Unity
 country_event = {
     id = diplomacy.39
     title = "diplomacy.39.t"
@@ -1351,13 +1087,9 @@ country_event = {
         name = diplomacy.39.a
         ai_chance = {
             base = 1
-            set_temp_variable = { t = FROM.opinion }
-            add_to_temp_variable = { t = ai_strategy_alliance }
-            add_to_temp_variable = { t = ai_strategy_befriend }
-            add_to_temp_variable = { t = ai_strategy_influence } 	
-            add_to_temp_variable = { t = ai_strategy_protect } 	
-            add_to_temp_variable = { t = ai_strategy_support }
-            add_to_temp_variable = { t = ai_strategy_send_volunteers_desire }	
+            modifier = { 
+                add = var:db_ai_chance_diplomacy_agree
+            }
         }
         hidden_effect = {}
     }
@@ -1367,25 +1099,13 @@ country_event = {
         ai_chance = {
             base = 1
             modifier = { 
-                add_to_temp_variable = { t = ai_strategy_conquer }
-                add_to_temp_variable = { t = ai_strategy_contain }	
-                add_to_temp_variable = { t = ai_strategy_ignore }
-                add_to_temp_variable = { t = ai_strategy_invade }
+                add = db_ai_chance_diplomacy_reject
             }
         }
         hidden_effect = {}
     }
 }
 
-
-# FROM    Wartime?    event code    event number
-# Communist    Yes    diplomacy    23
-
-
-
-# FROM    Wartime?    event code    event number
-# Communist    Yes    diplomacy    23
-# [FROM.GetLeader] Gives Speech on Unity
 country_event = {
     id = diplomacy.40
     title = "diplomacy.40.t"
@@ -1397,13 +1117,9 @@ country_event = {
         name = diplomacy.40.a
         ai_chance = {
             base = 1
-            set_temp_variable = { t = FROM.opinion }
-            add_to_temp_variable = { t = ai_strategy_alliance }
-            add_to_temp_variable = { t = ai_strategy_befriend }
-            add_to_temp_variable = { t = ai_strategy_influence } 	
-            add_to_temp_variable = { t = ai_strategy_protect } 	
-            add_to_temp_variable = { t = ai_strategy_support }
-            add_to_temp_variable = { t = ai_strategy_send_volunteers_desire }	
+            modifier = { 
+                add = var:db_ai_chance_diplomacy_agree
+            }
         }
         hidden_effect = {}
     }
@@ -1413,25 +1129,13 @@ country_event = {
         ai_chance = {
             base = 1
             modifier = { 
-                add_to_temp_variable = { t = ai_strategy_conquer }
-                add_to_temp_variable = { t = ai_strategy_contain }	
-                add_to_temp_variable = { t = ai_strategy_ignore }
-                add_to_temp_variable = { t = ai_strategy_invade }
+                add = db_ai_chance_diplomacy_reject
             }
         }
         hidden_effect = {}
     }
 }
 
-
-# FROM    Wartime?    event code    event number
-# Communist    Yes    diplomacy    23
-
-
-
-# FROM    Wartime?    event code    event number
-# Communist    Yes    diplomacy    23
-# [FROM.GetLeader] Gives Speech on Unity
 country_event = {
     id = diplomacy.41
     title = "diplomacy.41.t"
@@ -1443,13 +1147,9 @@ country_event = {
         name = diplomacy.41.a
         ai_chance = {
             base = 1
-            set_temp_variable = { t = FROM.opinion }
-            add_to_temp_variable = { t = ai_strategy_alliance }
-            add_to_temp_variable = { t = ai_strategy_befriend }
-            add_to_temp_variable = { t = ai_strategy_influence } 	
-            add_to_temp_variable = { t = ai_strategy_protect } 	
-            add_to_temp_variable = { t = ai_strategy_support }
-            add_to_temp_variable = { t = ai_strategy_send_volunteers_desire }	
+            modifier = { 
+                add = var:db_ai_chance_diplomacy_agree
+            }
         }
         hidden_effect = {}
     }
@@ -1459,25 +1159,13 @@ country_event = {
         ai_chance = {
             base = 1
             modifier = { 
-                add_to_temp_variable = { t = ai_strategy_conquer }
-                add_to_temp_variable = { t = ai_strategy_contain }	
-                add_to_temp_variable = { t = ai_strategy_ignore }
-                add_to_temp_variable = { t = ai_strategy_invade }
+                add = db_ai_chance_diplomacy_reject
             }
         }
         hidden_effect = {}
     }
 }
 
-
-# FROM    Wartime?    event code    event number
-# Communist    Yes    diplomacy    23
-
-
-
-# FROM    Wartime?    event code    event number
-# Communist    Yes    diplomacy    23
-# [FROM.GetLeader] Gives Speech on Unity
 country_event = {
     id = diplomacy.42
     title = "diplomacy.42.t"
@@ -1489,13 +1177,9 @@ country_event = {
         name = diplomacy.42.a
         ai_chance = {
             base = 1
-            set_temp_variable = { t = FROM.opinion }
-            add_to_temp_variable = { t = ai_strategy_alliance }
-            add_to_temp_variable = { t = ai_strategy_befriend }
-            add_to_temp_variable = { t = ai_strategy_influence } 	
-            add_to_temp_variable = { t = ai_strategy_protect } 	
-            add_to_temp_variable = { t = ai_strategy_support }
-            add_to_temp_variable = { t = ai_strategy_send_volunteers_desire }	
+            modifier = { 
+                add = var:db_ai_chance_diplomacy_agree
+            }
         }
         hidden_effect = {}
     }
@@ -1505,25 +1189,13 @@ country_event = {
         ai_chance = {
             base = 1
             modifier = { 
-                add_to_temp_variable = { t = ai_strategy_conquer }
-                add_to_temp_variable = { t = ai_strategy_contain }	
-                add_to_temp_variable = { t = ai_strategy_ignore }
-                add_to_temp_variable = { t = ai_strategy_invade }
+                add = db_ai_chance_diplomacy_reject
             }
         }
         hidden_effect = {}
     }
 }
 
-
-# FROM    Wartime?    event code    event number
-# Communist    Yes    diplomacy    23
-
-
-
-# FROM    Wartime?    event code    event number
-# Communist    Yes    diplomacy    23
-# [FROM.GetLeader] Gives Speech on Unity
 country_event = {
     id = diplomacy.43
     title = "diplomacy.43.t"
@@ -1535,13 +1207,9 @@ country_event = {
         name = diplomacy.43.a
         ai_chance = {
             base = 1
-            set_temp_variable = { t = FROM.opinion }
-            add_to_temp_variable = { t = ai_strategy_alliance }
-            add_to_temp_variable = { t = ai_strategy_befriend }
-            add_to_temp_variable = { t = ai_strategy_influence } 	
-            add_to_temp_variable = { t = ai_strategy_protect } 	
-            add_to_temp_variable = { t = ai_strategy_support }
-            add_to_temp_variable = { t = ai_strategy_send_volunteers_desire }	
+            modifier = { 
+                add = var:db_ai_chance_diplomacy_agree
+            }
         }
         hidden_effect = {}
     }
@@ -1551,25 +1219,13 @@ country_event = {
         ai_chance = {
             base = 1
             modifier = { 
-                add_to_temp_variable = { t = ai_strategy_conquer }
-                add_to_temp_variable = { t = ai_strategy_contain }	
-                add_to_temp_variable = { t = ai_strategy_ignore }
-                add_to_temp_variable = { t = ai_strategy_invade }
+                add = db_ai_chance_diplomacy_reject
             }
         }
         hidden_effect = {}
     }
 }
 
-
-# FROM    Wartime?    event code    event number
-# Communist    Yes    diplomacy    23
-
-
-
-# FROM    Wartime?    event code    event number
-# Communist    Yes    diplomacy    23
-# [FROM.GetLeader] Gives Speech on Unity
 country_event = {
     id = diplomacy.44
     title = "diplomacy.44.t"
@@ -1581,13 +1237,9 @@ country_event = {
         name = diplomacy.44.a
         ai_chance = {
             base = 1
-            set_temp_variable = { t = FROM.opinion }
-            add_to_temp_variable = { t = ai_strategy_alliance }
-            add_to_temp_variable = { t = ai_strategy_befriend }
-            add_to_temp_variable = { t = ai_strategy_influence } 	
-            add_to_temp_variable = { t = ai_strategy_protect } 	
-            add_to_temp_variable = { t = ai_strategy_support }
-            add_to_temp_variable = { t = ai_strategy_send_volunteers_desire }	
+            modifier = { 
+                add = var:db_ai_chance_diplomacy_agree
+            }
         }
         hidden_effect = {}
     }
@@ -1597,25 +1249,13 @@ country_event = {
         ai_chance = {
             base = 1
             modifier = { 
-                add_to_temp_variable = { t = ai_strategy_conquer }
-                add_to_temp_variable = { t = ai_strategy_contain }	
-                add_to_temp_variable = { t = ai_strategy_ignore }
-                add_to_temp_variable = { t = ai_strategy_invade }
+                add = db_ai_chance_diplomacy_reject
             }
         }
         hidden_effect = {}
     }
 }
 
-
-# FROM    Wartime?    event code    event number
-# Communist    Yes    diplomacy    23
-
-
-
-# FROM    Wartime?    event code    event number
-# Communist    Yes    diplomacy    23
-# [FROM.GetLeader] Gives Speech on Unity
 country_event = {
     id = diplomacy.45
     title = "diplomacy.45.t"
@@ -1627,13 +1267,9 @@ country_event = {
         name = diplomacy.45.a
         ai_chance = {
             base = 1
-            set_temp_variable = { t = FROM.opinion }
-            add_to_temp_variable = { t = ai_strategy_alliance }
-            add_to_temp_variable = { t = ai_strategy_befriend }
-            add_to_temp_variable = { t = ai_strategy_influence } 	
-            add_to_temp_variable = { t = ai_strategy_protect } 	
-            add_to_temp_variable = { t = ai_strategy_support }
-            add_to_temp_variable = { t = ai_strategy_send_volunteers_desire }	
+            modifier = { 
+                add = var:db_ai_chance_diplomacy_agree
+            }
         }
         hidden_effect = {}
     }
@@ -1643,25 +1279,13 @@ country_event = {
         ai_chance = {
             base = 1
             modifier = { 
-                add_to_temp_variable = { t = ai_strategy_conquer }
-                add_to_temp_variable = { t = ai_strategy_contain }	
-                add_to_temp_variable = { t = ai_strategy_ignore }
-                add_to_temp_variable = { t = ai_strategy_invade }
+                add = db_ai_chance_diplomacy_reject
             }
         }
         hidden_effect = {}
     }
 }
 
-
-# FROM    Wartime?    event code    event number
-# Communist    Yes    diplomacy    23
-
-
-
-# FROM    Wartime?    event code    event number
-# Communist    Yes    diplomacy    23
-# [FROM.GetLeader] Gives Speech on Unity
 country_event = {
     id = diplomacy.46
     title = "diplomacy.46.t"
@@ -1673,13 +1297,9 @@ country_event = {
         name = diplomacy.46.a
         ai_chance = {
             base = 1
-            set_temp_variable = { t = FROM.opinion }
-            add_to_temp_variable = { t = ai_strategy_alliance }
-            add_to_temp_variable = { t = ai_strategy_befriend }
-            add_to_temp_variable = { t = ai_strategy_influence } 	
-            add_to_temp_variable = { t = ai_strategy_protect } 	
-            add_to_temp_variable = { t = ai_strategy_support }
-            add_to_temp_variable = { t = ai_strategy_send_volunteers_desire }	
+            modifier = { 
+                add = var:db_ai_chance_diplomacy_agree
+            }
         }
         hidden_effect = {}
     }
@@ -1689,25 +1309,13 @@ country_event = {
         ai_chance = {
             base = 1
             modifier = { 
-                add_to_temp_variable = { t = ai_strategy_conquer }
-                add_to_temp_variable = { t = ai_strategy_contain }	
-                add_to_temp_variable = { t = ai_strategy_ignore }
-                add_to_temp_variable = { t = ai_strategy_invade }
+                add = db_ai_chance_diplomacy_reject
             }
         }
         hidden_effect = {}
     }
 }
 
-
-# FROM    Wartime?    event code    event number
-# Communist    Yes    diplomacy    23
-
-
-
-# FROM    Wartime?    event code    event number
-# Communist    Yes    diplomacy    23
-# [FROM.GetLeader] Gives Speech on Unity
 country_event = {
     id = diplomacy.47
     title = "diplomacy.47.t"
@@ -1719,13 +1327,9 @@ country_event = {
         name = diplomacy.47.a
         ai_chance = {
             base = 1
-            set_temp_variable = { t = FROM.opinion }
-            add_to_temp_variable = { t = ai_strategy_alliance }
-            add_to_temp_variable = { t = ai_strategy_befriend }
-            add_to_temp_variable = { t = ai_strategy_influence } 	
-            add_to_temp_variable = { t = ai_strategy_protect } 	
-            add_to_temp_variable = { t = ai_strategy_support }
-            add_to_temp_variable = { t = ai_strategy_send_volunteers_desire }	
+            modifier = { 
+                add = var:db_ai_chance_diplomacy_agree
+            }
         }
         hidden_effect = {}
     }
@@ -1735,25 +1339,13 @@ country_event = {
         ai_chance = {
             base = 1
             modifier = { 
-                add_to_temp_variable = { t = ai_strategy_conquer }
-                add_to_temp_variable = { t = ai_strategy_contain }	
-                add_to_temp_variable = { t = ai_strategy_ignore }
-                add_to_temp_variable = { t = ai_strategy_invade }
+                add = db_ai_chance_diplomacy_reject
             }
         }
         hidden_effect = {}
     }
 }
 
-
-# FROM    Wartime?    event code    event number
-# Communist    Yes    diplomacy    23
-
-
-
-# FROM    Wartime?    event code    event number
-# Communist    Yes    diplomacy    23
-# [FROM.GetLeader] Gives Speech on Unity
 country_event = {
     id = diplomacy.48
     title = "diplomacy.48.t"
@@ -1765,13 +1357,9 @@ country_event = {
         name = diplomacy.48.a
         ai_chance = {
             base = 1
-            set_temp_variable = { t = FROM.opinion }
-            add_to_temp_variable = { t = ai_strategy_alliance }
-            add_to_temp_variable = { t = ai_strategy_befriend }
-            add_to_temp_variable = { t = ai_strategy_influence } 	
-            add_to_temp_variable = { t = ai_strategy_protect } 	
-            add_to_temp_variable = { t = ai_strategy_support }
-            add_to_temp_variable = { t = ai_strategy_send_volunteers_desire }	
+            modifier = { 
+                add = var:db_ai_chance_diplomacy_agree
+            }
         }
         hidden_effect = {}
     }
@@ -1781,25 +1369,13 @@ country_event = {
         ai_chance = {
             base = 1
             modifier = { 
-                add_to_temp_variable = { t = ai_strategy_conquer }
-                add_to_temp_variable = { t = ai_strategy_contain }	
-                add_to_temp_variable = { t = ai_strategy_ignore }
-                add_to_temp_variable = { t = ai_strategy_invade }
+                add = db_ai_chance_diplomacy_reject
             }
         }
         hidden_effect = {}
     }
 }
 
-
-# FROM    Wartime?    event code    event number
-# Communist    Yes    diplomacy    23
-
-
-
-# FROM    Wartime?    event code    event number
-# Communist    Yes    diplomacy    23
-# [FROM.GetLeader] Gives Speech on Unity
 country_event = {
     id = diplomacy.49
     title = "diplomacy.49.t"
@@ -1811,13 +1387,9 @@ country_event = {
         name = diplomacy.49.a
         ai_chance = {
             base = 1
-            set_temp_variable = { t = FROM.opinion }
-            add_to_temp_variable = { t = ai_strategy_alliance }
-            add_to_temp_variable = { t = ai_strategy_befriend }
-            add_to_temp_variable = { t = ai_strategy_influence } 	
-            add_to_temp_variable = { t = ai_strategy_protect } 	
-            add_to_temp_variable = { t = ai_strategy_support }
-            add_to_temp_variable = { t = ai_strategy_send_volunteers_desire }	
+            modifier = { 
+                add = var:db_ai_chance_diplomacy_agree
+            }
         }
         hidden_effect = {}
     }
@@ -1827,25 +1399,13 @@ country_event = {
         ai_chance = {
             base = 1
             modifier = { 
-                add_to_temp_variable = { t = ai_strategy_conquer }
-                add_to_temp_variable = { t = ai_strategy_contain }	
-                add_to_temp_variable = { t = ai_strategy_ignore }
-                add_to_temp_variable = { t = ai_strategy_invade }
+                add = db_ai_chance_diplomacy_reject
             }
         }
         hidden_effect = {}
     }
 }
 
-
-# FROM    Wartime?    event code    event number
-# Communist    Yes    diplomacy    23
-
-
-
-# FROM    Wartime?    event code    event number
-# Communist    Yes    diplomacy    23
-# [FROM.GetLeader] Gives Speech on Unity
 country_event = {
     id = diplomacy.50
     title = "diplomacy.50.t"
@@ -1857,13 +1417,9 @@ country_event = {
         name = diplomacy.50.a
         ai_chance = {
             base = 1
-            set_temp_variable = { t = FROM.opinion }
-            add_to_temp_variable = { t = ai_strategy_alliance }
-            add_to_temp_variable = { t = ai_strategy_befriend }
-            add_to_temp_variable = { t = ai_strategy_influence } 	
-            add_to_temp_variable = { t = ai_strategy_protect } 	
-            add_to_temp_variable = { t = ai_strategy_support }
-            add_to_temp_variable = { t = ai_strategy_send_volunteers_desire }	
+            modifier = { 
+                add = var:db_ai_chance_diplomacy_agree
+            }
         }
         hidden_effect = {}
     }
@@ -1873,10 +1429,7 @@ country_event = {
         ai_chance = {
             base = 1
             modifier = { 
-                add_to_temp_variable = { t = ai_strategy_conquer }
-                add_to_temp_variable = { t = ai_strategy_contain }	
-                add_to_temp_variable = { t = ai_strategy_ignore }
-                add_to_temp_variable = { t = ai_strategy_invade }
+                add = db_ai_chance_diplomacy_reject
             }
         }
         hidden_effect = {}

@@ -16,7 +16,7 @@ db_paramilitary_movement_category = {
 		}
 		days_mission_timeout = 30
 	}
-	suppress_resistance = {
+	db_paramilitary_suppress_resistance = {
 		icon = decision_icon_impending_leadership_collapse
 		available = {
 			ROOT = {
@@ -48,7 +48,7 @@ db_paramilitary_movement_category = {
 		}
 		custom_cost_text = decision_cost_CP_30
 	}
-	support_resistance = {
+	db_paramilitary_support_resistance = {
 		icon = decision_icon_impending_leadership_collapse
 		#visible = {
 		#	any_country = {
@@ -84,7 +84,7 @@ db_paramilitary_movement_category = {
 		complete_effect = {
 			add_command_power = -30
 			FROM = {
-				country_event = political_crisis.7
+				country_event = political_crisis.24
 			}
 		}
 		cost = 10

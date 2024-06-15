@@ -1,0 +1,19 @@
+debug_mod_category = {
+	anti_war_activity = {
+		icon = decision_icon_impending_leadership_collapse
+		activation = {
+			
+		}
+		available = {
+		
+		}
+		is_good = no
+		complete_effect = {
+			
+		}
+		timeout_effect = {
+			db_effect_anti_war_activity_decision = yes
+		}
+		days_mission_timeout = 30
+	}
+}

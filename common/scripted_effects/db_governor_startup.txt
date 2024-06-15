@@ -22,7 +22,7 @@ db_startup_set_state_governor_1 = {
 				random_list = {
 					10 = {
 						1 = { set_state_flag = state_1_conservative }
-						modifier = { factor = 2 has_country_leader_ideology = conservative }
+						modifier = { factor = 2 has_country_leader_ideology = conservatism }
 						generate_character = {
 							token_base = state_1_governor # token will be TAG_token_base
 							advisor = {
@@ -40,7 +40,7 @@ db_startup_set_state_governor_1 = {
 					}
 					10 = {
 						1 = { set_state_flag = state_1_liberal }
-						modifier = { factor = 2 has_country_leader_ideology = liberal }
+						modifier = { factor = 2 has_country_leader_ideology = liberalism }
 						generate_character = {
 							token_base = state_1_governor # token will be TAG_token_base
 							advisor = {

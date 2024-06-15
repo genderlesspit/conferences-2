@@ -30,6 +30,17 @@ db_trigger_can_anti_war_movement_activity = {
 	has_war_support < 0.75
 }
 
+db_trigger_can_paramilitary_movement_activity = {
+	has_idea = db_paramilitary_movement
+	any_core_state = {
+		has_state_flag = db_paramilitary_movement_presence
+		#any_neighbor_state = { 
+		#	NOT = { has_state_flag = db_anti_war_movement_presence }
+		#}
+	}
+	has_war_support < 0.75
+}
+
 db_trigger_is_warhawk = {
 
 }

@@ -34,3 +34,4 @@ anti_war_movement_state_dynamic_modifier = {
 	war_support_weekly = -0.00005
 	drift_defence_factor = -0.01
 }
+

@@ -16,7 +16,7 @@ db_anti_war_movement_category = {
 		}
 		days_mission_timeout = 30
 	}
-	suppress_resistance = {
+	db_anti_war_suppress_resistance = {
 		icon = decision_icon_impending_leadership_collapse
 		available = {
 			ROOT = {
@@ -48,7 +48,7 @@ db_anti_war_movement_category = {
 		}
 		custom_cost_text = decision_cost_CP_30
 	}
-	support_resistance = {
+	db_anti_war_support_resistance = {
 		icon = decision_icon_impending_leadership_collapse
 		#visible = {
 		#	any_country = {
