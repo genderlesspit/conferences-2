@@ -3,4 +3,4 @@ tags={
 	"Gameplay"
 }
 name="Conferences"
-supported_version="1.14.3"
+supported_version="1.14.6"

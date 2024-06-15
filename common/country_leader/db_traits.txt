@@ -27,4 +27,34 @@ leader_traits = {
 	}
 	db_leader_communist_sympathies = {
 	}
+	liberal_governor = {
+		sprite = 13
+		fascism_drift = 0.1
+		ai_will_do = {
+		}
+	}
+	conservative_governor = {
+		sprite = 13
+		fascism_drift = 0.1
+		ai_will_do = {
+		}
+	}
+	neutral_governor = {
+		sprite = 13
+		fascism_drift = 0.1
+		ai_will_do = {
+		}
+	}
+	communist_governor = {
+		sprite = 13
+		fascism_drift = 0.1
+		ai_will_do = {
+		}
+	}
+	fascist_governor = {
+		sprite = 13
+		fascism_drift = 0.1
+		ai_will_do = {
+		}
+	}
 }

@@ -64,7 +64,7 @@ db_startup_set_state_governor_1 = {
 					token_base = state_1_governor # token will be TAG_token_base
 					advisor = {
 						slot = political_advisor
-							traits = { liberal_governor }
+							traits = { neutral_governor }
 							available = {
 								1 = { has_state_flag = state_1_neutral }
 								ROOT = { controls_state = 1 }
