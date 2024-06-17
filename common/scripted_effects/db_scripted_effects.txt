@@ -151,6 +151,16 @@ db_trait_incompetent_chance = {
 	}
 }
 
+db_trait_uncooperative_diplomat_chance = {
+		random_list = {
+		10 = {
+			country_event = gain_traits.3
+		}
+		90 = {  
+		
+		}
+	}
+}
 
 db_effect_diplomatic_mishap_small = {
 		random_list = {
@@ -186,6 +196,12 @@ db_effect_diplomatic_mishap_small = {
 			add_opinion_modifier = { 
 				target = FROM
 				modifier = db_opinion_diplomatic_mishap_small
+			}
+			if = {
+				limit = { ROOT = { has_opinion = { target = FROM value < 50 }
+				FROM = {
+					country_event = { id = diplomacy.11 days = 3 random_days = 5 }
+				}
 			}
 		}
 		1 = { }

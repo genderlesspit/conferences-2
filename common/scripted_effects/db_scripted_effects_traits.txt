@@ -1,0 +1,40 @@
+db_trait_hawk_chance = {
+		random_list = {
+		10 = {
+			country_event = gain_traits.1
+		}
+		90 = { }
+	}
+}
+
+db_trait_incompetent_chance = {
+		random_list = {
+		10 = {
+			modifier = {
+				factor = 1.5
+				has_political_power < 150 
+			}
+			modifier = {
+				factor = 2
+				has_political_power < 50 
+			}
+			modifier = {
+				factor = 5
+				has_political_power < 0 
+			}
+			country_event = gain_traits.2
+		}
+		90 = { }
+	}
+}
+
+db_trait_uncooperative_diplomat_chance = {
+		random_list = {
+		10 = {
+			country_event = gain_traits.3
+		}
+		90 = {  
+		
+		}
+	}
+}

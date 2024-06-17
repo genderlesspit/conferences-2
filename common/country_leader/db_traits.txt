@@ -25,6 +25,7 @@ leader_traits = {
 		opinion_gain_monthly_factor = -0.8
 		drift_defence_factor = -0.1
 	}
+	
 	db_leader_communist_sympathies = {
 	}
 	liberal_governor = {
