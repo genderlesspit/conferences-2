@@ -1,3 +1,0 @@
-every_country = { limit = { has_opinion = { target = ROOT value > 20 } NOT = { is_in_array = { value = PREV array = ROOT.db_diplomacy_friendly } } add_to_array = { ROOT.db_diplomacy_friendly = PREV } }
-every_country = { limit = { has_opinion = { target = ROOT value < 20 } is_in_array = { value = PREV array = ROOT.db_diplomacy_friendly } } remove_from_array = { array = ROOT.db_diplomacy_friendly value = PREV } }
-every_country = { limit = { is_in_array = { value = PREV array = ROOT.db_diplomacy_friendly } } country_event = db_diplomacy.1 }
