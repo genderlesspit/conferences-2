@@ -1,19 +1,27 @@
-add_namespace = diplomacy
+add_namespace = db_diplomacy
 #Relations Established with [FROM.GetName]
 country_event = {
-	id = diplomacy.1
-	title = diplomacy.1.t
-	desc = diplomacy.1.d
+	id = db_diplomacy.1
+	title = db_diplomacy.1.t
+	desc = db_diplomacy.1.d
 	is_triggered_only = yes
 	picture = relations_established_with_fromgetname-689
-	immediate = {		
-		add_opinion_modifier = {
-			target = event_target:db_diplomacy_establish_relations_FROM
-			modifier = db_established_relations
-		}
-	}
+	#trigger = {
+	#	any_country = {
+	#		has_opinion	= {
+	#			target = ROOT
+	#			value > 20
+	#		}
+	#	}
+	#}
+	#immediate = {		
+	#	add_opinion_modifier = {
+	#		target = event_target:db_diplomacy_establish_relations_FROM
+	#		modifier = db_established_relations
+	#	}
+	#}
 	option = {
-		name = diplomacy.1.a
+		name = db_diplomacy.1.a
 		ai_chance = { factor = 1 }
 		hidden_effect = {
 			
@@ -23,9 +31,10 @@ country_event = {
 
 #Visit from [FROM.GetAdjective] Ambassador
 country_event = {
-	id = diplomacy.2
-	title = diplomacy.2.t
-	desc = diplomacy.2.d
+	id = db_diplomacy.2
+	title = db_diplomacy.2.t
+	desc = db_diplomacy.2.d
+	is_triggered_only = yes
 	picture = visit_from_fromgetadjective_ambassador-665
 	immediate = {
 		add_opinion_modifier = {
@@ -34,7 +43,7 @@ country_event = {
 		}
 	}
 	option = { #Come, Sit!
-		name = diplomacy.2.a
+		name = db_diplomacy.2.a
 		trigger = {
 			NOT = { has_opinion = { target = FROM value < -50 } }
 		}
@@ -45,14 +54,14 @@ country_event = {
             }
         }
 	}
-	option = { We will have no talks!
-		name = diplomacy.2.b
+	option = { #We will have no talks!
+		name = db_diplomacy.2.b
 		trigger = {
 			has_opinion = { target = FROM value < 0 }
 		}
 		custom_effect_tooltip = db_tt_affect_diplomatic_relationship
 		country_event = { 
-			id = diplomacy.3
+			id = db_diplomacy.3
 			days = 5
 			random_hours = 12
 			random_days = 5 
@@ -68,13 +77,13 @@ country_event = {
 
 #[FROM.GetName] Turns Away Our Ambassador
 country_event = {
-	id = diplomacy.3
-	title = diplomacy.3.t
-	desc = diplomacy.3.d
-
+	id = db_diplomacy.3
+	title = db_diplomacy.3.t
+	desc = db_diplomacy.3.d
+	is_triggered_only = yes
 	picture = fromgetname_turns_away_our_ambassador-712
 	option = { #
-		name = diplomacy.3.a
+		name = db_diplomacy.3.a
 		trigger = {
 			OR = { 
 				OR = { 
@@ -99,12 +108,12 @@ country_event = {
 		}
 	}
 	option = { # We must offer concessions
-		name = diplomacy.3.b
+		name = db_diplomacy.3.b
 		trigger = {
 			
 		}
 		FROM = {
-			country_event = { id = diplomacy.4 days = 3 random_days = 5 }
+			country_event = { id = db_diplomacy.4 days = 3 random_days = 5 }
 		}
 		add_political_power = -20
 		ai_chance = { base = 1 }
@@ -117,19 +126,19 @@ country_event = {
 
 #[FROM.GetName] Offers Concessions to Salvage Relations
 country_event = {
-	id = diplomacy.4
-	title = diplomacy.4.t
-	desc = diplomacy.4.d
-
+	id = db_diplomacy.4
+	title = db_diplomacy.4.t
+	desc = db_diplomacy.4.d
+	is_triggered_only = yes
 	picture = fromgetname_offers_concessions_to_salvage_relations-825
 	option = {
-		name = diplomacy.4.a
+		name = db_diplomacy.4.a
 		trigger = {
 			
 		}
 		add_political_power = 20
 		FROM = {
-			country_event = { id = diplomacy.5 days = 3 random_days = 5 }
+			country_event = { id = db_diplomacy.5 days = 3 random_days = 5 }
 		}
 		ai_chance = { factor = 1 }
 		
@@ -138,9 +147,9 @@ country_event = {
 		}
 	}
 	option = {
-		name = diplomacy.4.b
+		name = db_diplomacy.4.b
 		FROM = {
-			country_event = { id = diplomacy.6 days = 3 random_days = 5 }
+			country_event = { id = db_diplomacy.6 days = 3 random_days = 5 }
 		}
 		trigger = {
 			
@@ -155,13 +164,13 @@ country_event = {
 
 #[FROM.GetName] Accepts Concessions
 country_event = {
-	id = diplomacy.5
-	title = diplomacy.5.t
-	desc = diplomacy.5.d
-
+	id = db_diplomacy.5
+	title = db_diplomacy.5.t
+	desc = db_diplomacy.5.d
+	is_triggered_only = yes
 	picture = fromgetname_accepts_concessions-691
 	option = {
-		name = diplomacy.5.a
+		name = db_diplomacy.5.a
 		trigger = {
 			
 		}
@@ -175,13 +184,13 @@ country_event = {
 
 #[FROM.GetName] Rejects Concessions
 country_event = {
-	id = diplomacy.6
-	title = diplomacy.6.t
-	desc = diplomacy.6.d
-
+	id = db_diplomacy.6
+	title = db_diplomacy.6.t
+	desc = db_diplomacy.6.d
+	is_triggered_only = yes
 	picture = fromgetname_rejects_concessions-710
 	option = {
-		name = diplomacy.6.a
+		name = db_diplomacy.6.a
 		trigger = {
 			
 		}
@@ -195,13 +204,13 @@ country_event = {
 
 #[FROM.GetName] Unleashes Verbal Theatrics"
 country_event = {
-	id = diplomacy.7
-	title = diplomacy.7.t
-	desc = diplomacy.7.d
-
+	id = db_diplomacy.7
+	title = db_diplomacy.7.t
+	desc = db_diplomacy.7.d
+	is_triggered_only = yes
 	picture = fromgetname_unleashes_verbal_theatrics-665
 	option = {
-		name = diplomacy.7.a
+		name = db_diplomacy.7.a
 		db_effect_diplomatic_mishap_small = yes
 		trigger = {
 			
@@ -213,12 +222,12 @@ country_event = {
 		}
 	}
 	option = {
-		name = diplomacy.7.b
+		name = db_diplomacy.7.b
 		trigger = {
 			
 		}
 		FROM = {
-			country_event = { id = diplomacy.13 days = 3 random_days = 5 }
+			country_event = { id = db_diplomacy.13 days = 3 random_days = 5 }
 		}
 		ai_chance = { factor = 1 }
 		
@@ -230,13 +239,13 @@ country_event = {
 
 #[FROM.GetAdjective] Diplomatic Meeting Out of Hand
 country_event = {
-	id = diplomacy.8
-	title = diplomacy.8.t
-	desc = diplomacy.8.d
-
+	id = db_diplomacy.8
+	title = db_diplomacy.8.t
+	desc = db_diplomacy.8.d
+	is_triggered_only = yes
 	picture = fromgetadjective_diplomatic_meeting_out_of_hand-772
 	option = {
-		name = diplomacy.8.a
+		name = db_diplomacy.8.a
 		db_effect_diplomatic_mishap_small = yes
 		trigger = {
 			
@@ -248,12 +257,12 @@ country_event = {
 		}
 	}
 	option = {
-		name = diplomacy.8.b
+		name = db_diplomacy.8.b
 		trigger = {
 			
 		}
 		FROM = {
-			country_event = { id = diplomacy.13 days = 3 random_days = 5 }
+			country_event = { id = db_diplomacy.13 days = 3 random_days = 5 }
 		}
 		ai_chance = { factor = 1 }
 		
@@ -265,13 +274,13 @@ country_event = {
 
 #[FROM.GetAdjective] Diplomatic Standoff
 country_event = {
-	id = diplomacy.9
-	title = diplomacy.9.t
-	desc = diplomacy.9.d
-
+	id = db_diplomacy.9
+	title = db_diplomacy.9.t
+	desc = db_diplomacy.9.d
+	is_triggered_only = yes
 	picture = fromgetadjective_diplomatic_standoff-672
 	option = {
-		name = diplomacy.9.a
+		name = db_diplomacy.9.a
 		db_effect_diplomatic_mishap_small = yes
 		trigger = {
 			
@@ -283,9 +292,9 @@ country_event = {
 		}
 	}
 	option = {
-		name = diplomacy.9.b
+		name = db_diplomacy.9.b
 		FROM = {
-			country_event = { id = diplomacy.13 days = 3 random_days = 5 }
+			country_event = { id = db_diplomacy.13 days = 3 random_days = 5 }
 		}
 		trigger = {
 			
@@ -300,13 +309,13 @@ country_event = {
 
 #[FROM.GetAdjective] Diplomatic Confrontation
 country_event = {
-	id = diplomacy.10
-	title = diplomacy.10.t
-	desc = diplomacy.10.d
-
+	id = db_diplomacy.10
+	title = db_diplomacy.10.t
+	desc = db_diplomacy.10.d
+	is_triggered_only = yes
 	picture = fromgetadjective_diplomatic_confrontation-736
 	option = {
-		name = diplomacy.10.a
+		name = db_diplomacy.10.a
 		db_effect_diplomatic_mishap_small = yes
 		trigger = {
 			
@@ -318,9 +327,9 @@ country_event = {
 		}
 	}
 	option = {
-		name = diplomacy.10.b
+		name = db_diplomacy.10.b
 		FROM = {
-			country_event = { id = diplomacy.13 days = 3 random_days = 5 }
+			country_event = { id = db_diplomacy.13 days = 3 random_days = 5 }
 		}
 		trigger = {
 			
@@ -335,15 +344,15 @@ country_event = {
 
 #Further Breakdown of Relations with [FROM.GetName]
 country_event = {
-	id = diplomacy.11
-	title = diplomacy.11.t
-	desc = diplomacy.11.d
-
+	id = db_diplomacy.11
+	title = db_diplomacy.11.t
+	desc = db_diplomacy.11.d
+	is_triggered_only = yes
 	picture = further_breakdown_of_relations_with_fromgetname-691
 	option = {
-		name = diplomacy.11.a
+		name = db_diplomacy.11.a
 		FROM = {
-			country_event = { id = diplomacy.12 days = 3 random_days = 5 }
+			country_event = { id = db_diplomacy.12 days = 3 random_days = 5 }
 		}
 		trigger = {
 			
@@ -355,7 +364,7 @@ country_event = {
 		}
 	}
 	option = {
-		name = diplomacy.11.b
+		name = db_diplomacy.11.b
 		 custom_effect_tooltip = db_tt_further_breakdown_of_relations
 		trigger = {
 			
@@ -367,12 +376,12 @@ country_event = {
 		}
 	}
 	option = {
-		name = diplomacy.11.c
+		name = db_diplomacy.11.c
 		trigger = {
 			
 		}
 		FROM = {
-			country_event = { id = diplomacy.13 days = 3 random_days = 5 }
+			country_event = { id = db_diplomacy.13 days = 3 random_days = 5 }
 		}
 		ai_chance = { factor = 1 }
 		
@@ -384,13 +393,13 @@ country_event = {
 
 #Complete Diplomatic Breakdown with [FROM.GetName]
 country_event = {
-	id = diplomacy.12
-	title = diplomacy.12.t
-	desc = diplomacy.12.d
-
+	id = db_diplomacy.12
+	title = db_diplomacy.12.t
+	desc = db_diplomacy.12.d
+	is_triggered_only = yes
 	picture = complete_diplomatic_breakdown_with_fromgetname-759
 	option = {
-		name = diplomacy.12.a
+		name = db_diplomacy.12.a
 		trigger = {
 			
 		}
@@ -404,13 +413,13 @@ country_event = {
 
 #[FROM.GetName] Initiates Diplomatic Reconciliation Efforts
 country_event = {
-	id = diplomacy.13
-	title = diplomacy.13.t
-	desc = diplomacy.13.d
-
+	id = db_diplomacy.13
+	title = db_diplomacy.13.t
+	desc = db_diplomacy.13.d
+	is_triggered_only = yes
 	picture = fromgetname_initiates_diplomatic_reconciliation_efforts-689
 	option = {
-		name = diplomacy.13.a
+		name = db_diplomacy.13.a
 		trigger = {
 			
 		}
@@ -421,7 +430,7 @@ country_event = {
 		}
 	}
 	option = {
-		name = diplomacy.13.b
+		name = db_diplomacy.13.b
 		trigger = {
 			
 		}
@@ -435,13 +444,13 @@ country_event = {
 
 #Relations Remain Frozen with [FROM.GetName]
 country_event = {
-	id = diplomacy.14
-	title = diplomacy.14.t
-	desc = diplomacy.14.d
-
+	id = db_diplomacy.14
+	title = db_diplomacy.14.t
+	desc = db_diplomacy.14.d
+	is_triggered_only = yes
 	picture = relations_remain_frozen_with_fromgetname-766
 	option = {
-		name = diplomacy.14.a
+		name = db_diplomacy.14.a
 		trigger = {
 			
 		}
@@ -455,13 +464,13 @@ country_event = {
 
 #Visit from [FROM.GetLeader]
 country_event = {
-	id = diplomacy.15
-	title = diplomacy.15.t
-	desc = diplomacy.15.d
-
+	id = db_diplomacy.15
+	title = db_diplomacy.15.t
+	desc = db_diplomacy.15.d
+	is_triggered_only = yes
 	picture = visit_from_fromgetleader-746
 	option = {
-		name = diplomacy.15.a
+		name = db_diplomacy.15.a
 		trigger = {
 			
 		}
@@ -472,7 +481,7 @@ country_event = {
 		}
 	}
 	option = {
-		name = diplomacy.15.b
+		name = db_diplomacy.15.b
 		trigger = {
 			
 		}
@@ -486,13 +495,13 @@ country_event = {
 
 #[FROM.GetLeader] Participates in [ROOT.GetAdjective] Cultural Exchange
 country_event = {
-	id = diplomacy.16
-	title = diplomacy.16.t
-	desc = diplomacy.16.d
-
+	id = db_diplomacy.16
+	title = db_diplomacy.16.t
+	desc = db_diplomacy.16.d
+	is_triggered_only = yes
 	picture = fromgetleader_participates_in_rootgetadjective_cultural_exchange-774
 	option = {
-		name = diplomacy.16.a
+		name = db_diplomacy.16.a
 		trigger = {
 			
 		}
@@ -503,7 +512,7 @@ country_event = {
 		}
 	}
 	option = {
-		name = diplomacy.16.b
+		name = db_diplomacy.16.b
 		trigger = {
 			
 		}
@@ -517,13 +526,13 @@ country_event = {
 
 #[FROM.GetLeader] Visits [ROOT.GetAdjective] Military Parade
 country_event = {
-	id = diplomacy.17
-	title = diplomacy.17.t
-	desc = diplomacy.17.d
-
+	id = db_diplomacy.17
+	title = db_diplomacy.17.t
+	desc = db_diplomacy.17.d
+	is_triggered_only = yes
 	picture = fromgetleader_visits_rootgetadjective_military_parade-697
 	option = {
-		name = diplomacy.17.a
+		name = db_diplomacy.17.a
 		trigger = {
 			
 		}
@@ -534,7 +543,7 @@ country_event = {
 		}
 	}
 	option = {
-		name = diplomacy.17.b
+		name = db_diplomacy.17.b
 		trigger = {
 			
 		}
@@ -548,13 +557,13 @@ country_event = {
 
 #[FROM.GetLeader] Visits for Trade Negotiations
 country_event = {
-	id = diplomacy.18
-	title = diplomacy.18.t
-	desc = diplomacy.18.d
-
+	id = db_diplomacy.18
+	title = db_diplomacy.18.t
+	desc = db_diplomacy.18.d
+	is_triggered_only = yes
 	picture = fromgetleader_visits_for_trade_negotiations-712
 	option = {
-		name = diplomacy.18.a
+		name = db_diplomacy.18.a
 		trigger = {
 			
 		}
@@ -565,7 +574,7 @@ country_event = {
 		}
 	}
 	option = {
-		name = diplomacy.18.b
+		name = db_diplomacy.18.b
 		trigger = {
 			
 		}
@@ -579,13 +588,13 @@ country_event = {
 
 #[FROM.GetLeader] Visits Civic Celebration
 country_event = {
-	id = diplomacy.19
-	title = diplomacy.19.t
-	desc = diplomacy.19.d
-
+	id = db_diplomacy.19
+	title = db_diplomacy.19.t
+	desc = db_diplomacy.19.d
+	is_triggered_only = yes
 	picture = fromgetleader_visits_civic_celebration-716
 	option = {
-		name = diplomacy.19.a
+		name = db_diplomacy.19.a
 		trigger = {
 			
 		}
@@ -596,7 +605,7 @@ country_event = {
 		}
 	}
 	option = {
-		name = diplomacy.19.b
+		name = db_diplomacy.19.b
 		trigger = {
 			
 		}
@@ -610,13 +619,13 @@ country_event = {
 
 #Successful Diplomatic Visit to [FROM.GetName]
 country_event = {
-	id = diplomacy.20
-	title = diplomacy.20.t
-	desc = diplomacy.20.d
-
+	id = db_diplomacy.20
+	title = db_diplomacy.20.t
+	desc = db_diplomacy.20.d
+	is_triggered_only = yes
 	picture = successful_diplomatic_visit_to_fromgetname-771
 	option = {
-		name = diplomacy.20.a
+		name = db_diplomacy.20.a
 		trigger = {
 			
 		}
@@ -630,13 +639,13 @@ country_event = {
 
 #Unpleasant Diplomatic Visit to [FROM.GetName]
 country_event = {
-	id = diplomacy.21
-	title = diplomacy.21.t
-	desc = diplomacy.21.d
-
+	id = db_diplomacy.21
+	title = db_diplomacy.21.t
+	desc = db_diplomacy.21.d
+	is_triggered_only = yes
 	picture = unpleasant_diplomatic_visit_to_fromgetname-690
 	option = {
-		name = diplomacy.21.a
+		name = db_diplomacy.21.a
 		trigger = {
 			
 		}
@@ -647,7 +656,7 @@ country_event = {
 		}
 	}
 	option = {
-		name = diplomacy.21.b
+		name = db_diplomacy.21.b
 		trigger = {
 			
 		}
@@ -660,14 +669,14 @@ country_event = {
 }
 
 country_event = {
-    id = diplomacy.23
-    title = "diplomacy.23.t"
-    desc = diplomacy.23.d
+    id = db_diplomacy.23
+    title = "db_diplomacy.23.t"
+    desc = db_diplomacy.23.d
     picture = fromgetname_organizes_usbritish_staff_conference-824
     is_triggered_only = yes
     mean_time_to_happen = { days = 3 }
     option = {
-        name = diplomacy.23.a
+        name = db_diplomacy.23.a
         ai_chance = {
             base = 1
             modifier = { 
@@ -677,7 +686,7 @@ country_event = {
         hidden_effect = {}
     }
     option = {
-        name = diplomacy.23.b
+        name = db_diplomacy.23.b
         trigger = {}
         ai_chance = {
             base = 1
@@ -690,14 +699,14 @@ country_event = {
 }
 
 country_event = {
-    id = diplomacy.24
-    title = "diplomacy.24.t"
-    desc = diplomacy.24.d
+    id = db_diplomacy.24
+    title = "db_diplomacy.24.t"
+    desc = db_diplomacy.24.d
     picture = fromgetname_organizes_usbritish_staff_conference-824
     is_triggered_only = yes
     mean_time_to_happen = { days = 3 }
     option = {
-        name = diplomacy.24.a
+        name = db_diplomacy.24.a
         ai_chance = {
             base = 1
             modifier = { 
@@ -707,7 +716,7 @@ country_event = {
         hidden_effect = {}
     }
     option = {
-        name = diplomacy.24.b
+        name = db_diplomacy.24.b
         trigger = {}
         ai_chance = {
             base = 1
@@ -720,14 +729,14 @@ country_event = {
 }
 
 country_event = {
-    id = diplomacy.25
-    title = "diplomacy.25.t"
-    desc = diplomacy.25.d
+    id = db_diplomacy.25
+    title = "db_diplomacy.25.t"
+    desc = db_diplomacy.25.d
     picture = fromgetname_organizes_usbritish_staff_conference-824
     is_triggered_only = yes
     mean_time_to_happen = { days = 3 }
     option = {
-        name = diplomacy.25.a
+        name = db_diplomacy.25.a
         ai_chance = {
             base = 1
             modifier = { 
@@ -737,7 +746,7 @@ country_event = {
         hidden_effect = {}
     }
     option = {
-        name = diplomacy.25.b
+        name = db_diplomacy.25.b
         trigger = {}
         ai_chance = {
             base = 1
@@ -750,14 +759,14 @@ country_event = {
 }
 
 country_event = {
-    id = diplomacy.26
-    title = "diplomacy.26.t"
-    desc = diplomacy.26.d
+    id = db_diplomacy.26
+    title = "db_diplomacy.26.t"
+    desc = db_diplomacy.26.d
     picture = fromgetname_organizes_usbritish_staff_conference-824
     is_triggered_only = yes
     mean_time_to_happen = { days = 3 }
     option = {
-        name = diplomacy.26.a
+        name = db_diplomacy.26.a
         ai_chance = {
             base = 1
             modifier = { 
@@ -767,7 +776,7 @@ country_event = {
         hidden_effect = {}
     }
     option = {
-        name = diplomacy.26.b
+        name = db_diplomacy.26.b
         trigger = {}
         ai_chance = {
             base = 1
@@ -780,14 +789,14 @@ country_event = {
 }
 
 country_event = {
-    id = diplomacy.27
-    title = "diplomacy.27.t"
-    desc = diplomacy.27.d
+    id = db_diplomacy.27
+    title = "db_diplomacy.27.t"
+    desc = db_diplomacy.27.d
     picture = fromgetname_organizes_usbritish_staff_conference-824
     is_triggered_only = yes
     mean_time_to_happen = { days = 3 }
     option = {
-        name = diplomacy.27.a
+        name = db_diplomacy.27.a
         ai_chance = {
             base = 1
             modifier = { 
@@ -797,7 +806,7 @@ country_event = {
         hidden_effect = {}
     }
     option = {
-        name = diplomacy.27.b
+        name = db_diplomacy.27.b
         trigger = {}
         ai_chance = {
             base = 1
@@ -810,14 +819,14 @@ country_event = {
 }
 
 country_event = {
-    id = diplomacy.28
-    title = "diplomacy.28.t"
-    desc = diplomacy.28.d
+    id = db_diplomacy.28
+    title = "db_diplomacy.28.t"
+    desc = db_diplomacy.28.d
     picture = fromgetname_organizes_usbritish_staff_conference-824
     is_triggered_only = yes
     mean_time_to_happen = { days = 3 }
     option = {
-        name = diplomacy.28.a
+        name = db_diplomacy.28.a
         ai_chance = {
             base = 1
             modifier = { 
@@ -827,7 +836,7 @@ country_event = {
         hidden_effect = {}
     }
     option = {
-        name = diplomacy.28.b
+        name = db_diplomacy.28.b
         trigger = {}
         ai_chance = {
             base = 1
@@ -840,14 +849,14 @@ country_event = {
 }
 
 country_event = {
-    id = diplomacy.29
-    title = "diplomacy.29.t"
-    desc = diplomacy.29.d
+    id = db_diplomacy.29
+    title = "db_diplomacy.29.t"
+    desc = db_diplomacy.29.d
     picture = fromgetname_organizes_usbritish_staff_conference-824
     is_triggered_only = yes
     mean_time_to_happen = { days = 3 }
     option = {
-        name = diplomacy.29.a
+        name = db_diplomacy.29.a
         ai_chance = {
             base = 1
             modifier = { 
@@ -857,7 +866,7 @@ country_event = {
         hidden_effect = {}
     }
     option = {
-        name = diplomacy.29.b
+        name = db_diplomacy.29.b
         trigger = {}
         ai_chance = {
             base = 1
@@ -870,14 +879,14 @@ country_event = {
 }
 
 country_event = {
-    id = diplomacy.30
-    title = "diplomacy.30.t"
-    desc = diplomacy.30.d
+    id = db_diplomacy.30
+    title = "db_diplomacy.30.t"
+    desc = db_diplomacy.30.d
     picture = fromgetname_organizes_usbritish_staff_conference-824
     is_triggered_only = yes
     mean_time_to_happen = { days = 3 }
     option = {
-        name = diplomacy.30.a
+        name = db_diplomacy.30.a
         ai_chance = {
             base = 1
             modifier = { 
@@ -887,7 +896,7 @@ country_event = {
         hidden_effect = {}
     }
     option = {
-        name = diplomacy.30.b
+        name = db_diplomacy.30.b
         trigger = {}
         ai_chance = {
             base = 1
@@ -900,14 +909,14 @@ country_event = {
 }
 
 country_event = {
-    id = diplomacy.31
-    title = "diplomacy.31.t"
-    desc = diplomacy.31.d
+    id = db_diplomacy.31
+    title = "db_diplomacy.31.t"
+    desc = db_diplomacy.31.d
     picture = fromgetname_organizes_usbritish_staff_conference-824
     is_triggered_only = yes
     mean_time_to_happen = { days = 3 }
     option = {
-        name = diplomacy.31.a
+        name = db_diplomacy.31.a
         ai_chance = {
             base = 1
             modifier = { 
@@ -917,7 +926,7 @@ country_event = {
         hidden_effect = {}
     }
     option = {
-        name = diplomacy.31.b
+        name = db_diplomacy.31.b
         trigger = {}
         ai_chance = {
             base = 1
@@ -930,14 +939,14 @@ country_event = {
 }
 
 country_event = {
-    id = diplomacy.32
-    title = "diplomacy.32.t"
-    desc = diplomacy.32.d
+    id = db_diplomacy.32
+    title = "db_diplomacy.32.t"
+    desc = db_diplomacy.32.d
     picture = fromgetname_organizes_usbritish_staff_conference-824
     is_triggered_only = yes
     mean_time_to_happen = { days = 3 }
     option = {
-        name = diplomacy.32.a
+        name = db_diplomacy.32.a
         ai_chance = {
             base = 1
             modifier = { 
@@ -947,7 +956,7 @@ country_event = {
         hidden_effect = {}
     }
     option = {
-        name = diplomacy.32.b
+        name = db_diplomacy.32.b
         trigger = {}
         ai_chance = {
             base = 1
@@ -960,14 +969,14 @@ country_event = {
 }
 
 country_event = {
-    id = diplomacy.33
-    title = "diplomacy.33.t"
-    desc = diplomacy.33.d
+    id = db_diplomacy.33
+    title = "db_diplomacy.33.t"
+    desc = db_diplomacy.33.d
     picture = fromgetname_organizes_usbritish_staff_conference-824
     is_triggered_only = yes
     mean_time_to_happen = { days = 3 }
     option = {
-        name = diplomacy.33.a
+        name = db_diplomacy.33.a
         ai_chance = {
             base = 1
             modifier = { 
@@ -977,7 +986,7 @@ country_event = {
         hidden_effect = {}
     }
     option = {
-        name = diplomacy.33.b
+        name = db_diplomacy.33.b
         trigger = {}
         ai_chance = {
             base = 1
@@ -990,14 +999,14 @@ country_event = {
 }
 
 country_event = {
-    id = diplomacy.34
-    title = "diplomacy.34.t"
-    desc = diplomacy.34.d
+    id = db_diplomacy.34
+    title = "db_diplomacy.34.t"
+    desc = db_diplomacy.34.d
     picture = fromgetname_organizes_usbritish_staff_conference-824
     is_triggered_only = yes
     mean_time_to_happen = { days = 3 }
     option = {
-        name = diplomacy.34.a
+        name = db_diplomacy.34.a
         ai_chance = {
             base = 1
             modifier = { 
@@ -1007,7 +1016,7 @@ country_event = {
         hidden_effect = {}
     }
     option = {
-        name = diplomacy.34.b
+        name = db_diplomacy.34.b
         trigger = {}
         ai_chance = {
             base = 1
@@ -1020,14 +1029,14 @@ country_event = {
 }
 
 country_event = {
-    id = diplomacy.35
-    title = "diplomacy.35.t"
-    desc = diplomacy.35.d
+    id = db_diplomacy.35
+    title = "db_diplomacy.35.t"
+    desc = db_diplomacy.35.d
     picture = fromgetname_organizes_usbritish_staff_conference-824
     is_triggered_only = yes
     mean_time_to_happen = { days = 3 }
     option = {
-        name = diplomacy.35.a
+        name = db_diplomacy.35.a
         ai_chance = {
             base = 1
             modifier = { 
@@ -1037,7 +1046,7 @@ country_event = {
         hidden_effect = {}
     }
     option = {
-        name = diplomacy.35.b
+        name = db_diplomacy.35.b
         trigger = {}
         ai_chance = {
             base = 1
@@ -1050,14 +1059,14 @@ country_event = {
 }
 
 country_event = {
-    id = diplomacy.36
-    title = "diplomacy.36.t"
-    desc = diplomacy.36.d
+    id = db_diplomacy.36
+    title = "db_diplomacy.36.t"
+    desc = db_diplomacy.36.d
     picture = fromgetname_organizes_usbritish_staff_conference-824
     is_triggered_only = yes
     mean_time_to_happen = { days = 3 }
     option = {
-        name = diplomacy.36.a
+        name = db_diplomacy.36.a
         ai_chance = {
             base = 1
             modifier = { 
@@ -1067,7 +1076,7 @@ country_event = {
         hidden_effect = {}
     }
     option = {
-        name = diplomacy.36.b
+        name = db_diplomacy.36.b
         trigger = {}
         ai_chance = {
             base = 1
@@ -1080,14 +1089,14 @@ country_event = {
 }
 
 country_event = {
-    id = diplomacy.37
-    title = "diplomacy.37.t"
-    desc = diplomacy.37.d
+    id = db_diplomacy.37
+    title = "db_diplomacy.37.t"
+    desc = db_diplomacy.37.d
     picture = fromgetname_organizes_usbritish_staff_conference-824
     is_triggered_only = yes
     mean_time_to_happen = { days = 3 }
     option = {
-        name = diplomacy.37.a
+        name = db_diplomacy.37.a
         ai_chance = {
             base = 1
             modifier = { 
@@ -1097,7 +1106,7 @@ country_event = {
         hidden_effect = {}
     }
     option = {
-        name = diplomacy.37.b
+        name = db_diplomacy.37.b
         trigger = {}
         ai_chance = {
             base = 1
@@ -1110,14 +1119,14 @@ country_event = {
 }
 
 country_event = {
-    id = diplomacy.38
-    title = "diplomacy.38.t"
-    desc = diplomacy.38.d
+    id = db_diplomacy.38
+    title = "db_diplomacy.38.t"
+    desc = db_diplomacy.38.d
     picture = fromgetname_organizes_usbritish_staff_conference-824
     is_triggered_only = yes
     mean_time_to_happen = { days = 3 }
     option = {
-        name = diplomacy.38.a
+        name = db_diplomacy.38.a
         ai_chance = {
             base = 1
             modifier = { 
@@ -1127,7 +1136,7 @@ country_event = {
         hidden_effect = {}
     }
     option = {
-        name = diplomacy.38.b
+        name = db_diplomacy.38.b
         trigger = {}
         ai_chance = {
             base = 1
@@ -1140,14 +1149,14 @@ country_event = {
 }
 
 country_event = {
-    id = diplomacy.39
-    title = "diplomacy.39.t"
-    desc = diplomacy.39.d
+    id = db_diplomacy.39
+    title = "db_diplomacy.39.t"
+    desc = db_diplomacy.39.d
     picture = fromgetname_organizes_usbritish_staff_conference-824
     is_triggered_only = yes
     mean_time_to_happen = { days = 3 }
     option = {
-        name = diplomacy.39.a
+        name = db_diplomacy.39.a
         ai_chance = {
             base = 1
             modifier = { 
@@ -1157,7 +1166,7 @@ country_event = {
         hidden_effect = {}
     }
     option = {
-        name = diplomacy.39.b
+        name = db_diplomacy.39.b
         trigger = {}
         ai_chance = {
             base = 1
@@ -1170,14 +1179,14 @@ country_event = {
 }
 
 country_event = {
-    id = diplomacy.40
-    title = "diplomacy.40.t"
-    desc = diplomacy.40.d
+    id = db_diplomacy.40
+    title = "db_diplomacy.40.t"
+    desc = db_diplomacy.40.d
     picture = fromgetname_organizes_usbritish_staff_conference-824
     is_triggered_only = yes
     mean_time_to_happen = { days = 3 }
     option = {
-        name = diplomacy.40.a
+        name = db_diplomacy.40.a
         ai_chance = {
             base = 1
             modifier = { 
@@ -1187,7 +1196,7 @@ country_event = {
         hidden_effect = {}
     }
     option = {
-        name = diplomacy.40.b
+        name = db_diplomacy.40.b
         trigger = {}
         ai_chance = {
             base = 1
@@ -1200,14 +1209,14 @@ country_event = {
 }
 
 country_event = {
-    id = diplomacy.41
-    title = "diplomacy.41.t"
-    desc = diplomacy.41.d
+    id = db_diplomacy.41
+    title = "db_diplomacy.41.t"
+    desc = db_diplomacy.41.d
     picture = fromgetname_organizes_usbritish_staff_conference-824
     is_triggered_only = yes
     mean_time_to_happen = { days = 3 }
     option = {
-        name = diplomacy.41.a
+        name = db_diplomacy.41.a
         ai_chance = {
             base = 1
             modifier = { 
@@ -1217,7 +1226,7 @@ country_event = {
         hidden_effect = {}
     }
     option = {
-        name = diplomacy.41.b
+        name = db_diplomacy.41.b
         trigger = {}
         ai_chance = {
             base = 1
@@ -1230,14 +1239,14 @@ country_event = {
 }
 
 country_event = {
-    id = diplomacy.42
-    title = "diplomacy.42.t"
-    desc = diplomacy.42.d
+    id = db_diplomacy.42
+    title = "db_diplomacy.42.t"
+    desc = db_diplomacy.42.d
     picture = fromgetname_organizes_usbritish_staff_conference-824
     is_triggered_only = yes
     mean_time_to_happen = { days = 3 }
     option = {
-        name = diplomacy.42.a
+        name = db_diplomacy.42.a
         ai_chance = {
             base = 1
             modifier = { 
@@ -1247,7 +1256,7 @@ country_event = {
         hidden_effect = {}
     }
     option = {
-        name = diplomacy.42.b
+        name = db_diplomacy.42.b
         trigger = {}
         ai_chance = {
             base = 1
@@ -1260,14 +1269,14 @@ country_event = {
 }
 
 country_event = {
-    id = diplomacy.43
-    title = "diplomacy.43.t"
-    desc = diplomacy.43.d
+    id = db_diplomacy.43
+    title = "db_diplomacy.43.t"
+    desc = db_diplomacy.43.d
     picture = fromgetname_organizes_usbritish_staff_conference-824
     is_triggered_only = yes
     mean_time_to_happen = { days = 3 }
     option = {
-        name = diplomacy.43.a
+        name = db_diplomacy.43.a
         ai_chance = {
             base = 1
             modifier = { 
@@ -1277,7 +1286,7 @@ country_event = {
         hidden_effect = {}
     }
     option = {
-        name = diplomacy.43.b
+        name = db_diplomacy.43.b
         trigger = {}
         ai_chance = {
             base = 1
@@ -1290,14 +1299,14 @@ country_event = {
 }
 
 country_event = {
-    id = diplomacy.44
-    title = "diplomacy.44.t"
-    desc = diplomacy.44.d
+    id = db_diplomacy.44
+    title = "db_diplomacy.44.t"
+    desc = db_diplomacy.44.d
     picture = fromgetname_organizes_usbritish_staff_conference-824
     is_triggered_only = yes
     mean_time_to_happen = { days = 3 }
     option = {
-        name = diplomacy.44.a
+        name = db_diplomacy.44.a
         ai_chance = {
             base = 1
             modifier = { 
@@ -1307,7 +1316,7 @@ country_event = {
         hidden_effect = {}
     }
     option = {
-        name = diplomacy.44.b
+        name = db_diplomacy.44.b
         trigger = {}
         ai_chance = {
             base = 1
@@ -1320,14 +1329,14 @@ country_event = {
 }
 
 country_event = {
-    id = diplomacy.45
-    title = "diplomacy.45.t"
-    desc = diplomacy.45.d
+    id = db_diplomacy.45
+    title = "db_diplomacy.45.t"
+    desc = db_diplomacy.45.d
     picture = fromgetname_organizes_usbritish_staff_conference-824
     is_triggered_only = yes
     mean_time_to_happen = { days = 3 }
     option = {
-        name = diplomacy.45.a
+        name = db_diplomacy.45.a
         ai_chance = {
             base = 1
             modifier = { 
@@ -1337,7 +1346,7 @@ country_event = {
         hidden_effect = {}
     }
     option = {
-        name = diplomacy.45.b
+        name = db_diplomacy.45.b
         trigger = {}
         ai_chance = {
             base = 1
@@ -1350,14 +1359,14 @@ country_event = {
 }
 
 country_event = {
-    id = diplomacy.46
-    title = "diplomacy.46.t"
-    desc = diplomacy.46.d
+    id = db_diplomacy.46
+    title = "db_diplomacy.46.t"
+    desc = db_diplomacy.46.d
     picture = fromgetname_organizes_usbritish_staff_conference-824
     is_triggered_only = yes
     mean_time_to_happen = { days = 3 }
     option = {
-        name = diplomacy.46.a
+        name = db_diplomacy.46.a
         ai_chance = {
             base = 1
             modifier = { 
@@ -1367,7 +1376,7 @@ country_event = {
         hidden_effect = {}
     }
     option = {
-        name = diplomacy.46.b
+        name = db_diplomacy.46.b
         trigger = {}
         ai_chance = {
             base = 1
@@ -1380,14 +1389,14 @@ country_event = {
 }
 
 country_event = {
-    id = diplomacy.47
-    title = "diplomacy.47.t"
-    desc = diplomacy.47.d
+    id = db_diplomacy.47
+    title = "db_diplomacy.47.t"
+    desc = db_diplomacy.47.d
     picture = fromgetname_organizes_usbritish_staff_conference-824
     is_triggered_only = yes
     mean_time_to_happen = { days = 3 }
     option = {
-        name = diplomacy.47.a
+        name = db_diplomacy.47.a
         ai_chance = {
             base = 1
             modifier = { 
@@ -1397,7 +1406,7 @@ country_event = {
         hidden_effect = {}
     }
     option = {
-        name = diplomacy.47.b
+        name = db_diplomacy.47.b
         trigger = {}
         ai_chance = {
             base = 1
@@ -1410,14 +1419,14 @@ country_event = {
 }
 
 country_event = {
-    id = diplomacy.48
-    title = "diplomacy.48.t"
-    desc = diplomacy.48.d
+    id = db_diplomacy.48
+    title = "db_diplomacy.48.t"
+    desc = db_diplomacy.48.d
     picture = fromgetname_organizes_usbritish_staff_conference-824
     is_triggered_only = yes
     mean_time_to_happen = { days = 3 }
     option = {
-        name = diplomacy.48.a
+        name = db_diplomacy.48.a
         ai_chance = {
             base = 1
             modifier = { 
@@ -1427,7 +1436,7 @@ country_event = {
         hidden_effect = {}
     }
     option = {
-        name = diplomacy.48.b
+        name = db_diplomacy.48.b
         trigger = {}
         ai_chance = {
             base = 1
@@ -1440,14 +1449,14 @@ country_event = {
 }
 
 country_event = {
-    id = diplomacy.49
-    title = "diplomacy.49.t"
-    desc = diplomacy.49.d
+    id = db_diplomacy.49
+    title = "db_diplomacy.49.t"
+    desc = db_diplomacy.49.d
     picture = fromgetname_organizes_usbritish_staff_conference-824
     is_triggered_only = yes
     mean_time_to_happen = { days = 3 }
     option = {
-        name = diplomacy.49.a
+        name = db_diplomacy.49.a
         ai_chance = {
             base = 1
             modifier = { 
@@ -1457,7 +1466,7 @@ country_event = {
         hidden_effect = {}
     }
     option = {
-        name = diplomacy.49.b
+        name = db_diplomacy.49.b
         trigger = {}
         ai_chance = {
             base = 1
@@ -1470,14 +1479,14 @@ country_event = {
 }
 
 country_event = {
-    id = diplomacy.50
-    title = "diplomacy.50.t"
-    desc = diplomacy.50.d
+    id = db_diplomacy.50
+    title = "db_diplomacy.50.t"
+    desc = db_diplomacy.50.d
     picture = fromgetname_organizes_usbritish_staff_conference-824
     is_triggered_only = yes
     mean_time_to_happen = { days = 3 }
     option = {
-        name = diplomacy.50.a
+        name = db_diplomacy.50.a
         ai_chance = {
             base = 1
             modifier = { 
@@ -1487,7 +1496,7 @@ country_event = {
         hidden_effect = {}
     }
     option = {
-        name = diplomacy.50.b
+        name = db_diplomacy.50.b
         trigger = {}
         ai_chance = {
             base = 1

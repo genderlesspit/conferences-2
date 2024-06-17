@@ -1,5 +1,5 @@
 db_paramilitary_movement_category = {
-	paramilitary_activity = {
+	db_paramilitary_activity = {
 		icon = decision_icon_impending_leadership_collapse
 		activation = {
 			db_trigger_can_paramilitary_movement_activity = yes

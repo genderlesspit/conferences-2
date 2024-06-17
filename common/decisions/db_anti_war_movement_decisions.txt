@@ -1,5 +1,5 @@
 db_anti_war_movement_category = {
-	anti_war_activity = {
+	db_anti_war_activity = {
 		icon = decision_icon_impending_leadership_collapse
 		activation = {
 			db_trigger_can_anti_war_movement_activity = yes

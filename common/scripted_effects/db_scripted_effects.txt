@@ -52,7 +52,7 @@ db_effect_anti_war_activity = {
 db_effect_anti_war_activity_decision = {
 	if = { 
 		limit = { has_idea = db_anti_war_movement } 
-		hidden_effect = { activate_decision = anti_war_activity }
+		hidden_effect = { activate_decision = db_anti_war_activity }
 		random_owned_controlled_state = {
 			limit = { has_state_flag = db_anti_war_movement_presence }
 			save_event_target_as = anti_war_movement_state
@@ -163,7 +163,7 @@ db_trait_uncooperative_diplomat_chance = {
 }
 
 db_effect_diplomatic_mishap_small = {
-		random_list = {
+	random_list = {
 		100 = {
 			modifier = {
 				factor = 0.5
@@ -198,18 +198,17 @@ db_effect_diplomatic_mishap_small = {
 				modifier = db_opinion_diplomatic_mishap_small
 			}
 			if = {
-				limit = { ROOT = { has_opinion = { target = FROM value < 50 }
+				limit = { ROOT = { has_opinion = { target = FROM value < 50 } } }
 				FROM = {
 					country_event = { id = diplomacy.11 days = 3 random_days = 5 }
 				}
 			}
 		}
-		1 = { }
 	}
 }
 
 db_effect_diplomatic_mishap_medium = {
-		random_list = {
+	random_list = {
 		70 = {
 			modifier = {
 				factor = 0.5
@@ -277,8 +276,14 @@ db_effect_diplomatic_mishap_medium = {
 				target = FROM
 				modifier = db_opinion_diplomatic_mishap_small
 			}
+			if = {
+				limit = { ROOT = { has_opinion = { target = FROM value < 50 } } }
+				FROM = {
+					country_event = { id = diplomacy.11 days = 3 random_days = 5 }
+				}
+			}
 		}
-		1 = { }
+		0 = { }
 	}
 }
 
@@ -311,6 +316,12 @@ db_effect_diplomatic_mishap_large = {
 				has_opinion = {
 					target = FROM
 					value > 99 
+				}
+			}
+			if = {
+				limit = { ROOT = { has_opinion = { target = FROM value < 50 } } }
+				FROM = {
+					country_event = { id = diplomacy.11 days = 3 random_days = 5 }
 				}
 			}
 			add_opinion_modifier = { 
@@ -351,8 +362,13 @@ db_effect_diplomatic_mishap_large = {
 				target = FROM
 				modifier = db_opinion_diplomatic_mishap_medium
 			}
+			if = {
+				limit = { ROOT = { has_opinion = { target = FROM value < 50 } } }
+				FROM = {
+					country_event = { id = diplomacy.11 days = 3 random_days = 5 }
+				}
+			}
 		}
-		1 = { }
 	}
 }
 
@@ -385,6 +401,12 @@ db_effect_diplomatic_mishap_irreperable = {
 				has_opinion = {
 					target = FROM
 					value > 99 
+				}
+			}
+			if = {
+				limit = { ROOT = { has_opinion = { target = FROM value < 50 } } }
+				FROM = {
+					country_event = { id = diplomacy.11 days = 3 random_days = 5 }
 				}
 			}
 			add_opinion_modifier = { 
@@ -421,12 +443,17 @@ db_effect_diplomatic_mishap_irreperable = {
 					value > 99 
 				}
 			}
+			if = {
+				limit = { ROOT = { has_opinion = { target = FROM value < 50 } } }
+				FROM = {
+					country_event = { id = diplomacy.11 days = 3 random_days = 5 }
+				}
+			}
 			add_opinion_modifier = { 
 				target = FROM
 				modifier = db_opinion_diplomatic_mishap_large
 			}
 		}
-		1 = { }
 	}
 }
 

@@ -34,4 +34,13 @@ opinion_modifiers = {
 		decay = 1
 	}
 	
+	db_established_relations = {
+		value = 5
+	}
+	
+	db_diplomacy_ambassador_visit = {
+		value = 5
+		months = 12
+	}
+	
 }

@@ -2,7 +2,7 @@ on_actions = {
 	# country
 	on_startup = {
         effect = {
-            db_startup_set_state_governor_1 = yes
+            ROOT = { db_startup_set_state_governor_1 = yes }
         }
     }
 	on_startup = {
@@ -25,66 +25,4 @@ on_actions = {
             add_to_variable = { db_ai_chance_diplomacy_reject = ROOT.ai_strategy_invade@FROM }
         }
     }
-	# diplomacy_establish_relations_check
-	on_daily_ROOT = {
-		effect = {
-			if = {
-				limit = { 
-					any_country = {
-						has_opinion	= {
-							target = ROOT
-							value > 20
-						}
-						NOT = { has_opinion_modifier = db_established_relations }
-					}
-				}
-				random_country = {
-					limit = {
-						has_opinion	= {
-							target = ROOT
-							value > 20
-						}
-						NOT = { has_opinion_modifier = db_established_relations }
-					}
-					save_event_target_as = db_diplomacy_establish_relations_FROM
-				}
-				if = {
-					limit = { 
-						event_target:db_diplomacy_establish_relations_FROM = {	
-							has_opinion	= {
-								target = ROOT
-								value > 20
-							}
-							NOT = { has_opinion_modifier = db_established_relations }							
-						}
-					}
-					event_target:db_diplomacy_establish_relations_FROM = { 
-						country_event = { 
-							id = diplomacy.1 
-							days = 5
-							random_hours = 12
-							random_days = 5 
-						}
-					}
-				}
-			} 
-		}
-	}
-	on_daily_ROOT = {
-		effect = {
-			any_country = {
-				limit = { 
-					has_opinion_modifier = improve_relation
-					NOT = { has_opinion_modifier = db_diplomacy_ambassador_visit }
-					
-				}
-				country_event = { 
-					id = diplomacy.1 
-					days = 10
-					random_hours = 12
-					random_days = 10 
-				}
-			}
-		}
-	}
 }

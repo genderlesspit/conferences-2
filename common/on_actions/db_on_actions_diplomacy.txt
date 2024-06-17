@@ -1,6 +1,6 @@
 on_actions = {
 	# diplomacy_establish_relations_check
-	on_daily_ROOT = {
+	on_weekly = {
 		effect = {
 			if = {
 				limit = { 
@@ -34,29 +34,59 @@ on_actions = {
 					}
 					event_target:db_diplomacy_establish_relations_FROM = { 
 						country_event = { 
-							id = diplomacy.1 
-							days = 5
-							random_hours = 12
-							random_days = 5 
+							id = db_diplomacy.1 
+							#days = 5
+							#random_hours = 12
+							#random_days = 5 
 						}
 					}
-				}
+					event_target:db_diplomacy_establish_relations_FROM = { 
+						add_opinion_modifier = {
+							target = ROOT
+							modifier = db_established_relations
+						}
+					}
+				} 
 			} 
 		}
 	}
-	on_daily_ROOT = {
+	on_weekly = { #ambassador visit
 		effect = {
-			any_country = {
-				limit = { 
-					has_opinion_modifier = improve_relation
-					NOT = { has_opinion_modifier = db_diplomacy_ambassador_visit }
-					
+			if = { 
+				limit = {
+					any_country = { 
+						has_opinion_modifier = improve_relation
+						NOT = { has_opinion_modifier = db_diplomacy_ambassador_visit }
+					}
 				}
-				country_event = { 
-					id = diplomacy.1 
-					days = 10
-					random_hours = 12
-					random_days = 10 
+				random_country = {
+					limit = { 
+						has_opinion_modifier = improve_relation
+						NOT = { has_opinion_modifier = db_diplomacy_ambassador_visit }
+					}
+					save_event_target_as = db_diplomacy_diplomacy_ambassador_visit_FROM
+				}
+				if = {
+					limit = { 
+						event_target:db_diplomacy_diplomacy_ambassador_visit_FROM = {	
+							has_opinion_modifier = improve_relation
+							NOT = { has_opinion_modifier = db_diplomacy_ambassador_visit }							
+						}
+					}
+					event_target:db_diplomacy_diplomacy_ambassador_visit_FROM = { 
+						country_event = { 
+							id = db_diplomacy.2
+							#days = 5
+							#random_hours = 12
+							#random_days = 5 
+						}
+					}
+					ROOT = { 
+						add_opinion_modifier = {
+							target = event_target:db_diplomacy_diplomacy_ambassador_visit_FROM
+							modifier = db_diplomacy_ambassador_visit
+						}
+					}
 				}
 			}
 		}

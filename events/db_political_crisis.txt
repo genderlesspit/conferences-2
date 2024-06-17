@@ -338,33 +338,7 @@ country_event = {
 	id = political_crisis.6
 	title = political_crisis.6.t
 	desc = political_crisis.6.d
-	mean_time_to_happen = {
-			days = 60  #
-				modifier = {
-					factor = 1        
-					has_stability < 0.25
-				}
-				modifier = {
-					factor = 0.9       
-					has_stability < 0.20
-				}
-				modifier = {
-					factor = 0.8       
-					has_stability < 0.15
-				}
-				modifier = {
-					factor = 0.7       
-					has_stability < 0.10
-				}
-				modifier = {
-					factor = 0.6       
-					has_stability < 0.05
-				}
-				modifier = {
-					factor = 0.5       
-					has_stability < 0.01
-				}
-	}
+	is_triggered_only = yes
 	#trigger = {
 	#	has_idea = db_anti_war_movement
 	#	any_core_state = {
