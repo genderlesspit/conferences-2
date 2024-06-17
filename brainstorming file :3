@@ -1,0 +1,2 @@
+trigger = { any_country = { has_opinion = { target = ROOT value > 20 } } }
+random_country = { limit = { has_opinion = { target = ROOT value > 20 } } add_to_array = { ROOT.db_diplomacy_friendly = PREV }
