@@ -72,3 +72,22 @@
 
 #every_country = { limit = { has_opinion = { target = ROOT value < 20 } is_in_array = { value = PREV array = ROOT.db_diplomacy_friendly } } remove_from_array = { array = ROOT.db_diplomacy_friendly value = PREV } }
 #every_country = { limit = { is_in_array = { value = PREV array = ROOT.db_diplomacy_friendly } } country_event = db_diplomacy.1 }
+
+
+on_weekly = {
+effect = {
+every_state = {
+limit = {
+is_controlled_by = ROOT
+}
+add_to_array = {
+array = ROOT.controlled_state_ids
+value = THIS.id
+}
+}
+
+on_startup = {
+for_each_scope_loop = {
+array = ROOT.controlled_state_ids
+
+}
