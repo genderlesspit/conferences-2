@@ -73,132 +73,210 @@
 #every_country = { limit = { has_opinion = { target = ROOT value < 20 } is_in_array = { value = PREV array = ROOT.db_diplomacy_friendly } } remove_from_array = { array = ROOT.db_diplomacy_friendly value = PREV } }
 #every_country = { limit = { is_in_array = { value = PREV array = ROOT.db_diplomacy_friendly } } country_event = db_diplomacy.1 }
 
+on_startup = {
+	effect = {
+		every_state = {
+			limit = {
+				is_controlled_by = ROOT
+			}
+			add_to_array = {
+				array = ROOT.controlled_state_ids
+				value = THIS.id
+			}
+		}
+	}
+}
 
 on_weekly = {
-effect = {
-every_state = {
-limit = {
-is_controlled_by = ROOT
-}
-add_to_array = {
-array = ROOT.controlled_state_ids
-value = THIS.id
-}
+	effect = {
+		every_state = {
+			limit = {
+				is_controlled_by = ROOT
+			}
+		add_to_array = {
+			array = ROOT.controlled_state_ids
+			value = THIS.id
+		}
+	}
+	if = {
+		limit = {
+			any_state = {
+				limit = { NOT = { is_controlled_by = ROOT } }
+				is_in_array = {
+					array = ROOT.controlled_state_ids
+					value = THIS.id
+				}
+				remove_from_array = {
+					array = ROOT.controlled_state_ids
+					value = THIS.id
+				}
+			}
+		}
+	}
 }
 
 on_startup = {
-		effect = {
-				for_each_scope_loop = {
-						array = ROOT.controlled_state_ids
-						set_temp_variable = {
-							var = governor_chance_democratic
-							value = party_popularity_100@democratic	
-						}
-						set_temp_variable = {
-							var = governor_chance_neutrality
-							value = party_popularity_100@neutrality
-						}
-						set_temp_variable = {
-							var = governor_chance_communism
-							value = party_popularity_100@communism
-						}
-						set_temp_variable = {
-							var = governor_chance_fascism
-							value = party_popularity_100@fascism
-						}
-						random_list = {
-							var:governor_chance_democratic = {
-								random_list = {
-									10 = {
-										1 = { set_state_flag = state_1_conservative }
-										modifier = { factor = 2 has_country_leader_ideology = conservatism }
-										generate_character = {
-											token_base = state_1_governor # token will be TAG_token_base
-											advisor = {
-												slot = political_advisor
-												traits = { liberal_governor }
-											available = {
-												1 = { has_state_flag = state_1_neutral }
-												ROOT = { controls_state = 1 }	
-											}
-											}		
-											portraits = { 
-												army = { small = GFX_idea_generic_fascist_demagogue }
-											}
-										}
+	effect = {
+		set_variable = {
+			var = total_state_conservative
+			value = 0
+		}
+		set_variable = {
+			var = total_state_liberal
+			value = 0
+		}
+		set_variable = {
+			var = total_state_neutrality
+			value = 0
+		}
+		set_variable = {
+			var = total_state_communism
+			value = 0
+		}
+		set_variable = {
+			var = total_state_fascism
+			value = 0
+		}
+		for_each_scope_loop = {
+			array = ROOT.controlled_state_ids
+			set_temp_variable = {
+				var = governor_chance_democratic
+				value = party_popularity_100@democratic	
+			}
+			set_temp_variable = {
+				var = governor_chance_neutrality
+				value = party_popularity_100@neutrality
+			}
+			set_temp_variable = {
+				var = governor_chance_communism
+				value = party_popularity_100@communism
+			}
+			set_temp_variable = {
+				var = governor_chance_fascism
+				value = party_popularity_100@fascism
+			}
+			random_list = {
+				var:governor_chance_democratic = {
+					random_list = {
+						10 = {
+							db_effect_state_set_conservative = yes
+							modifier = { factor = 2 has_country_leader_ideology = conservatism }
+							generate_character = {
+								token_base = PREV.governor # token will be TAG_token_base
+								advisor = {
+									slot = political_advisor
+									traits = { liberal_governor }
+									available = {
+										PREV = { has_state_flag = db_state_conservative }
+										ROOT = { controls_state = PREV }	
 									}
-									10 = {
-										1 = { set_state_flag = state_1_liberal }
-										modifier = { factor = 2 has_country_leader_ideology = liberalism }
-										generate_character = {
-											token_base = state_1_governor # token will be TAG_token_base
-											advisor = {
-												slot = political_advisor
-												traits = { liberal_governor }
-												available = {
-													1 = { has_state_flag = state_1_neutral }
-													ROOT = { controls_state = 1 }	
-												}
-											}		
-											portraits = { 
-												army = { small = GFX_idea_generic_fascist_demagogue }
-											}
-										}
-									}
-								}
-							}
-							var:governor_chance_neutrality = {
-								1 = { set_state_flag = state_1_neutrality }
-								generate_character = {
-									token_base = state_1_governor # token will be TAG_token_base
-									advisor = {
-										slot = political_advisor
-											traits = { neutral_governor }
-											available = {
-												1 = { has_state_flag = state_1_neutral }
-												ROOT = { controls_state = 1 }
-											}
-										}		
-									portraits = { 
-										army = { small = GFX_idea_generic_fascist_demagogue }
-									}
-								}
-							}	
-							var:governor_chance_communism = {
-								1 = { set_state_flag = state_1_communist }
-								add_war_support = 0.5
-								generate_character = {
-									token_base = state_1_governor # token will be TAG_token_base
-									advisor = {
-										slot = political_advisor
-											traits = { communist_governor }
-											available = {
-												1 = { has_state_flag = state_1_neutral }
-												ROOT = { controls_state = 1 }
-											}
-										}		
-									portraits = { 
-										army = { small = GFX_idea_generic_fascist_demagogue }
-									}
-								}
-							}
-							var:governor_chance_fascism = {
-								1 = { set_state_flag = state_1_neutrality }
-								generate_character = {
-									token_base = state_1_governor # token will be TAG_token_base
-									advisor = {
-										slot = political_advisor
-											traits = { fascist_governor }
-											available = {
-												1 = { has_state_flag = state_1_neutral }
-												ROOT = { controls_state = 1 }
-											}
-										}		
-									portraits = { 
-										army = { small = GFX_idea_generic_fascist_demagogue }
-									}
+								}		
+								portraits = { 
+									army = { small = GFX_idea_generic_fascist_demagogue }
 								}
 							}
 						}
+						10 = {
+							db_effect_state_set_liberal = yes
+							modifier = { factor = 2 has_country_leader_ideology = liberalism }
+							generate_character = {
+								token_base = PREV.governor # token will be TAG_token_base
+								advisor = {
+									slot = political_advisor
+									traits = { liberal_governor }
+									available = {
+										PREV = { has_state_flag = state_1_neutral }
+										ROOT = { controls_state =  PREV }	
+									}
+								}		
+								portraits = { 
+									army = { small = GFX_idea_generic_fascist_demagogue }
+								}
+							}
+						}
+					}
+				}
+				var:governor_chance_neutrality = {
+					db_effect_state_set_neutral = yes
+					generate_character = {
+						token_base = PREV.governor # token will be TAG_token_base
+						advisor = {
+							slot = political_advisor
+								traits = { neutral_governor }
+								available = {
+									PREV = { has_state_flag = db_state_neutrality }
+									ROOT = { controls_state =  PREV }
+								}
+							}		
+						portraits = { 
+							army = { small = GFX_idea_generic_fascist_demagogue }
+						}
+					}
+				}	
+				var:governor_chance_communism = {
+					db_effect_state_set_communism = yes
+					generate_character = {
+						token_base = PREV.governor # token will be TAG_token_base
+						advisor = {
+							slot = political_advisor
+								traits = { communist_governor }
+								available = {
+									PREV = { has_state_flag = db_state_communist }
+									ROOT = { controls_state =  PREV }
+								}
+							}		
+						portraits = { 
+							army = { small = GFX_idea_generic_fascist_demagogue }
+						}
+					}
+				}
+				var:governor_chance_fascism = {
+					db_effect_state_set_neutral = yes
+					generate_character = {
+						token_base = PREV.governor # token will be TAG_token_base
+						advisor = {
+							slot = political_advisor
+								traits = { fascist_governor }
+								available = {
+									PREV = { has_state_flag = db_state_fascist }
+									ROOT = { controls_state =  PREV }
+								}
+							}		
+						portraits = { 
+							army = { small = GFX_idea_generic_fascist_demagogue }
+						}
+					}
+				}
+			}
+		}
 	}
+}
+
+on_weekly = {
+	effect = {
+		every_state = {
+			limit = {
+				is_in_array = ROOT.controlled_state_ids
+			}
+			if = { 
+				limit = { 
+				PREV = { has_state_flag = db_state_liberal } 
+					NOT = { 
+						has_dynamic_modifier = {
+							modifier = my_dynamic_modifier
+							scope = GER
+						}
+					}
+				}
+			}
+		}
+		
+	}
+db_state_modifier_conservative = {}
+db_state_modifier_liberal = {}
+db_state_modifier_fascist = {}
+db_state_modifier_neutral = {}
+db_state_modifier_communist = {}
+
+}
 

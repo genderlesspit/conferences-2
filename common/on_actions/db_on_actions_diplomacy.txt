@@ -15,11 +15,24 @@ on_actions = {
 			every_country = { #add every country not in array with value x to array
 				limit = {
 					has_opinion = { target = ROOT value > 20 }
+					NOT = { has_war_with = ROOT }	
 					NOT = { 
 						is_in_array = { 
 							value = THIS.id 
 							array = ROOT.db_diplomacy_friendly
 						} 
+					}
+				}
+				if = { 
+					limit = { 
+						is_in_array = { 
+							value = THIS.id 
+							array = ROOT.db_diplomacy_hostile
+						} 
+					}
+					remove_from_array = { 
+						array = ROOT.db_diplomacy_hostile
+						value = THIS.id
 					}
 				}
 				add_to_array = { 
@@ -30,6 +43,41 @@ on_actions = {
 			}
 		}
 	}
+	
+	on_weekly = {
+		effect = {
+			every_country = { #add every country not in array with value x to array
+				limit = {
+					has_opinion = { target = ROOT value < 30 }
+					NOT = { has_war_with = ROOT }
+					is_in_array = { 
+						array = ROOT.db_diplomacy_hostile
+						value = THIS.id
+					}
+				}
+				if = { 
+					limit = { 
+						is_in_array = { 
+							value = THIS.id 
+							array = ROOT.db_diplomacy_friendly
+						} 
+					}
+					remove_from_array = { 
+						array = ROOT.db_diplomacy_friendly
+						value = THIS.id
+					}
+				}
+				add_to_array = { 
+						array = ROOT.db_diplomacy_hostile
+						value = THIS.id
+				}
+				country_event = db_diplomacy.11
+			}
+		}
+	}
+	
+	
+	
 	
 	#on_weekly = {
 	#	effect = {
