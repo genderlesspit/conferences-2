@@ -1,0 +1,74 @@
+	on_daily = {
+		every_country = { #add every country not in array with value x to array
+			limit = {
+				has_opinion = { target = ROOT value > 20 }
+ 				NOT = { 
+					is_in_array = { 
+						value = THIS.id 
+						array = ROOT.db_diplomacy_friendly
+					} 
+				}
+			}
+			add_to_array = { 
+				array = ROOT.db_diplomacy_friendly
+					value = THIS.id
+			}
+		}
+	}
+	
+	on_daily = {
+		for_each_scope_loop = {
+			array = ROOT.db_diplomacy_friendly
+			if = {
+				limit = { NOT = { has_opinion_modifier = db_established_relations } }
+				country_event = db_diplomacy.1
+				add_opinion_modifier = {
+					target = ROOT
+					modifier = db_established_relations
+				}
+			}
+		}	
+	}
+	
+#		every_country = { 
+#		limit = { 
+#			has_opinion = { 
+#				target = ROOT 
+#				value > 20 
+#			} 
+#
+#			add_to_array = { ROOT.db_diplomacy_friendly = PREV } 
+#			}
+#	}
+	
+	
+	
+##unfinished ideas
+#	on_weekly = {
+#		effect = {
+#			any_country = {
+#				limit = { 
+#					has_opinion	= {
+#						target = ROOT
+#					}
+#					NOT = { has_opinion_modifier = db_established_relations } 
+#				}
+#				save_event_target_as = db_diplomacy_establish_relations_FROM
+#			}
+#			event_target:db_diplomacy_establish_relations_FROM = { 
+#				country_event = { 
+#					id = db_diplomacy.1 
+#					#days = 5
+#					#random_hours = 12
+##					#random_days = 5 
+#				}
+#				add_opinion_modifier = {
+#					target = ROOT
+#					modifier = db_established_relations
+#				}
+#			} 
+#		}
+#	}
+
+#every_country = { limit = { has_opinion = { target = ROOT value < 20 } is_in_array = { value = PREV array = ROOT.db_diplomacy_friendly } } remove_from_array = { array = ROOT.db_diplomacy_friendly value = PREV } }
+#every_country = { limit = { is_in_array = { value = PREV array = ROOT.db_diplomacy_friendly } } country_event = db_diplomacy.1 }

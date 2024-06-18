@@ -1,23 +1,23 @@
 db_startup_set_state_governor_1 = {
 	every_country = {
-	limit = { controls_state = 1 }
-	set_temp_variable = {
-		var = governor_chance_democratic
-		value = party_popularity_100@democratic	
-	}
-	set_temp_variable = {
-		var = governor_chance_neutrality
-		value = party_popularity_100@neutrality
-	}
-	set_temp_variable = {
-		var = governor_chance_communism
-		value = party_popularity_100@communism
-	}
-	set_temp_variable = {
-		var = governor_chance_fascism
-		value = party_popularity_100@fascism
-	}
-	random_list = {
+		limit = { controls_state = 1 }
+		set_temp_variable = {
+			var = governor_chance_democratic
+			value = party_popularity_100@democratic	
+		}
+		set_temp_variable = {
+			var = governor_chance_neutrality
+			value = party_popularity_100@neutrality
+		}
+		set_temp_variable = {
+			var = governor_chance_communism
+			value = party_popularity_100@communism
+		}
+		set_temp_variable = {
+			var = governor_chance_fascism
+			value = party_popularity_100@fascism
+		}
+		random_list = {
 			var:governor_chance_democratic = {
 				random_list = {
 					10 = {

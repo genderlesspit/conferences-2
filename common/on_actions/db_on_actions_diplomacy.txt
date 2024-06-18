@@ -2,91 +2,43 @@ on_actions = {
 	# diplomacy_establish_relations_check
 	on_weekly = {
 		effect = {
-			if = {
+			any_country = {
 				limit = { 
-					any_country = {
-						has_opinion	= {
-							target = ROOT
-							value > 20
-						}
-						NOT = { has_opinion_modifier = db_established_relations }
+					has_opinion	= {
+						target = ROOT
+						value > 20
 					}
+					NOT = { has_opinion_modifier = db_established_relations } 
 				}
-				random_country = {
-					limit = {
-						has_opinion	= {
-							target = ROOT
-							value > 20
-						}
-						NOT = { has_opinion_modifier = db_established_relations }
-					}
-					save_event_target_as = db_diplomacy_establish_relations_FROM
+				country_event = { 
+					id = db_diplomacy.1 
+					#days = 5
+					#random_hours = 12
+					#random_days = 5 
 				}
-				if = {
-					limit = { 
-						event_target:db_diplomacy_establish_relations_FROM = {	
-							has_opinion	= {
-								target = ROOT
-								value > 20
-							}
-							NOT = { has_opinion_modifier = db_established_relations }							
-						}
-					}
-					event_target:db_diplomacy_establish_relations_FROM = { 
-						country_event = { 
-							id = db_diplomacy.1 
-							#days = 5
-							#random_hours = 12
-							#random_days = 5 
-						}
-					}
-					event_target:db_diplomacy_establish_relations_FROM = { 
-						add_opinion_modifier = {
-							target = ROOT
-							modifier = db_established_relations
-						}
-					}
-				} 
+				add_opinion_modifier = {
+					target = ROOT
+					modifier = db_established_relations
+				}
 			} 
 		}
 	}
 	on_weekly = { #ambassador visit
 		effect = {
-			if = { 
+			any_country = { 
 				limit = {
-					any_country = { 
-						has_opinion_modifier = improve_relation
-						NOT = { has_opinion_modifier = db_diplomacy_ambassador_visit }
-					}
+					has_opinion_modifier = improve_relation
+					NOT = { has_opinion_modifier = db_diplomacy_ambassador_visit }
 				}
-				random_country = {
-					limit = { 
-						has_opinion_modifier = improve_relation
-						NOT = { has_opinion_modifier = db_diplomacy_ambassador_visit }
-					}
-					save_event_target_as = db_diplomacy_diplomacy_ambassador_visit_FROM
+				country_event = { 
+					id = db_diplomacy.2
+					#days = 5
+					#random_hours = 12
+					#random_days = 5 
 				}
-				if = {
-					limit = { 
-						event_target:db_diplomacy_diplomacy_ambassador_visit_FROM = {	
-							has_opinion_modifier = improve_relation
-							NOT = { has_opinion_modifier = db_diplomacy_ambassador_visit }							
-						}
-					}
-					event_target:db_diplomacy_diplomacy_ambassador_visit_FROM = { 
-						country_event = { 
-							id = db_diplomacy.2
-							#days = 5
-							#random_hours = 12
-							#random_days = 5 
-						}
-					}
-					ROOT = { 
-						add_opinion_modifier = {
-							target = event_target:db_diplomacy_diplomacy_ambassador_visit_FROM
-							modifier = db_diplomacy_ambassador_visit
-						}
-					}
+				add_opinion_modifier = {
+					target = ROOT
+					modifier = db_diplomacy_ambassador_visit
 				}
 			}
 		}
