@@ -876,6 +876,9 @@ country_event = {
 		NOT = { has_country_flag = db_paramilitary_movement }
 		NOT = { has_country_flag = db_war_hawkish_promise }
 	}
+	mean_time_to_happen = {
+		days = 10
+	}
 	picture = paramilitaries_form_amongst_countryside-937
 	option = {
 		name = political_crisis.23.a
@@ -949,8 +952,12 @@ country_event = {
 	id = political_crisis.27
 	title = political_crisis.27.t
 	desc = political_crisis.27.d
+	is_triggered_only = yes
 	trigger = {
 		has_country_flag = db_placeholder
+	}
+		mean_time_to_happen = {
+		days = 10
 	}
 	picture = xenophobic_politics_dies_down_fringe_lives-863
 	option = {
@@ -971,6 +978,7 @@ country_event = {
 	id = political_crisis.28
 	title = political_crisis.28.t
 	desc = political_crisis.28.d
+	is_triggered_only = yes
 	trigger = {
 		has_country_flag = db_placeholder
 	}

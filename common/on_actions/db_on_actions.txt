@@ -1,10 +1,10 @@
 on_actions = {
 	# country
-	on_startup = {
-        effect = {
-            ROOT = { db_startup_set_state_governor_1 = yes }
-        }
-    }
+	##on_startup = {
+    #    effect = {
+    #        ROOT = { db_startup_set_state_governor_1 = yes }
+    #    }
+    #}
 	on_startup = {
         effect = {
            	set_variable = { db_ai_chance_diplomacy_agree = ROOT.opinion@FROM }

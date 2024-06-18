@@ -2,14 +2,17 @@ debug_mod_category = {
 	db_debug_decision = {
 		icon = decision_icon_impending_leadership_collapse
 		activation = {
-			
+
 		}
 		available = {
 			is_debug = yes
 		}
 		is_good = no
 		complete_effect = {
-			ENG = { FRA = { country_event = { id = db_diplomacy.2 } }
+			for_each_scope_loop = {
+				array = db_diplomacy_friendly
+				country_event = db_diplomacy.1
+			}
 		}
 		timeout_effect = {
 		}
