@@ -5,75 +5,39 @@ on_actions = {
     #        ROOT = { db_startup_set_state_governor_1 = yes }
     #    }
     #}
+	#
+	
 	on_startup = {
 		effect = {
-			every_state = {
+			every_country = {
+				set_variable = {
+					var = total_state_conservative
+					value = 0
+				}
+				set_variable = {
+					var = total_state_liberal
+					value = 0
+				}
+				set_variable = {
+					var = total_state_neutral
+					value = 0
+				}
+				set_variable = {
+					var = total_state_communist
+					value = 0
+				}
+				set_variable = {
+					var = total_state_fascist
+					value = 0
+				}			
+			}
+			every_country = {
 				limit = {
-					is_controlled_by = ROOT
+					has_government = democratic
 				}
-				add_to_array = {
-					array = ROOT.controlled_state_ids
-					value = THIS.id
-				}
-			}
-		}
-	}
-
-	on_weekly = {
-		effect = {
-			every_state = {
-				limit = {
-					is_controlled_by = ROOT
-				}
-			add_to_array = {
-				array = ROOT.controlled_state_ids
-				value = THIS.id
-			}
-		}
-		if = {
-			limit = {
-				any_state = {
-					limit = { NOT = { is_controlled_by = ROOT } }
-					is_in_array = {
-						array = ROOT.controlled_state_ids
-						value = THIS.id
-					}
-					remove_from_array = {
-						array = ROOT.controlled_state_ids
-						value = THIS.id
-					}
-				}
-			}
-		}
-	}
-
-	on_startup = {
-		effect = {
-			set_variable = {
-				var = total_state_conservative
-				value = 0
-			}
-			set_variable = {
-				var = total_state_liberal
-				value = 0
-			}
-			set_variable = {
-				var = total_state_neutrality
-				value = 0
-			}
-			set_variable = {
-				var = total_state_communism
-				value = 0
-			}
-			set_variable = {
-				var = total_state_fascism
-				value = 0
-			}
-			for_each_scope_loop = {
-				array = ROOT.controlled_state_ids
 				set_temp_variable = {
-					var = governor_chance_democratic
-					value = party_popularity_100@democratic	
+						var = governor_chance_democratic
+						value = party_popularity_100@democratic	
 				}
 				set_temp_variable = {
 					var = governor_chance_neutrality
@@ -87,95 +51,90 @@ on_actions = {
 					var = governor_chance_fascism
 					value = party_popularity_100@fascism
 				}
-				random_list = {
-					var:governor_chance_democratic = {
-						random_list = {
-							10 = {
-								db_effect_state_set_conservative = yes
-								modifier = { factor = 2 has_country_leader_ideology = conservatism }
-								generate_character = {
-									token_base = PREV.governor # token will be TAG_token_base
-									advisor = {
-										slot = political_advisor
-										traits = { liberal_governor }
-										available = {
-											PREV = { has_state_flag = db_state_conservative }
-											ROOT = { controls_state = PREV }	
+				every_owned_state = {
+					limit = {
+						is_core_of = PREV
+					}
+					random_list = {
+						var:governor_chance_democratic = {
+							random_list = {
+								10 = {
+									set_state_flag = db_state_conservative
+									PREV = {
+										add_to_variable = {
+											var = total_state_conservative
+											value = 1
+											tooltip = add_total_state_conservative
 										}
-									}		
-									portraits = { 
-										army = { small = GFX_idea_generic_fascist_demagogue }
 									}
+									add_dynamic_modifier = {
+										modifier = db_state_modifier_conservative
+										scope = THIS
+										
+									}
+									modifier = { factor = 2 PREV = { has_country_leader_ideology = conservatism } }
+								}
+								10 = {
+									set_state_flag = db_state_liberal
+									PREV = { 
+										add_to_variable = {
+											var = total_state_liberal
+											value = 1
+											tooltip = add_total_state_liberal
+										}
+									}
+									add_dynamic_modifier = {
+										modifier = db_state_modifier_liberal
+										scope = THIS
+										
+									}
+									modifier = { factor = 2 PREV = { has_country_leader_ideology = liberalism } }
 								}
 							}
-							10 = {
-								db_effect_state_set_liberal = yes
-								modifier = { factor = 2 has_country_leader_ideology = liberalism }
-								generate_character = {
-									token_base = PREV.governor # token will be TAG_token_base
-									advisor = {
-										slot = political_advisor
-										traits = { liberal_governor }
-										available = {
-											PREV = { has_state_flag = state_1_neutral }
-											ROOT = { controls_state =  PREV }	
-										}
-									}		
-									portraits = { 
-										army = { small = GFX_idea_generic_fascist_demagogue }
-									}
+						}
+						var:governor_chance_neutrality = {
+							set_state_flag = db_state_neutral
+							PREV = { 
+								add_to_variable = {
+									var = total_state_neutral
+									value = 1
+									tooltip = add_total_state_neutral
 								}
 							}
-						}
-					}
-					var:governor_chance_neutrality = {
-						db_effect_state_set_neutral = yes
-						generate_character = {
-							token_base = PREV.governor # token will be TAG_token_base
-							advisor = {
-								slot = political_advisor
-									traits = { neutral_governor }
-									available = {
-										PREV = { has_state_flag = db_state_neutrality }
-										ROOT = { controls_state =  PREV }
-									}
-								}		
-							portraits = { 
-								army = { small = GFX_idea_generic_fascist_demagogue }
+							add_dynamic_modifier = {
+								modifier = db_state_modifier_neutral
+								scope = THIS
+								
+							}
+						}	
+						var:governor_chance_communism = {
+							set_state_flag = db_state_communist
+							PREV = {
+								add_to_variable = {
+									var = total_state_communist
+									value = 1
+									tooltip = add_total_state_communist
+								}
+							}
+							add_dynamic_modifier = {
+								modifier = db_state_modifier_communist
+								scope = THIS
+								
 							}
 						}
-					}	
-					var:governor_chance_communism = {
-						db_effect_state_set_communism = yes
-						generate_character = {
-							token_base = PREV.governor # token will be TAG_token_base
-							advisor = {
-								slot = political_advisor
-									traits = { communist_governor }
-									available = {
-										PREV = { has_state_flag = db_state_communist }
-										ROOT = { controls_state =  PREV }
-									}
-								}		
-							portraits = { 
-								army = { small = GFX_idea_generic_fascist_demagogue }
+						var:governor_chance_fascism = {
+							set_state_flag = db_state_fascist
+							PREV = {
+								add_to_variable = {
+									var = total_state_fascist
+									value = 1
+									tooltip = add_total_state_fascist
+								}
 							}
-						}
-					}
-					var:governor_chance_fascism = {
-						db_effect_state_set_neutral = yes
-						generate_character = {
-							token_base = PREV.governor # token will be TAG_token_base
-							advisor = {
-								slot = political_advisor
-									traits = { fascist_governor }
-									available = {
-										PREV = { has_state_flag = db_state_fascist }
-										ROOT = { controls_state =  PREV }
-									}
-								}		
-							portraits = { 
-								army = { small = GFX_idea_generic_fascist_demagogue }
+							add_dynamic_modifier = {
+								modifier = db_state_modifier_fascist
+								scope = THIS
+								
 							}
 						}
 					}
@@ -183,4 +142,61 @@ on_actions = {
 			}
 		}
 	}
+	
+	#on_weekly = {
+	#	effect = {
+	#		every_state = {
+	#			limit = {
+	#				is_owned_by = ROOT
+	#			}
+	#			add_dynamic_modifier = {
+	#				modifier = db_state_modifier_neutral
+	#				scope = THIS
+	#				days = 365
+	#			}
+	#		}
+	#	}
+	#}
+
+	#on_weekly = {
+	#	effect = {
+	#		every_state = {
+	#			limit = {
+	#				is_owned_by = ROOT
+	#			}
+	#			add_to_array = {
+	#				array = ROOT.controlled_state_ids
+	#				value = THIS.id
+	#			}
+	#		}
+	#		limit = {
+	#			any_state = {
+	#				is_in_array = {
+	#					array = ROOT.controlled_state_ids
+	#					value = THIS.id
+	#				}
+	#			}
+	#			add_dynamic_modifier = {
+	#				modifier = db_state_modifier_neutral
+	#				scope = THIS
+	#				days = 365
+	#			}
+	#		}
+	#		if = {
+	#			limit = {
+	#				any_state = {
+	#					NOT = { is_owned_by = ROOT }
+	#					is_in_array = {
+	#						array = ROOT.controlled_state_ids
+	#						value = THIS.id
+	#					}
+	#				}
+	#			}
+	#			remove_from_array = {
+	#				array = ROOT.controlled_state_ids
+	#				value = THIS.id
+	#			}
+	#		}
+	#	}
+	#}
 }

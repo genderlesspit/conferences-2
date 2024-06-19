@@ -623,7 +623,7 @@ db_effect_diplomacy_state_visit_generic = {
 
 
 db_effect_state_set_liberal = {
-    PREV = { set_state_flag = db_state_liberal }
+    THIS = { set_state_flag = db_state_liberal }
     add_to_variable = {
         var = total_state_liberal
         value = 1
@@ -631,14 +631,14 @@ db_effect_state_set_liberal = {
     }
     add_dynamic_modifier = {
         modifier = db_state_modifier_liberal
-        scope = PREV
+        scope = THIS
         days = 365
     }
 }
 
 
 db_effect_state_set_conservative = {
-    PREV = { set_state_flag = db_state_conservative }
+    THIS = { set_state_flag = db_state_conservative }
     add_to_variable = {
         var = total_state_conservative
         value = 1
@@ -646,14 +646,14 @@ db_effect_state_set_conservative = {
     }
     add_dynamic_modifier = {
         modifier = db_state_modifier_conservative
-        scope = PREV
+        scope = THIS
         days = 365
     }
 }
 
 
 db_effect_state_set_fascist = {
-    PREV = { set_state_flag = db_state_fascist }
+    THIS = { set_state_flag = db_state_fascist }
     add_to_variable = {
         var = total_state_fascist
         value = 1
@@ -661,14 +661,14 @@ db_effect_state_set_fascist = {
     }
     add_dynamic_modifier = {
         modifier = db_state_modifier_fascist
-        scope = PREV
+        scope = THIS
         days = 365
     }
 }
 
 
 db_effect_state_set_neutral = {
-    PREV = { set_state_flag = db_state_neutral }
+    THIS = { set_state_flag = db_state_neutral }
     add_to_variable = {
         var = total_state_neutral
         value = 1
@@ -676,14 +676,14 @@ db_effect_state_set_neutral = {
     }
     add_dynamic_modifier = {
         modifier = db_state_modifier_neutral
-        scope = PREV
+        scope = THIS
         days = 365
     }
 }
 
 
-db_effect_state_set_communist = {
-    PREV = { set_state_flag = db_state_communist }
+db_effect_state_set_communism = {
+    THIS = { set_state_flag = db_state_communist }
     add_to_variable = {
         var = total_state_communist
         value = 1
@@ -691,7 +691,7 @@ db_effect_state_set_communist = {
     }
     add_dynamic_modifier = {
         modifier = db_state_modifier_communist
-        scope = PREV
+        scope = THIS
         days = 365
     }
 }

@@ -36,17 +36,17 @@ anti_war_movement_state_dynamic_modifier = {
 }
 
 db_state_modifier_conservative = {
-	icon = GFX_generic_pp_unity_bonus
+	icon = GFX_idea_generic_pp_unity_bonus
 }
 db_state_modifier_liberal = {
-	icon = GFX_generic_democratic_drift_bonus
+	icon = GFX_idea_generic_democratic_drift_bonus
 }
 db_state_modifier_fascist = {
-	icon = GFX_generic_fascism_drift_bonus
+	icon = GFX_idea_generic_fascism_drift_bonus
 }
 db_state_modifier_neutral = {
-	icon = GFX_neutrality_idea
+	icon = GFX_idea_neutrality_idea
 }
 db_state_modifier_communist = {
-	icon = GFX_generic_communism_drift_bonus
+	icon = GFX_idea_generic_communism_drift_bonus
 }

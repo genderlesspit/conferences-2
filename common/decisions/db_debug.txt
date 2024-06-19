@@ -10,8 +10,8 @@ debug_mod_category = {
 		is_good = no
 		complete_effect = {
 			for_each_scope_loop = {
-				array = db_diplomacy_friendly
-				country_event = db_diplomacy.1
+				array = ROOT.controlled_state_ids
+				add_manpower = 1000
 			}
 		}
 		timeout_effect = {

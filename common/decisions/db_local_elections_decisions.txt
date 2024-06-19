@@ -1,0 +1,31 @@
+local_elections = {
+	db_local_election = {
+		activation = { has_government = democratic }
+		icon = decision_icon_rootgetadjectivelocalelection
+		days_mission_timeout = 365
+	}
+	institute_gerrymandering = {
+		icon = decision_icon_institute_gerrymandering
+	}
+	abolish_term_limits = {
+		icon = decision_icon_abolish_term_limits
+	}
+	reinstate_term_limits = {
+		icon = decision_icon_reinstate_term_limits
+	}
+	2year_term_limits = {
+		icon = decision_icon_2year_term_limits
+	}
+	4year_term_limits = {
+		icon = decision_icon_4year_term_limits
+	}
+	permit_elections_in_colonies = {
+		icon = decision_icon_permit_elections_in_colonies
+	}
+	campaignforrootgetrulingideologynouns = {
+		icon = decision_icon_campaignforrootgetrulingideologynouns
+	}
+	delay_nationwide_local_elections = {
+		icon = decision_icon_delay_nationwide_local_elections
+	}
+}
