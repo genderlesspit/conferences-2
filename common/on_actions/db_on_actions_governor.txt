@@ -143,6 +143,168 @@ on_actions = {
 		}
 	}
 	
+	on_startup = {
+		effect = {
+			every_country = {
+				add_to_array = {
+					array = THIS.total_states_ideology
+					value = total_state_conservative
+				}
+				add_to_array = {
+					array = THIS.total_states_ideology
+					value = total_state_liberal
+				}
+				add_to_array = {
+					array = THIS.total_states_ideology
+					value = total_state_neutral
+				}
+				add_to_array = {
+					array = THIS.total_states_ideology
+					value = total_state_communist
+				}
+				add_to_array = {
+					array = THIS.total_states_ideology
+					value = total_state_fascist
+				}
+				set_variable = {
+					var = db_pp_conservative
+					value = 0
+				}
+				set_variable = {
+					var = db_pp_liberal
+					value = 0
+				}
+				set_variable = {
+					var = db_pp_neutral
+					value = 0
+				}
+				set_variable = {
+					var = db_pp_communist
+					value = 0
+				}
+				set_variable = {
+					var = db_pp_fascist
+					value = 0
+				}
+				add_to_array = {
+					array = THIS.db_each_ideology_pp
+					value = db_pp_conservative
+				}
+				add_to_array = {
+					array = THIS.db_each_ideology_pp
+					value = db_pp_liberal
+				}
+				add_to_array = {
+					array = THIS.db_each_ideology_pp
+					value = db_pp_neutral
+				}
+				add_to_array = {
+					array = THIS.db_each_ideology_pp
+					value = db_pp_communist
+				}
+				add_to_array = {
+					array = THIS.db_each_ideology_pp
+					value = db_pp_fascist
+				}
+			}
+		}
+	}
+	
+	on_weekly = {
+		effect = {
+			every_country = {
+				set_variable = {
+					var = db_pp_conservative
+					value = 0
+				}
+				set_variable = {
+					var = db_pp_liberal
+					value = 0
+				}
+				set_variable = {
+					var = db_pp_neutral
+					value = 0
+				}
+				set_variable = {
+					var = db_pp_communist
+					value = 0
+				}
+				set_variable = {
+					var = db_pp_fascist
+					value = 0
+				}
+				for_each_loop = {
+					array = THIS.total_states_ideology
+					value = x
+					add_to_variable = {
+						var = db_total_ideological_states
+						value = x
+					}
+				}
+				for_each_loop = {
+					array = THIS.db_each_ideology_pp
+					value = x
+					add_to_variable = {
+						var = db_pp_conservative
+						value = x
+					}
+				}
+				for_each_loop = {
+					array = THIS.db_each_ideology_pp
+					value = x
+					divide_variable = {
+						var = x
+						value = db_total_ideological_states
+					}
+				}
+				add_to_variable = {
+					var = db_dem_faction_split
+					value = party_popularity@democratic
+				}
+				divide_variable = {
+					var = db_dem_faction_split
+					value = 2
+				}
+				add_to_variable = {
+					var = db_pp_conservative
+					value = db_dem_faction_split
+				}
+				add_to_variable = {
+					var = db_pp_liberal
+					value = db_dem_faction_split
+				}
+				add_to_variable = {
+					var = db_pp_neutral
+					value = party_popularity@neutrality
+				}
+				add_to_variable = {
+					var = db_pp_communist
+					value = party_popularity@communism
+				}
+				add_to_variable = {
+					var = db_pp_fascist
+					value = party_popularity@fascism
+				}
+				for_each_loop = {
+					array = THIS.db_each_ideology_pp
+					value = x
+					divide_variable = {
+						var = x
+						value = 2
+					}
+				}
+				for_each_loop = {
+					array = THIS.db_each_ideology_pp
+					value = x
+					multiply_variable = {
+						var = x
+						value = 100
+					}
+				}
+			}
+		}
+	}
+	
 	#on_weekly = {
 	#	effect = {
 	#		every_state = {
