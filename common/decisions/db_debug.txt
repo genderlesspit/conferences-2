@@ -9,13 +9,7 @@ debug_mod_category = {
 		}
 		is_good = no
 		complete_effect = {
-			GER = { start_peace_conference = {
-				tag = ROOT
-				winner_scope = ALL
-				score_factor = 1.2
-				message = my_peace_tt
-			}
-			}
+			db_local_election = yes
 		}
 		timeout_effect = {
 		}

@@ -1,0 +1,268 @@
+on_actions = {
+	on_startup = {
+		effect = {
+			every_state = {
+				if = {
+					limit = {
+						has_state_category = city
+					}
+					set_variable = {
+						var = THIS.db_state_base_wealth
+						value = 6
+					}
+				}
+				if = {
+					limit = {
+						has_state_category = large_city
+					}
+					set_variable = {
+						var = THIS.db_state_base_wealth
+						value = 7
+					}
+				}
+				if = {
+					limit = {
+						has_state_category = megalopolis
+					}
+					set_variable = {
+						var = THIS.db_state_base_wealth
+						value = 8
+					}
+				}
+				if = {
+					limit = {
+						has_state_category = metropolis
+					}
+					set_variable = {
+						var = THIS.db_state_base_wealth
+						value = 9
+					}
+				}
+				if = {
+					limit = {
+						has_state_category = enclave
+					}
+					set_variable = {
+						var = THIS.db_state_base_wealth
+						value = 6
+					}
+				}
+				if = {
+					limit = {
+						has_state_category = large_town
+					}
+					set_variable = {
+						var = THIS.db_state_base_wealth
+						value = 5
+					}
+				}
+				if = {
+					limit = {
+						has_state_category = pastoral
+					}
+					set_variable = {
+						var = THIS.db_state_base_wealth
+						value = 3
+					}
+				}
+				if = {
+					limit = {
+						OR = {
+							has_state_category = rural
+							has_state_category = small_island
+							has_state_category = tiny_island
+							has_state_category = town
+						}
+					}
+					set_variable = {
+						var = THIS.db_state_base_wealth
+						value = 4
+					}
+				}
+				if = {
+					limit = {
+						has_state_category = wasteland
+					}
+					set_variable = {
+						var = THIS.db_state_base_wealth
+						value = 1
+					}
+				}
+				set_variable = {
+					var = THIS.db_state_base_jobs_percent
+					value = THIS.db_state_base_wealth
+				}
+				clamp_variable = {
+					var = THIS.db_state_base_jobs_percent
+					min = 2
+					max = 7
+				}
+				divide_variable = {
+					var = THIS.db_state_base_jobs_percent
+					value = 10
+				}
+				set_variable = {
+					var = THIS.db_state_base_total_employed
+					value = THIS.state_population_k
+				}
+				multiply_variable = {
+					var = THIS.db_state_base_total_employed
+					value = THIS.db_state_base_jobs_percent
+				}
+			}
+		}
+	}
+	
+	on_startup = {
+		effect = {
+			every_country = {
+				set_variable = {
+					var = THIS.db_state_employment_modifier
+					value = 1
+				}
+			}
+		}
+	}
+	on_daily = {
+		effect = {
+			every_country = { #calculate total jobs base + military
+				set_variable = {
+					var = THIS.db_deployed_manpower_ratio
+					value = THIS.deployed_army_manpower_k
+				}
+				add_to_variable = {
+					var = THIS.db_deployed_manpower_ratio
+					value = THIS.deployed_navy_manpower_k
+				}
+				add_to_variable = {
+					var = THIS.db_deployed_manpower_ratio
+					value = THIS.deployed_airforce_manpower_k
+				}
+				divide_variable = {
+					var = THIS.db_deployed_manpower_ratio
+					value = THIS.max_available_manpower_k
+				}
+				set_variable = { #reserved manpower ratio
+					var = THIS.db_reserved_manpower_ratio
+					value = 1
+				}
+				subtract_from_variable = {
+					var = THIS.db_reserved_manpower_ratio
+					value = THIS.db_deployed_manpower 
+				}
+				every_state = { #set_military_jobs
+					limit = { is_owned_by = PREV }
+					set_variable = {
+						var = THIS.db_state_military_jobs
+						value = THIS.state_population_k
+					}
+					multiply_variable = {
+						var = THIS.db_state_military_jobs
+						value = PREV.modifier@conscription	
+					}
+					multiply_variable = { #total state military jobs
+						var = THIS.db_state_military_jobs
+						value = PREV.db_deployed_manpower_ratio
+					}
+					set_variable = { #calculate total employed base + military
+						var = THIS.db_state_total_employed
+						value = THIS.db_state_base_total_employed
+					}
+					add_to_variable = {
+						var = THIS.db_state_total_employed
+						value = THIS.db_state_military_jobs
+					}
+				}
+				every_state = { #calculate industrial employment modifier
+					limit = { is_owned_by = PREV }
+					set_variable = {
+						var = THIS.db_state_employment_modifier
+						value = 1	
+					}
+					add_to_variable = {
+						var = THIS.db_state_employment_modifier
+						value = THIS.non_damaged_building_level@arms_factory	
+					}
+					add_to_variable = {
+						var = THIS.db_state_employment_modifier
+						value = THIS.non_damaged_building_level@industrial_complex
+					}
+					add_to_variable = {
+						var = THIS.db_state_employment_modifier
+						value = THIS.non_damaged_building_level@dockyard
+					}
+					divide_variable = { #should read between 1 and 0
+						var = THIS.db_state_employment_modifier
+						value = THIS.modifier@local_building_slots
+					}
+					clamp_variable = { #between no and double employment
+						var = THIS.db_state_employment_modifier
+						min = 0
+						max = 1
+					}
+					#multiply_variable = {
+					#	var = THIS.db_state_employment_modifier
+					#	value = THIS.modifier@industrial_capacity_factory
+					#}
+					#clamp_variable = { #between no and double employment
+					#	var = THIS.db_state_employment_modifier
+					#	min = 0
+					#	max = 1
+					#}
+					#multiply_variable = {
+					#	var = THIS.db_state_employment_modifier
+					#	value = PREV.db_national_employment_modifier
+					#}
+					#clamp_variable = { #between no and double employment
+					#	var = THIS.db_state_employment_modifier
+					#	min = 0
+					#	max = 1
+					#}
+					############### CALCULATE EMPLOYMENT # based on modifier
+					###############
+					set_variable = {
+						var = THIS.db_state_total_unemployed
+						value = THIS.state_population_k
+					}
+					subtract_from_variable = {
+						var = THIS.db_state_total_unemployed
+						value = THIS.db_state_total_employed
+					}
+					set_variable = {
+						var = THIS.db_state_total_added_jobs
+						value = THIS.db_state_total_unemployed
+					}
+					multiply_variable = {
+						var = THIS.db_state_total_added_jobs
+						value = THIS.db_state_employment_modifier
+					}
+					add_to_variable = {
+						var = THIS.db_state_total_employed
+						value = THIS.db_state_total_added_jobs
+					}
+					set_variable = {
+						var = THIS.db_state_total_unemployed
+						value = THIS.state_population_k
+					}
+					subtract_from_variable = {
+						var = THIS.db_state_total_unemployed
+						value = THIS.db_state_total_employed
+					}
+					set_variable = {
+						var = THIS.db_state_unemployed_percent
+						value = THIS.db_state_total_unemployed
+					}
+					divide_variable = {
+						var = THIS.db_state_unemployed_percent
+						value = THIS.state_population_k
+					}
+					#clamp_variable = {
+					#	var = THIS.db_state_total_employed
+					#	max = var:THIS.state_population_k
+					#	min = 0
+					#}
+				}
+			}
+		}
+	}
+}

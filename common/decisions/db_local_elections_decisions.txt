@@ -2,7 +2,7 @@ local_elections = {
 	db_local_election = {
 		activation = { has_government = democratic }
 		icon = decision_icon_rootgetadjectivelocalelection
-		days_mission_timeout = 365
+		days_mission_timeout = 730
 	}
 	institute_gerrymandering = {
 		icon = decision_icon_institute_gerrymandering

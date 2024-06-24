@@ -1,0 +1,14 @@
+add_namespace = db_event_debug
+country_event = {
+	id = db_event_debug.1
+	title = db_event_debug.1.t
+	desc = db_event_debug.1.d
+	fire_only_once = no
+	is_triggered_only = yes
+	option = {
+		name = db_event_debug.1.a
+	}
+	option = {
+		name = db_event_debug.1
+	}
+}

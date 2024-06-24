@@ -697,103 +697,195 @@ db_effect_state_set_communism = {
 }
 
 db_local_election = {
-	ROOT = {
-		set_variable = {
-			var = total_state_conservative
-			value = 0
-		}
-		set_variable = {
-			var = total_state_liberal
-			value = 0
-		}
-		set_variable = {
-			var = total_state_neutral
-			value = 0
-		}
-		set_variable = {
-			var = total_state_communist
-			value = 0
-		}
-		set_variable = {
-			var = total_state_fascist
-			value = 0
-		}	
+	ROOT = {	
 		every_state = {
-			set_event_target = db_election_state
-			add_to_variable = {
-				var = THIS.election_chance
-				value = 0
+			limit = { #is core state OR is colony with election permissions
+				OR = { 
+					AND = {
+						is_core_of = PREV
+						is_owned_by = PREV
+					}
+					AND = {
+						NOT = { is_core_of = PREV }
+						is_owned_by = PREV
+						OR = {
+							has_state_flag = db_state_liberal
+							has_state_flag = db_state_conservative
+							has_state_flag = db_state_neutral
+							has_state_flag = db_state_fascist
+							has_state_flag = db_state_communist
+						}
+					}
+				}
+				OR = {
+					has_state_flag = db_state_liberal
+					has_state_flag = db_state_conservative
+					has_state_flag = db_state_neutral
+					has_state_flag = db_state_fascist
+					has_state_flag = db_state_communist
+				}
 			}
-			add_to_variable = {
-				var = THIS.election_chance
-				value = stability
-			}
-			add_to_variable = {
-				var = THIS.election_chance
-				value = has_war_support
-			}
-			add_to_variable = {
-				var = THIS.election_chance
-				value = party_popularity@ruling_party
-			}
-			add_to_variable = {
-				var = THIS.election_chance
-				value = political_power_daily
+			save_event_target_as = db_election_state #save localisation for election state
+			# Reset state for conservative
+			if = {
+				limit = { has_state_flag = db_last_election_conservative }
+				clr_state_flag = db_last_election_conservative 
 			}
 			if = {
-				limit = { THIS = { is_core_of = ROOT } }
-				divide_variable = {
-					var = THIS.election_chance
-					value = 5
-				}
-				clamp_variable = {
-					var = THIS.election_chance
-					min = 0
-					max = 1
-				}
-				add_to_variable = {
-					var = THIS.election_chance_lose
-					value = 1
-				}
-				subtract_from_variable = {
-					var = THIS.election_chance_lose
-					value = THIS.election_chance
-				}
+				limit = { has_state_flag = db_last_election_liberal }
+				clr_state_flag = db_last_election_liberal
 			}
 			if = {
-				limit = { THIS = { NOT = { is_core_of = ROOT } } }
-				add_to_variable = {
-					var = THIS.election_chance
-					value = resistance
+				limit = { has_state_flag = db_last_election_neutral }
+				clr_state_flag = db_last_election_neutral
+			}
+			if = {
+				limit = { has_state_flag = db_last_election_fascist }
+				clr_state_flag = db_last_election_fascist
+			}
+			if = {
+				limit = { has_state_flag = db_last_election_communist }
+				clr_state_flag = db_last_election_communist
+			}
+			if = { #reset state for conservative
+				limit = {
+					has_state_flag = db_state_conservative
 				}
-					add_to_variable = {
-					var = THIS.election_chance
-					value = compliance
-				}
-					divide_variable = {
-					var = THIS.election_chance
-					value = 7
-				}
-				clamp_variable = {
-					var = THIS.election_chance
-					min = 0
-					max = 1
-				}
-				add_to_variable = {
-					var = THIS.election_chance_lose
+				clr_state_flag = db_state_conservative
+				set_state_flag = db_last_election_conservative
+				subtract_from_variable = {
+					var = ROOT.total_state_conservative
 					value = 1
 				}
-				subtract_from_variable = {
-					var = THIS.election_chance_lose
-					value = THIS.election_chance
+				if = {
+					limit = {
+						has_dynamic_modifier = {
+							modifier = db_state_modifier_conservative
+							scope = THIS
+						}
+					}
+					remove_dynamic_modifier = { modifier = db_state_modifier_conservative }
 				}
 			}
+			# Reset state for liberal
+			if = {
+				limit = {
+					has_state_flag = db_state_liberal
+				}
+				clr_state_flag = db_state_liberal
+				set_state_flag = db_last_election_liberal
+				subtract_from_variable = {
+					var = ROOT.total_state_liberal
+					value = 1
+				}
+				if = {
+					limit = {
+						has_dynamic_modifier = {
+							modifier = db_state_modifier_liberal
+							scope = THIS
+						}
+					}
+					remove_dynamic_modifier = { modifier = db_state_modifier_liberal }
+				}
+			}
+			# Reset state for communist
+			if = {
+				limit = {
+					has_state_flag = db_state_communist
+				}
+				clr_state_flag = db_state_communist
+				set_state_flag = db_last_election_liberal
+				subtract_from_variable = {
+					var = ROOT.total_state_communist
+					value = 1
+				}
+				if = {
+					limit = {
+						has_dynamic_modifier = {
+							modifier = db_state_modifier_communist
+							scope = THIS
+						}
+					}
+					remove_dynamic_modifier = { modifier = db_state_modifier_communist }
+				}
+			}
+			# Reset state for neutral
+			if = {
+				limit = {
+					has_state_flag = db_state_neutral
+				}
+				clr_state_flag = db_state_neutral
+				set_state_flag = db_last_election_neutral
+				subtract_from_variable = {
+					var = ROOT.total_state_neutral
+					value = 1
+				}
+				if = {
+					limit = {
+						has_dynamic_modifier = {
+							modifier = db_state_modifier_neutral
+							scope = THIS
+						}
+					}
+					remove_dynamic_modifier = { modifier = db_state_modifier_neutral }
+				}
+			}
+			# Reset state for fascist
+			if = {
+				limit = {
+					has_state_flag = db_state_fascist
+				}
+				clr_state_flag = db_state_fascist
+				set_state_flag = db_last_election_fascist
+				subtract_from_variable = {
+					var = ROOT.total_state_fascist
+					value = 1
+				}
+				if = {
+					limit = {
+						has_dynamic_modifier = {
+							modifier = db_state_modifier_fascist
+							scope = THIS
+						}
+					}
+					remove_dynamic_modifier = { modifier = db_state_modifier_fascist }
+				}
+			}
+
+			#if = {
+			#	limit = { THIS = { NOT = { is_core_of = ROOT } } }
+			#	add_to_variable = {
+			#		var = THIS.election_chance
+			#		value = resistance
+			#	}
+			#	add_to_variable = {
+			#		var = THIS.election_chance
+			#		value = compliance
+			#	}
+			#	divide_variable = {
+			#		var = THIS.election_chance
+			#		value = 6
+			#	}
+			#	clamp_variable = {
+			#		var = THIS.election_chance
+			#		min = 0
+			#		max = 1
+			#	}
+			#	set_variable = {
+			#		var = THIS.election_chance_lose
+			#		value = 1
+			#	}
+			#	subtract_from_variable = {
+			#		var = THIS.election_chance_lose
+			#		value = THIS.election_chance
+			#	}
+			#}
 			random_list = {
-				var:THIS.election_chance = {
+				var:ROOT.election_chance = {
 					random_list = {
-						10 = {
+						1 = {
 							set_state_flag = db_state_conservative
-							PREV = {
+							ROOT = {
 								add_to_variable = {
 									var = total_state_conservative
 									value = 1
@@ -805,11 +897,11 @@ db_local_election = {
 								scope = THIS
 								
 							}
-							modifier = { factor = 2 PREV = { has_country_leader_ideology = conservatism } } #placeholder for now
+							modifier = { factor = var:ROOT.db_pp_conservative ROOT = { has_country_leader_ideology = conservatism } } #placeholder for now
 						}
-						10 = {
+						1 = {
 							set_state_flag = db_state_liberal
-							PREV = { 
+							ROOT = { 
 								add_to_variable = {
 									var = total_state_liberal
 									value = 1
@@ -819,68 +911,68 @@ db_local_election = {
 							add_dynamic_modifier = {
 								modifier = db_state_modifier_liberal
 								scope = THIS
-								
 							}
-							modifier = { factor = 2 PREV = { has_country_leader_ideology = liberalism } }
+							modifier = { factor = var:ROOT.db_pp_liberal ROOT = { has_country_leader_ideology = liberalism } }
 						}
 					}
 				}
-				var:THIS.election_chance_lose = {
+				var:ROOT.election_chance_lose = {
 					set_temp_variable = {
 						var = governor_chance_neutrality
-						value = party_popularity_100@neutrality
+						value = ROOT.party_popularity_100@neutrality
 					}
 					set_temp_variable = {
 						var = governor_chance_communism
-						value = party_popularity_100@communism
+						value = ROOT.party_popularity_100@communism
 					}
 					set_temp_variable = {
 						var = governor_chance_fascism
-						value = party_popularity_100@fascism
+						value = ROOT.party_popularity_100@fascism
 					}
-					var:governor_chance_neutrality = {
-						set_state_flag = db_state_neutral
-						PREV = { 
-							add_to_variable = {
-								var = total_state_neutral
-								value = 1
-								tooltip = add_total_state_neutral
+					random_list = {
+						var:governor_chance_neutrality = {
+							set_state_flag = db_state_neutral
+							ROOT = { 
+								add_to_variable = {
+									var = total_state_neutral
+									value = 1
+									tooltip = add_total_state_neutral
+								}
+							}
+							add_dynamic_modifier = {
+								modifier = db_state_modifier_neutral
+								scope = THIS
+								
+							}
+						}	
+						var:governor_chance_communism = {
+							set_state_flag = db_state_communist
+							ROOT = {
+								add_to_variable = {
+									var = total_state_communist
+									value = 1
+									tooltip = add_total_state_communist
+								}
+							}
+							add_dynamic_modifier = {
+								modifier = db_state_modifier_communist
+								scope = THIS
+								
 							}
 						}
-						add_dynamic_modifier = {
-							modifier = db_state_modifier_neutral
-							scope = THIS
-							
-						}
-					}	
-					var:governor_chance_communism = {
-						set_state_flag = db_state_communist
-						PREV = {
-							add_to_variable = {
-								var = total_state_communist
-								value = 1
-								tooltip = add_total_state_communist
+						var:governor_chance_fascism = {
+							set_state_flag = db_state_fascist
+							ROOT = {
+								add_to_variable = {
+									var = total_state_fascist
+									value = 1
+									tooltip = add_total_state_fascist
+								}
 							}
-						}
-						add_dynamic_modifier = {
-							modifier = db_state_modifier_communist
-							scope = THIS
-							
-						}
-					}
-					var:governor_chance_fascism = {
-						set_state_flag = db_state_fascist
-						PREV = {
-							add_to_variable = {
-								var = total_state_fascist
-								value = 1
-								tooltip = add_total_state_fascist
+							add_dynamic_modifier = {
+								modifier = db_state_modifier_fascist
+								scope = THIS
 							}
-						}
-						add_dynamic_modifier = {
-							modifier = db_state_modifier_fascist
-							scope = THIS
-							
 						}
 					}
 				}
