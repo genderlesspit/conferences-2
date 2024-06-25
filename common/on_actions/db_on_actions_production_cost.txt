@@ -184,14 +184,14 @@ on_actions = {
 					has_global_flag = db_spending_infantry_check_2
 				}
 			}
-			every_country = {
+			every_country = { #in millions
 				set_variable = { 
 					var = THIS.db_spending_infantry_this_week_add_to_total
 					value = THIS.db_spending_infantry_this_week 
 				}
 				divide_variable = {
 					var = THIS.db_spending_infantry_this_week_add_to_total
-					value = 1000
+					value = 1000000
 				}
 			}
 			clr_global_flag = db_spending_infantry_check_2
@@ -210,7 +210,7 @@ on_actions = {
 				}
 				every_country = {
 					add_to_variable = {
-						var = THIS.db_spending_infantry_total
+						var = THIS.db_spending_infantry_total_millions
 						value = THIS.db_spending_infantry_this_week_add_to_total
 					}
 					set_variable = {
