@@ -1001,3 +1001,9 @@ every_country = { #170 to equip a soldier minus 83 base infantry equip cost
 		value = 87
 	}
 }
+
+
+
+
+
+

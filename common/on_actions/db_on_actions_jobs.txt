@@ -109,6 +109,13 @@ on_actions = {
 					var = THIS.db_state_base_total_employed
 					value = THIS.db_state_base_jobs_percent
 				}
+				set_variable = { THIS.db_state_base_wage_modifier = THIS.db_state_base_wealth }
+				divide_variable = { THIS.db_state_base_wage_modifier = 10 }
+				clamp_variable = { 
+					var = THIS.db_state_base_wage_modifier
+					min = 0.5
+					max = 1
+				}
 			}
 		}
 	}
@@ -120,9 +127,12 @@ on_actions = {
 					var = THIS.db_state_employment_modifier
 					value = 1
 				}
+				set_variable = { THIS.db_national_minimum_wage = 0.25 }
+				set_variable = { THIS.db_national_inflation_rate = 1.46 }
 			}
 		}
 	}
+	
 	on_daily = {
 		effect = {
 			every_country = { #calculate total jobs base + military
@@ -274,6 +284,31 @@ on_actions = {
 					add_to_variable = { PREV.db_national_unemployment_rate = THIS.db_state_unemployed_percent }
 				}
 				divide_variable = { THIS.db_national_unemployment_rate = THIS.num_owned_controlled_states }
+			}
+		}
+	}
+
+	on_daily = { #startup wage
+		effect = {
+			every_country = {
+				every_owned_state = {
+					limit = { is_controlled_by = PREV }
+					set_variable = { THIS.db_state_salary = PREV.db_national_minimum_wage }
+					multiply_variable = { THIS.db_state_salary = THIS.db_state_base_wage_modifier }
+					set_variable = { THIS.db_state_salary_modifier = 0 }
+					add_to_variable = { THIS.db_state_salary_modifier = THIS.db_state_base_wage_modifier }
+					add_to_variable = { THIS.db_state_salary_modifier = THIS.db_state_total_unemployed }
+					divide_variable = {	THIS.db_state_salary_modifier = 2 }
+					clamp_variable = {
+						var = THIS.db_state_salary_modifier
+						min = 0.1
+						max = 1
+					}
+					multiply_variable = { THIS.db_state_salary = THIS.db_state_salary_modifier }
+					multiply_variable = { THIS.db_state_salary = THIS.db_national_inflation_rate }
+					divide_variable = { THIS.db_state_salary = 1000 } #make income in 1000s
+					multiply_variable = { THIS.db_state_salary = 365 }
+				}
 			}
 		}
 	}
