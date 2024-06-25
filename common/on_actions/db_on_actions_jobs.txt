@@ -119,9 +119,46 @@ on_actions = {
 					min = 0.1
 					max = 1
 				}
+				set_variable = { THIS.db_state_base_cost_of_living = 1100 }
+				set_variable = { THIS.db_state_base_cost_of_living_modifier = THIS.db_state_base_wealth }
+				divide_variable = { THIS.db_state_base_cost_of_living_modifier = 10 }
+				add_to_variable = { THIS.db_state_base_cost_of_living_modifier = 0 } # Adjust
+				clamp_variable = { 
+					var = THIS.db_state_base_cost_of_living_modifier
+					min = 0.1
+					max = 1
+				}
 			}
 		}
 	}
+
+	on_daily = {
+		effect = {
+			set_variable = THIS.db_state_average_daily_base_spending = {
+			set_variable = THIS.db_state_consumer_spending_base_food = .288
+			multiply_variable =  THIS.db_state_consumer_spending_base_food = THIS.db_state_consumer_spending_base_food_modifier
+			multiply_variable =  THIS.db_state_consumer_spending_base_food = THIS.db_national_consumer_spending_base_food_modifier
+			divide_variable = THIS.db_state_consumer_spending_base_food = 3
+			set_variable = THIS.db_state_consumer_spending_base_tobacco = .02 
+			subtract_from_variable = THIS.db_state_consumer_spending_base_food_modifier = 
+			subtract_from_variable = THIS.db_national_consumer_spending_base_food_modifier = 
+			set_variable = THIS.db_state_average_daily_spending_consumer_goods
+
+	on_daily = {
+		effect = {
+			set_variable = { THIS.db_national_price_consumer_goods_modifier = -.35 }
+			add_to_variable = { THIS.db_national_price_consumer_goods_modifier = THIS.modifier@consumer_goods_factor }
+			divide_variable = { THIS.db_national_price_consumer_goods_modifier = -1 } #extra consumer goods lower prices, lower consumer goods heighten prices
+			clamp_variable = {
+				var = THIS.db_national_price_consumer_goods_modifier 
+				min = -0.35
+				max = .35
+			}
+			add_to_variable = { THIS.db_national_consumption = 1 }
+			divide_variable = { THIS.db_national_price_consumer_goods_modifier = 0 }
+			divide_variable = { THIS.db_national_price_consumer_goods_modifier = 100 }
+		}
+	}	
 	
 	on_startup = {
 		effect = {
@@ -131,7 +168,7 @@ on_actions = {
 					value = 1
 				}
 				set_variable = { THIS.db_national_minimum_wage = 0.25 }
-				set_variable = { THIS.db_national_inflation_rate = 1.46 }
+				set_variable = { THIS.db_national_base_inflation_rate = 1.46 }
 				set_variable = { THIS.db_national_work_hours_per_day = 8 }
 				
 			}
@@ -335,4 +372,6 @@ on_actions = {
 			}
 		}
 	}
+
+	on_daily = {
 }
