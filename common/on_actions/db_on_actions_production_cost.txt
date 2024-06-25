@@ -1,9 +1,24 @@
 on_actions = {	
+
+	on_startup = {
+		effect = {
+			every_country = {
+				set_variable = {
+					var = THIS.db_spending_infantry_total
+					value = 0
+				}
+				set_variable = {
+					var = THIS.db_spending_infantry_produced_last_week
+					value = 0
+				}
+			}
+		}
+	}
 	on_daily = { ###INFANTRY PRODUCTION COST MODIFIER
 		effect = {
 			every_country = { #production cost modifier
 				set_variable = { #Price of a M1 Garand
-					var = db_spending_cost_modifier
+					var = THIS.db_spending_cost_modifier
 					value = 83
 				}
 				if = {
@@ -97,31 +112,113 @@ on_actions = {
 					}
 				} 
 			}
+		}
+	}
+	on_daily = {
+		effect = {
 			every_country = {
 				set_variable = {
-					var = THIS.db_spending_infantry_produced_today
-					var = THIS.total_equipment_produced_infantry
+					var = THIS.db_total_equipment_produced_infantry
+					value = THIS.total_equipment_produced_infantry
 				}
-				subtract_from_variable = {
-					var = THIS.db_spending_infantry_produced_today
-					value = THIS.db_spending_infantry_produced_yesterday
+			}
+		}
+	}
+	on_daily = {
+		effect = {
+			if = {
+				limit = { 
+					NOT = { 
+						has_global_flag = db_spending_infantry_check
+						has_global_flag = db_spending_infantry_check_2
+						has_global_flag = db_spending_infantry_check_3						
+					}
 				}
-				set_variable = {
-					var = THIS.db_spending_infantry_produced_today
-					value = THIS.db_spending_infantry_produced_yesterday
+				every_country = {
+					set_variable = {
+						var = THIS.db_spending_infantry_produced_this_week
+						value = THIS.total_equipment_produced_infantry
+					}
+					subtract_from_variable = {
+						var = THIS.db_spending_infantry_produced_this_week
+						value = THIS.db_spending_infantry_produced_last_week
+					}
 				}
-				set_variable = {
-					var = THIS.db_spending_infantry_today
-					value = THIS.db_spending_infantry_produced_yesterday
+				set_global_flag = db_spending_infantry_check
+			}
+		}
+	}
+	on_daily = {
+		effect = {
+			if = {
+				limit = { 
+					has_global_flag = db_spending_infantry_check
+					NOT = { 
+						has_global_flag = db_spending_infantry_check_2
+						has_global_flag = db_spending_infantry_check_3						
+					}
 				}
-				multiply_variable = { #multiply infantry cost by units produced
-					var = THIS.db_spending_infantry_today
-					value = THIS.db_spending_cost_modifier
+				every_country = {
+					set_variable = {
+						var = THIS.db_spending_infantry_this_week
+						value = THIS.db_spending_infantry_produced_this_week
+					}
+					multiply_variable = { #multiply infantry cost by units produced
+						var = THIS.db_spending_infantry_this_week
+						value = THIS.db_spending_cost_modifier
+					}
 				}
-				add_to_variable = {
-					var = THIS.db_spending_infantry_today
-					value = THIS.db_spending_infantry_total
+				clr_global_flag = db_spending_infantry_check
+				set_global_flag = db_spending_infantry_check_2
+			}
+		}
+	}
+	on_weekly = {
+		effect = {
+			if = {
+				limit = {
+					NOT = { 
+						has_global_flag = db_spending_infantry_check
+						has_global_flag = db_spending_infantry_check_3
+					}
+					has_global_flag = db_spending_infantry_check_2
 				}
+			}
+			every_country = {
+				set_variable = { 
+					var = THIS.db_spending_infantry_this_week_add_to_total
+					value = THIS.db_spending_infantry_this_week 
+				}
+				divide_variable = {
+					var = THIS.db_spending_infantry_this_week_add_to_total
+					value = 1000
+				}
+			}
+			clr_global_flag = db_spending_infantry_check_2
+			set_global_flag = db_spending_infantry_check_3
+		}
+	}
+	on_daily = {
+		effect = {
+			if = {
+				limit = { 
+					NOT = {
+						has_global_flag = db_spending_infantry_check
+						has_global_flag = db_spending_infantry_check_2
+					}
+					has_global_flag = db_spending_infantry_check_3
+				}
+				every_country = {
+					add_to_variable = {
+						var = THIS.db_spending_infantry_total
+						value = THIS.db_spending_infantry_this_week_add_to_total
+					}
+					set_variable = {
+						var = THIS.db_spending_infantry_produced_last_week
+						value = THIS.db_spending_infantry_produced_this_week
+					}
+				}
+				clr_global_flag = db_spending_infantry_check_3
 			}
 		}
 	}

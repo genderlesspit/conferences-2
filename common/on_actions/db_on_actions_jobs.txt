@@ -200,15 +200,16 @@ on_actions = {
 						min = 0
 						max = 1
 					}
-					#multiply_variable = {
-					#	var = THIS.db_state_employment_modifier
-					#	value = THIS.modifier@industrial_capacity_factory
-					#}
-					#clamp_variable = { #between no and double employment
-					#	var = THIS.db_state_employment_modifier
-					#	min = 0
-					#	max = 1
-					#}
+					set_variable = { THIS.db_industrial_capacity = PREV.modifier@industrial_capacity_factory }
+					add_to_variable = { THIS.db_state_employment_modifier = PREV.modifier@industrial_capacity_dockyard }
+					add_to_variable = { THIS.db_state_employment_modifier = THIS.db_industrial_capacity }
+					divide_variable = { THIS.db_state_employment_modifier = 2 }
+					#multiply_variable = { THIS.db_state_employment_modifier = THIS.db_industrial_capacity }
+					clamp_variable = { #between no and double employment
+						var = THIS.db_state_employment_modifier
+						min = 0
+						max = 0.99
+					}
 					#multiply_variable = {
 					#	var = THIS.db_state_employment_modifier
 					#	value = PREV.db_national_employment_modifier
@@ -262,6 +263,17 @@ on_actions = {
 					#	min = 0
 					#}
 				}
+			}
+		}
+	}
+	on_daily = {
+		effect = {
+			every_country = {
+				set_variable = { THIS.db_national_unemployment_rate = 0 }
+				every_owned_state = {
+					add_to_variable = { PREV.db_national_unemployment_rate = THIS.db_state_unemployed_percent }
+				}
+				divide_variable = { THIS.db_national_unemployment_rate = THIS.num_owned_controlled_states }
 			}
 		}
 	}
