@@ -134,7 +134,7 @@ on_actions = {
 
 	on_daily = {
 		effect = {
-			set_variable = THIS.db_state_average_daily_base_spending = {
+			
 			set_variable = THIS.db_state_consumer_spending_base_food = .288
 			multiply_variable =  THIS.db_state_consumer_spending_base_food = THIS.db_state_consumer_spending_base_food_modifier
 			multiply_variable =  THIS.db_state_consumer_spending_base_food = THIS.db_national_consumer_spending_base_food_modifier
