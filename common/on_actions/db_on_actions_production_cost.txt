@@ -1,225 +1,53 @@
-on_actions = {	
-
-	on_startup = {
+on_actions = {
+    on_daily = { #INFANTRY EQUIPMENT
 		effect = {
 			every_country = {
-				set_variable = {
-					var = THIS.db_spending_infantry_total
-					value = 0
+				set_variable = { var = THIS.db_spending_infantry_total value = 0 }
+				set_variable = { var = THIS.db_spending_infantry_produced_last_week value = 0 }
+				set_variable = { var = THIS.db_spending_cost_modifier value = 83 }
+				if = { limit = { has_idea = undisturbed_isolation } multiply_variable = { var = THIS.db_spending_cost_modifier value = 2 } }
+				if = { limit = { has_idea = isolation } multiply_variable = { var = THIS.db_spending_cost_modifier value = 1.5 } }
+				if = { limit = { has_idea = civilian_economy } multiply_variable = { var = THIS.db_spending_cost_modifier value = 1 } }
+				if = { limit = { has_idea = low_economic_mobilisation OR = { has_idea = new_economic_policy } } multiply_variable = { var = THIS.db_spending_cost_modifier value = 0.85 } }
+				if = { limit = { has_idea = partial_economic_mobilisation OR = { has_idea = new_economic_policy_2 } } multiply_variable = { var = THIS.db_spending_cost_modifier value = 0.7 } }
+				if = { limit = { has_idea = low_economic_mobilisation } multiply_variable = { var = THIS.db_spending_cost_modifier value = 0.55 } }
+				if = { limit = { has_idea = war_economy } multiply_variable = { var = THIS.db_spending_cost_modifier value = 0.4 } }
+				if = { limit = { has_idea = tot_economic_mobilisation OR = { has_idea = SPR_collectivized_society } } multiply_variable = { var = THIS.db_spending_cost_modifier value = 0.3 } }
+				set_variable = { var = THIS.db_total_equipment_produced_infantry value = THIS.total_equipment_produced_infantry }
+				if = {
+					limit = {
+						NOT = { has_global_flag = db_spending_infantry_check OR = { has_global_flag = db_spending_infantry_check_2 has_global_flag = db_spending_infantry_check_3 } }
+					}
+					set_variable = { var = THIS.db_spending_infantry_produced_this_week value = THIS.total_equipment_produced_infantry }
+					subtract_from_variable = { var = THIS.db_spending_infantry_produced_this_week value = THIS.db_spending_infantry_produced_last_week }
+					set_global_flag = db_spending_infantry_check
 				}
-				set_variable = {
-					var = THIS.db_spending_infantry_produced_last_week
-					value = 0
+				if = {
+					limit = {
+						has_global_flag = db_spending_infantry_check NOT = { has_global_flag = db_spending_infantry_check_2 has_global_flag = db_spending_infantry_check_3 }
+					}
+					set_variable = { var = THIS.db_spending_infantry_this_week value = THIS.db_spending_infantry_produced_this_week }
+					multiply_variable = { var = THIS.db_spending_infantry_this_week value = THIS.db_spending_cost_modifier }
+					clr_global_flag = db_spending_infantry_check
+					set_global_flag = db_spending_infantry_check_2
 				}
 			}
 		}
-	}
-	on_daily = { ###INFANTRY PRODUCTION COST MODIFIER
-		effect = {
-			every_country = { #production cost modifier
-				set_variable = { #Price of a M1 Garand
-					var = THIS.db_spending_cost_modifier
-					value = 83
-				}
-				if = {
-					limit = {
-						has_idea = undisturbed_isolation
-					}
-					multiply_variable = {
-						var = THIS.db_spending_cost_modifier
-						value = 2
-					}
-				}
-				if = {
-					limit = {
-						has_idea = isolation
-					}
-					multiply_variable = {
-						var = THIS.db_spending_cost_modifier
-						value = 1.5
-					}
-				}
-				if = {
-					limit = {
-						has_idea = civilian_economy
-					}
-					multiply_variable = {
-						var = THIS.db_spending_cost_modifier
-						value = 1
-					}
-				}
-				if = {
-					limit = {
-						has_idea = civilian_economy
-					}
-					multiply_variable = {
-						var = THIS.db_spending_cost_modifier
-						value = 1
-					}
-				}
-				if = {
-					limit = {
-						OR = {
-							has_idea = low_economic_mobilisation
-							has_idea = new_economic_policy
-						}
-					}
-					multiply_variable = {
-						var = THIS.db_spending_cost_modifier
-						value = 0.85
-					}
-				}
-				if = {
-					limit = {
-						OR = { 
-							has_idea = partial_economic_mobilisation
-							has_idea = new_economic_policy_2
-						}
-					}
-					multiply_variable = {
-						var = THIS.db_spending_cost_modifier
-						value = 0.7
-					}
-				}
-				if = {
-					limit = {
-						has_idea = low_economic_mobilisation
-					}
-					multiply_variable = {
-						var = THIS.db_spending_cost_modifier
-						value = 0.55
-					}
-				}
-				if = {
-					limit = {
-						has_idea = war_economy
-					}
-					multiply_variable = {
-						var = THIS.db_spending_cost_modifier
-						value = 0.4
-					}
-				}
-				if = {
-					limit = {
-						OR = { 
-							has_idea = tot_economic_mobilisation
-							has_idea = SPR_collectivized_society
-						}
-					}
-					multiply_variable = {
-						var = THIS.db_spending_cost_modifier
-						value = 0.3
-					}
-				} 
-			}
-		}
-	}
-	on_daily = {
-		effect = {
-			every_country = {
-				set_variable = {
-					var = THIS.db_total_equipment_produced_infantry
-					value = THIS.total_equipment_produced_infantry
-				}
-			}
-		}
-	}
-	on_daily = {
-		effect = {
-			if = {
-				limit = { 
-					NOT = { 
-						has_global_flag = db_spending_infantry_check
-						has_global_flag = db_spending_infantry_check_2
-						has_global_flag = db_spending_infantry_check_3						
-					}
-				}
-				every_country = {
-					set_variable = {
-						var = THIS.db_spending_infantry_produced_this_week
-						value = THIS.total_equipment_produced_infantry
-					}
-					subtract_from_variable = {
-						var = THIS.db_spending_infantry_produced_this_week
-						value = THIS.db_spending_infantry_produced_last_week
-					}
-				}
-				set_global_flag = db_spending_infantry_check
-			}
-		}
-	}
-	on_daily = {
-		effect = {
-			if = {
-				limit = { 
-					has_global_flag = db_spending_infantry_check
-					NOT = { 
-						has_global_flag = db_spending_infantry_check_2
-						has_global_flag = db_spending_infantry_check_3						
-					}
-				}
-				every_country = {
-					set_variable = {
-						var = THIS.db_spending_infantry_this_week
-						value = THIS.db_spending_infantry_produced_this_week
-					}
-					multiply_variable = { #multiply infantry cost by units produced
-						var = THIS.db_spending_infantry_this_week
-						value = THIS.db_spending_cost_modifier
-					}
-				}
-				clr_global_flag = db_spending_infantry_check
-				set_global_flag = db_spending_infantry_check_2
-			}
-		}
-	}
-	on_weekly = {
+    }
+    on_weekly = {
 		effect = {
 			if = {
 				limit = {
-					NOT = { 
-						has_global_flag = db_spending_infantry_check
-						has_global_flag = db_spending_infantry_check_3
-					}
+					NOT = { has_global_flag = db_spending_infantry_check has_global_flag = db_spending_infantry_check_3 }
 					has_global_flag = db_spending_infantry_check_2
 				}
 			}
-			every_country = { #in millions
-				set_variable = { 
-					var = THIS.db_spending_infantry_this_week_add_to_total
-					value = THIS.db_spending_infantry_this_week 
-				}
-				divide_variable = {
-					var = THIS.db_spending_infantry_this_week_add_to_total
-					value = 1000000
-				}
+			every_country = {
+				set_variable = { var = THIS.db_spending_infantry_this_week_add_to_total value = THIS.db_spending_infantry_this_week }
+				divide_variable = { var = THIS.db_spending_infantry_this_week_add_to_total value = 1000000 }
 			}
 			clr_global_flag = db_spending_infantry_check_2
 			set_global_flag = db_spending_infantry_check_3
 		}
-	}
-	on_daily = {
-		effect = {
-			if = {
-				limit = { 
-					NOT = {
-						has_global_flag = db_spending_infantry_check
-						has_global_flag = db_spending_infantry_check_2
-					}
-					has_global_flag = db_spending_infantry_check_3
-				}
-				every_country = {
-					add_to_variable = {
-						var = THIS.db_spending_infantry_total_millions
-						value = THIS.db_spending_infantry_this_week_add_to_total
-					}
-					set_variable = {
-						var = THIS.db_spending_infantry_produced_last_week
-						value = THIS.db_spending_infantry_produced_this_week
-					}
-				}
-				clr_global_flag = db_spending_infantry_check_3
-			}
-		}
-	}
+    }
 }

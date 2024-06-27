@@ -1,0 +1,16 @@
+add_namespace = db_economic_hidden
+country_event = {
+	id = db_economic_hidden.1
+	hidden = yes
+	is_triggered_only = yes
+	immediate = {
+		hidden_effect = {
+			ROOT = { 
+				every_owned_state = {
+					add_to_variable = { THIS.db_state_consumer_debt_savings_thousands = THIS.db_state_daily_aggregate_income_thousands }
+				}
+				country_event = { id = db_economic_hidden.1 days = 1 }
+			}
+		}
+	}
+}

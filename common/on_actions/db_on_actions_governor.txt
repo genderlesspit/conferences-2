@@ -51,26 +51,6 @@ on_actions = {
 					var = governor_chance_fascism
 					value = party_popularity_100@fascism
 				}
-				add_to_array = {
-					array = THIS.total_states_ideology
-					value = THIS.total_state_conservative
-				}
-				add_to_array = {
-					array = THIS.total_states_ideology
-					value = THIS.total_state_liberal
-				}
-				add_to_array = {
-					array = THIS.total_states_ideology
-					value = THIS.total_state_neutral
-				}
-				add_to_array = {
-					array = THIS.total_states_ideology
-					value = THIS.total_state_communist
-				}
-				add_to_array = {
-					array = THIS.total_states_ideology
-					value = THIS.total_state_fascist
-				}
 				every_owned_state = {
 					limit = {
 						is_core_of = PREV
