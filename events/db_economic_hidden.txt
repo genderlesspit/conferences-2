@@ -14,3 +14,18 @@ country_event = {
 		}
 	}
 }
+
+country_event = {
+	id = db_economic_hidden.2
+	hidden = yes
+	is_triggered_only = yes
+	immediate = {
+		hidden_effect = {
+			ROOT = { 
+				add_to_variable = { THIS.db_national_inflation = THIS.db_national_inflation_rate }
+				add_to_variable = { THIS.db_national_inflation_since_1936 = THIS.db_national_inflation_rate }
+				country_event = { id = db_economic_hidden.2 days = 1 }
+			}
+		}
+	}
+}

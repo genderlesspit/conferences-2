@@ -1,0 +1,23 @@
+national_economy = {
+	QAT_example = {
+        allowed = {
+           
+        }
+        icon = QAT_example      #For GFX_decision_QAT_example
+        fire_only_once = yes
+        days_remove = 100
+        war_with_on_remove = BHR
+        modifier = {
+            training_time_factor = -0.3
+        }
+        remove_effect = {
+
+        }
+        cancel_trigger = {
+           
+        }
+        cancel_effect = {
+           
+        }
+    }
+}
