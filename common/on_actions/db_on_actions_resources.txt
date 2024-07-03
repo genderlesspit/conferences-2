@@ -17,7 +17,6 @@ on_actions = {
 				every_owned_state = {
 					set_variable = { THIS.db_state_consumer_goods_resource_modifier = PREV.db_state_consumer_goods_resource_modifier }
 				}
-				force_update_dynamic_modifier = yes
 			}
 		}	
 	}
