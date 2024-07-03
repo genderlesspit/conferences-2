@@ -50,3 +50,7 @@ db_state_modifier_neutral = {
 db_state_modifier_communist = {
 	icon = GFX_idea_generic_communism_drift_bonus
 }
+db_state_oil_consumer_goods_factor = {
+	icon = GFX_modifiers_sabotaged_resource
+	local_resources = ROOT.db_state_consumer_goods_resource_modifier
+}

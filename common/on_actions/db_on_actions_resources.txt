@@ -1,0 +1,62 @@
+on_actions = {
+##########################################################################################
+#Modifies resource consumption corresponding to percentage consumer goods expected########
+##########################################################################################
+	on_startup = {
+		effect = {
+			every_state = {
+				add_dynamic_modifier = db_state_oil_consumer_goods_factor
+			}
+		}
+	}
+	on_daily = { 
+		effect = {
+			every_country = {
+				set_variable = { THIS.db_state_consumer_goods_resource_modifier = 1 }
+				subtract_from_variable = { THIS.db_state_consumer_goods_resource_modifier = THIS.modifier@consumer_goods_expected_value }
+				every_owned_state = {
+					set_variable = { THIS.db_state_consumer_goods_resource_modifier = PREV.db_state_consumer_goods_resource_modifier }
+				}
+				force_update_dynamic_modifier = yes
+			}
+		}	
+	}
+##########################################################################################
+#OIL PRICE CALCULATIONS###################################################################
+##########################################################################################
+#US 1936 - 1.09 per barrel (3032000 barrels produced per day / 846 oil resources in game##
+#1 oil resource is 3583 thousand barrels per day x $ 1.09 = ##############################
+#1 oil resource base price is $3906/day ) ################################################
+##########################################################################################
+	on_daily = {
+		effect = {
+			set_variable = { global.db_oil_price = 3906 } 
+			set_variable = { global.db_oil_supply = 0 }
+			set_variable = { global.db_oil_demand = 0 }
+			every_country = {
+				#base oil price
+				add_to_variable = { global.db_oil_supply = THIS.resource_exported@oil }
+				add_to_variable = { global.db_oil_demand = THIS.resource_imported@oil }
+			}
+			set_variable = { global.db_oil_price_modifier = global.db_oil_demand }
+			divide_variable = { global.db_oil_price_modifier = global.db_oil_supply }
+			multiply_variable = { global.db_oil_price = global.db_oil_price_modifier }
+		}
+	}
+
+	on_daily = {
+		effect = {
+			every_country = {
+				set_variable = { THIS.db_oil_price = global.db_oil_price }
+				multiply_variable = { THIS.db_oil_price = THIS.db_national_inflation }
+				set_variable = { THIS.db_oil_export_profit = THIS.resource_exported@oil }
+				set_variable = { THIS.db_oil_import_deficit = THIS.resource_imported@oil }
+				subtract_from_variable = { THIS.db_oil_export_profit = THIS.db_oil_import_deficit }
+				multiply_variable = { THIS.db_export_oil_profit = THIS.db_oil_price }
+			}
+		}
+	}
+##########################################################################################
+##########################################################################################
+##########################################################################################
+}
