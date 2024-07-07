@@ -54,3 +54,14 @@ db_state_oil_consumer_goods_factor = {
 	icon = GFX_modifiers_sabotaged_resource
 	local_resources = ROOT.db_state_consumer_goods_resource_modifier
 }
+
+db_consumer_demand = {
+	icon = GFX_modifiers_sabotaged_resource
+	consumer_goods_factor = ROOT.db_consumer_demand_var
+	country_resource_oil = ROOT.db_national_consumer_goods_cost
+	country_resource_aluminium = ROOT.db_national_consumer_goods_cost
+	country_resource_rubber = ROOT.db_national_consumer_goods_cost
+	country_resource_tungsten = ROOT.db_national_consumer_goods_cost
+	country_resource_steel = ROOT.db_national_consumer_goods_cost
+	country_resource_chromium = ROOT.db_national_consumer_goods_cost
+}

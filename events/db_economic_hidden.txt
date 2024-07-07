@@ -1,22 +1,26 @@
-add_namespace = db_economic_hidden
+add_namespace = db_hidden
+
 country_event = {
-	id = db_economic_hidden.1
+	id = db_hidden.1
 	hidden = yes
 	is_triggered_only = yes
 	immediate = {
-		hidden_effect = {
-			ROOT = { 
-				every_owned_state = {
-					add_to_variable = { THIS.db_state_consumer_debt_savings_thousands = THIS.db_state_daily_aggregate_income_thousands }
-				}
-				country_event = { id = db_economic_hidden.1 days = 1 }
-			}
+		ROOT = {
+			set_country_flag = db_economic_hidden_flag
+			country_event = { id = db_diplomacy_flavor.23 days = 1 }
+			country_event = { id = db_hidden.2 days = 1 }
+			country_event = { id = db_hidden.3 days = 1 }
+			country_event = { id = db_hidden.4 days = 1 }
+			country_event = { id = db_hidden.5 days = 1 }
+			country_event = { id = db_hidden.6 days = 1 }
+			country_event = { id = db_hidden.7 days = 1 }
+			country_event = { id = db_hidden.8 days = 1 }
 		}
 	}
 }
 
 country_event = {
-	id = db_economic_hidden.2
+	id = db_hidden.2
 	hidden = yes
 	is_triggered_only = yes
 	immediate = {
@@ -24,7 +28,107 @@ country_event = {
 			ROOT = { 
 				add_to_variable = { THIS.db_national_inflation = THIS.db_national_inflation_rate }
 				add_to_variable = { THIS.db_national_inflation_since_1936 = THIS.db_national_inflation_rate }
-				country_event = { id = db_economic_hidden.2 days = 1 }
+			}
+		}
+	}
+}
+
+country_event = {
+	id = db_hidden.3
+	hidden = yes
+	is_triggered_only = yes
+	immediate = {
+		hidden_effect = {
+			ROOT = { 
+				every_owned_state = {
+					set_variable = { THIS.db_state_daily_interest = THIS.db_state_consumer_debt_savings_per_capita }
+					multiply_variable = { THIS.db_state_daily_interest = ROOT.db_national_interest_rate }
+					multiply_variable = { THIS.db_state_daily_interest = THIS.db_state_lfpr }
+					divide_variable = { THIS.db_state_daily_interest = 365 }
+					add_to_variable = { THIS.db_state_consumer_debt_savings_thousands = THIS.db_state_daily_interest }
+				}
+				
+			}
+		}
+	}
+}
+
+
+country_event = {
+	id = db_hidden.4
+	hidden = yes
+	is_triggered_only = yes
+	immediate = {
+		hidden_effect = {
+			set_variable = { THIS.db_national_consumer_debt_savings_millions = 0 }
+			every_state = {
+				limit = { 
+					is_owned_by = ROOT
+					is_controlled_by = ROOT
+				}
+				set_variable = { THIS.db_state_consumer_debt_savings_millions = THIS.db_state_consumer_debt_savings_thousands }
+				divide_variable = { THIS.db_state_consumer_debt_savings_millions = 1000000 }
+				add_to_variable = { PREV.db_national_consumer_debt_savings_millions = THIS.db_state_consumer_debt_savings_millions }
+			}
+		}
+	}
+}		
+
+country_event = {
+	id = db_hidden.5
+	hidden = yes
+	is_triggered_only = yes
+	immediate = {
+		hidden_effect = {
+			every_owned_state = {
+				add_to_variable = { THIS.db_state_consumer_debt_savings_thousands = THIS.db_state_daily_aggregate_income_thousands }
+				set_variable = { THIS.db_state_consumer_debt_savings_per_capita = THIS.db_state_consumer_debt_savings_thousands }
+				divide_variable = { THIS.db_state_consumer_debt_savings_per_capita = THIS.db_state_lfpr }
+			}
+		}
+	}
+}		
+
+country_event = {
+	id = db_hidden.6
+	hidden = yes
+	is_triggered_only = yes
+	immediate = {
+		hidden_effect = {
+			add_to_variable = { THIS.db_national_debt_savings_thousands = THIS.db_national_daily_taxes_raised_thousands }
+		}
+	}
+}	
+
+country_event = {
+	id = db_hidden.7
+	hidden = yes
+	is_triggered_only = yes
+	immediate = {
+		hidden_effect = {
+			add_to_variable = { THIS.db_national_price_consumer_spending_offset_total = THIS.db_national_price_consumer_spending_offset }
+			clamp_variable = {
+				var = THIS.db_national_price_consumer_spending_offset 
+				min = -0.5 
+				max = 0.5 
+			}
+		}
+	}
+}	
+
+country_event = {
+	id = db_hidden.8
+	hidden = yes
+	is_triggered_only = yes
+	immediate = {
+		hidden_effect = {
+			set_variable = { THIS.db_national_consumer_debt_savings_thousands = 0 }
+			every_state = {
+				limit = { 
+					is_owned_by = ROOT
+					is_controlled_by = ROOT
+				}
+				add_to_variable = { ROOT.db_national_consumer_debt_savings_thousands = THIS.db_state_consumer_debt_savings_thousands }
 			}
 		}
 	}

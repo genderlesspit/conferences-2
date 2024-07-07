@@ -1,23 +1,27 @@
 national_economy = {
-	QAT_example = {
+	db_increase_minimum_wage = {
         allowed = {
            
         }
-        icon = QAT_example      #For GFX_decision_QAT_example
-        fire_only_once = yes
-        days_remove = 100
-        war_with_on_remove = BHR
+		days_re_enable = 365
         modifier = {
-            training_time_factor = -0.3
+            
         }
-        remove_effect = {
-
-        }
-        cancel_trigger = {
+        complete_effect = {
+			set_variable = { ROOT.db_national_minimum_wage_increase = ROOT.db_national_minimum_wage }
+			multiply_variable = { ROOT.db_national_minimum_wage_increase = .10 }
+			add_to_variable = { ROOT.db_national_minimum_wage = db_national_minimum_wage_increase }
+		}
+    }
+	db_free_market_economy = {
+        allowed = {
            
         }
-        cancel_effect = {
-           
+        modifier = {
+            
         }
+        complete_effect = {
+			set_country_flag = db_free_market
+		}
     }
 }

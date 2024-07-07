@@ -1,30 +1,34 @@
-on_actions = {
-	#ROOT is the country that the modifier is applied to and FROM is the target.
-	#Exchange rate is the cost for FROM to purchase ROOT's resources.	
-	every_country = { #FROM 
-		every_country = { #ROOT
-			limit = { NOT = { tag = PREV } } #PREV = FROM
-			set_variable = { PREV.THIS.db_exchange_rate = PREV.db_national_inflation } #FROM.ROOT.db_exchange_rate = FROM.db_national_inflation
-			divide_variable = { PREV.THIS.db_exchange_rate = THIS.db_national_inflation } #FROM / ROOT Currency Value ####FROM has 4 and ROOT has 2, exchange rate is $2 FROM:$1 ROOT
-			if = {
-				limit = {
-					check_variable = { PREV.THIS.db_exchange_rate > x }
-					check_variable = { PREV.THIS.db_exchange_rate < y }
-				}
-				add_relation_modifier = {
-					target = PREV #FROM
-					modifier = db_exchange_rate = z
-				}
-			}
-		}
-	}
-	db_exchange_rate_z = {
-		valid_relation_trigger = { # automatically removed when the trigger is met.
-			NOT = { 
-				check_variable = { FROM.ROOT.db_exchange_rate > x }
-				check_variable = { FROM.ROOT.db_exchange_rate < y }
-			}
-		}
-		trade_cost_for_target_factor = x #The cost for FROM to purchase ROOT's resources.
-	}
-}
+#on_actions = {
+	#on_daily = {
+		#effect = {
+			#ROOT is the country that the modifier is applied to and FROM is the target.
+			#Exchange rate is the cost for FROM to purchase ROOT's resources.	
+			#every_country = { #FROM 
+				#every_country = { #ROOT
+					#limit = { NOT = { tag = PREV } } #PREV = FROM
+					#set_variable = { PREV.THIS.db_exchange_rate = PREV.db_national_inflation } #FROM.ROOT.db_exchange_rate = FROM.db_national_inflation
+					#divide_variable = { PREV.THIS.db_exchange_rate = THIS.db_national_inflation } #FROM / ROOT Currency Value ####FROM has 4 and ROOT has 2, exchange rate is $2 FROM:$1 ROOT
+					#if = {
+					#	limit = {
+					#		check_variable = { PREV.THIS.db_exchange_rate > x }
+					#		check_variable = { PREV.THIS.db_exchange_rate < y }
+					#	}
+					#	add_relation_modifier = {
+					#		target = PREV #FROM
+					#		modifier = db_exchange_rate = z
+					#	}
+					#}
+				#}
+		#	#}
+		#}
+	#}
+	#db_exchange_rate_z = {
+	#	valid_relation_trigger = { # automatically removed when the trigger is met.
+	#		NOT = { 
+	#			check_variable = { FROM.ROOT.db_exchange_rate > x }
+	#			check_variable = { FROM.ROOT.db_exchange_rate < y }
+	#		}
+	#	}
+	#	trade_cost_for_target_factor = x #The cost for FROM to purchase ROOT's resources.
+	#}
+#
