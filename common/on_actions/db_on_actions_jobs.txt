@@ -479,10 +479,16 @@ on_actions = {
 				#add_to_variable = { THIS.db_national_price_rate = THIS.db_consumer_goods_exports }
 				#add_to_variable = { THIS.db_national_price_rate = THIS.db_consumer_goods_imports }
 				clamp_variable = {
-					var = db_national_price_rate
+					var = THIS.db_national_price_rate
 					min = 0.05
 					max = 10
 				}
+				#consumer goods production efficiency
+				set_variable = { THIS.db_consumer_goods_production_efficiency_supply = 0 }
+				add_to_variable = { THIS.db_consumer_goods_production_efficiency_supply = resource@oil }
+				add_to_variable = { THIS.db_consumer_goods_production_efficiency_supply = resource@tungsten }
+				add_to_variable = { THIS.db_consumer_goods_production_efficiency_supply = resource@aluminium }
+				add_to_variable = { THIS.db_consumer_goods_production_efficiency_supply = resource@rubber }
 				
 				#calculates effect on consumer spending
 				set_variable = { THIS.db_national_price_consumer_spending_offset = 1 }
@@ -495,19 +501,18 @@ on_actions = {
 				divide_variable = { THIS.db_consumer_demand_var = THIS.db_consumption_supply }
 				subtract_from_variable = { THIS.db_consumer_demand_var = 1 }
 				
+				#INFLATION RATE
+				set_variable = { THIS.db_national_inflation_rate = THIS.db_national_price_rate }
+				divide_variable = { THIS.db_national_inflation_rate = 100 }
+				set_variable = { THIS.db_national_inflation_rate_yearly = THIS.db_national_inflation_rate }
+				divide_variable = { THIS.db_national_inflation_rate = 365 }
+				multiply_variable = { THIS.db_national_inflation_rate_yearly = 365 }
+				
 				#INTEREST RATES
-				set_variable = { THIS.db_national_interest_rate = db_national_interest_rate_base }
+				set_variable = { THIS.db_national_interest_rate = THIS.db_national_interest_rate_base }
 				set_variable = { THIS.db_national_interest_rate_modifier = 0 }
 				multiply_variable = { THIS.db_national_interest_rate = THIS.db_national_inflation_since_1936 }
 				add_to_variable = { THIS.db_national_interest_rate = THIS.db_national_interest_rate_modifier }
-				
-				
-				#INFLATION RATE
-				set_variable = { THIS.db_national_inflation_rate = THIS.db_national_price_rate }
-				divide_variable = { THIS.db_national_inflation_rate = 465 } #make inflation slow
-				set_variable = { THIS.db_national_inflation_rate_yearly = THIS.db_national_inflation_rate }
-				multiply_variable = { THIS.db_national_inflation_rate_yearly = 365 }
-				
 			}
 		}
 	}
