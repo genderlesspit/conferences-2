@@ -15,6 +15,7 @@ country_event = {
 			country_event = { id = db_hidden.6 days = 1 }
 			country_event = { id = db_hidden.7 days = 1 }
 			country_event = { id = db_hidden.8 days = 1 }
+			country_event = { id = db_hidden.9 days = 1 }
 		}
 	}
 }
@@ -45,7 +46,7 @@ country_event = {
 					multiply_variable = { THIS.db_state_daily_interest = ROOT.db_national_interest_rate }
 					multiply_variable = { THIS.db_state_daily_interest = THIS.db_state_lfpr }
 					divide_variable = { THIS.db_state_daily_interest = 365 }
-					add_to_variable = { THIS.db_state_consumer_debt_savings_thousands = THIS.db_state_daily_interest }
+					add_to_variable = { THIS.db_state_consumer_debt_savings = THIS.db_state_daily_interest }
 				}
 				
 			}
@@ -60,15 +61,14 @@ country_event = {
 	is_triggered_only = yes
 	immediate = {
 		hidden_effect = {
-			set_variable = { THIS.db_national_consumer_debt_savings_millions = 0 }
+			set_variable = { THIS.db_national_consumer_debt_savings = 0 }
 			every_state = {
 				limit = { 
 					is_owned_by = ROOT
 					is_controlled_by = ROOT
 				}
-				set_variable = { THIS.db_state_consumer_debt_savings_millions = THIS.db_state_consumer_debt_savings_thousands }
-				divide_variable = { THIS.db_state_consumer_debt_savings_millions = 1000000 }
-				add_to_variable = { PREV.db_national_consumer_debt_savings_millions = THIS.db_state_consumer_debt_savings_millions }
+				add_to_variable = { PREV.db_national_consumer_debt_savings = THIS.db_state_consumer_debt_savings }
+				
 			}
 		}
 	}
@@ -81,9 +81,52 @@ country_event = {
 	immediate = {
 		hidden_effect = {
 			every_owned_state = {
-				add_to_variable = { THIS.db_state_consumer_debt_savings_thousands = THIS.db_state_daily_aggregate_income_thousands }
-				set_variable = { THIS.db_state_consumer_debt_savings_per_capita = THIS.db_state_consumer_debt_savings_thousands }
+			
+			# CALCULATE STATE TOTAL DEBT/SAVINGS
+				add_to_variable = { THIS.db_state_consumer_debt_savings = THIS.db_state_daily_net_income }
+				
+			# OVERFLOW CHECK
+				if = { 
+					limit = { 
+						OR = {
+							ROOT = { has_country_flag = db_economic_scale_million }
+							check_variable = { THIS.db_state_consumer_debt_savings > 1000000 }
+						}
+					}
+					if = {
+						limit = { ROOT = { NOT = { has_country_flag = db_economic_scale_million } } }
+						ROOT = { set_country_flag = db_economic_scale_million }
+					}
+					if = { 
+						limit = { 
+							OR = {
+								ROOT = { 
+									has_country_flag = db_economic_scale_million
+									has_country_flag = db_economic_scale_billion 
+								}
+								check_variable = { THIS.db_state_consumer_debt_savings > 1000 }
+							}
+							if = {
+								limit = { ROOT = { NOT = { has_country_flag = db_economic_scale_billion } } }
+								ROOT = { set_country_flag = db_economic_scale_billion }
+							}
+						}
+					}
+				}
+			
+			# SET STATE PER CAPITA SAVINGS/DEBT
+				set_variable = { THIS.db_state_consumer_debt_savings_per_capita = THIS.db_state_consumer_debt_savings }
 				divide_variable = { THIS.db_state_consumer_debt_savings_per_capita = THIS.db_state_lfpr }
+		
+			# OVERFLOW CHECK
+				if = { 
+					limit = { ROOT = { has_country_flag = db_economic_scale_million } }
+					multiply_variable = { THIS.db_national_consumer_debt_savings = 1000000 }
+					if = { 
+						limit = { ROOT = { has_country_flag = db_economic_scale_billion } }
+						multiply_variable = { THIS.db_national_consumer_debt_savings = 1000 }
+					}
+				}
 			}
 		}
 	}
@@ -95,7 +138,7 @@ country_event = {
 	is_triggered_only = yes
 	immediate = {
 		hidden_effect = {
-			add_to_variable = { THIS.db_national_debt_savings_thousands = THIS.db_national_daily_taxes_raised_thousands }
+			add_to_variable = { THIS.db_national_debt_savings = THIS.db_national_daily_taxes_raised }
 		}
 	}
 }	
@@ -122,14 +165,25 @@ country_event = {
 	is_triggered_only = yes
 	immediate = {
 		hidden_effect = {
-			set_variable = { THIS.db_national_consumer_debt_savings_thousands = 0 }
+			set_variable = { THIS.db_national_consumer_debt_savings = 0 }
 			every_state = {
 				limit = { 
 					is_owned_by = ROOT
 					is_controlled_by = ROOT
 				}
-				add_to_variable = { ROOT.db_national_consumer_debt_savings_thousands = THIS.db_state_consumer_debt_savings_thousands }
+				add_to_variable = { ROOT.db_national_consumer_debt_savings = THIS.db_state_consumer_debt_savings }
 			}
+		}
+	}
+}
+
+country_event = {
+	id = db_hidden.9
+	hidden = yes
+	is_triggered_only = yes
+	immediate = {
+		hidden_effect = {
+			add_to_variable = { THIS.db_national_price_total = THIS.db_national_price_rate_add_to_total }
 		}
 	}
 }

@@ -1,0 +1,24 @@
+db_economic_calculate_consumer_goods_production_efficiency_totals = {
+	set_variable = { THIS.db_consumer_goods_production_efficiency_supply = 0 }
+	add_to_variable = { THIS.db_consumer_goods_production_efficiency_supply = THIS.resource@oil }
+	add_to_variable = { THIS.db_consumer_goods_production_efficiency_supply = THIS.resource@tungsten }
+	add_to_variable = { THIS.db_consumer_goods_production_efficiency_supply = THIS.resource@aluminium }
+	add_to_variable = { THIS.db_consumer_goods_production_efficiency_supply = THIS.resource@rubber }
+	add_to_variable = { THIS.db_consumer_goods_production_efficiency_supply = THIS.resource@chromium }
+	add_to_variable = { THIS.db_consumer_goods_production_efficiency_supply = THIS.resource@steel }
+	set_variable = { THIS.db_consumer_goods_production_efficiency_resources_total = 0 }
+	add_to_variable = { THIS.db_consumer_goods_production_efficiency_total_resources = THIS.resource_produced@oil }
+	add_to_variable = { THIS.db_consumer_goods_production_efficiency_total_resources = THIS.resource_produced@tungsten }
+	add_to_variable = { THIS.db_consumer_goods_production_efficiency_total_resources = THIS.resource_produced@aluminium }
+	add_to_variable = { THIS.db_consumer_goods_production_efficiency_total_resources = THIS.resource_produced@rubber }
+	add_to_variable = { THIS.db_consumer_goods_production_efficiency_total_resources = THIS.resource_produced@chromium }
+	add_to_variable = { THIS.db_consumer_goods_production_efficiency_total_resources = THIS.resource_produced@steel }
+	add_to_variable = { THIS.db_consumer_goods_production_efficiency_total_resources = THIS.resource_imported@oil }
+	add_to_variable = { THIS.db_consumer_goods_production_efficiency_total_resources = THIS.resource_imported@tungsten }
+	add_to_variable = { THIS.db_consumer_goods_production_efficiency_total_resources = THIS.resource_imported@aluminium }
+	add_to_variable = { THIS.db_consumer_goods_production_efficiency_total_resources = THIS.resource_imported@rubber }
+	add_to_variable = { THIS.db_consumer_goods_production_efficiency_total_resources = THIS.resource_imported@chromium }
+	add_to_variable = { THIS.db_consumer_goods_production_efficiency_total_resources = THIS.resource_imported@steel }
+	set_variable = { THIS.db_consumer_goods_production_efficiency = THIS.db_consumer_goods_production_efficiency_supply }
+	divide_variable = { THIS.db_consumer_goods_production_efficiency = THIS.db_consumer_goods_production_efficiency_total_resources }
+}

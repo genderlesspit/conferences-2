@@ -1,0 +1,68 @@
+# Allows you to create your own dynamic keys
+# to be called in localization.
+# defined_text -> this is it, we're defining the text
+# text -> a discrete entry that can be picked to display in loc.
+# trigger -> determines if a text entry will be picked or not.
+# (The triggers need to be valid for the scope the key is called in
+# (eg Root or From.From).)
+# localization_key -> points to the localization key
+# that'll be used if trigger passes
+
+
+defined_text = {
+    name = get_suffix
+    
+    text = { 
+        trigger = {
+            ROOT = {
+				has_country_flag = db_economic_scale_million
+				NOT = { has_country_flag = db_economic_scale_billion }
+			}
+        }
+        localization_key = "M"
+    }
+
+    text = { 
+        trigger = {
+            ROOT = {
+				has_country_flag = db_economic_scale_billion
+			}
+        }
+        localization_key = "B"
+    }
+
+    text = {
+        localization_key = ""
+    }
+}
+#defined_text = {
+#    name = get_suffix
+#    
+#    text = { 
+#        trigger = {
+#            meta_trigger = {
+#                text = {
+#                    is_in_array = { billions_suffix_array = token:[TOKEN] }
+#                }
+#                TOKEN = "[?temp_var_token.GetTokenKey]"
+#            }
+#        }
+#        localization_key = "B"
+#    }
+#
+#    text = { 
+#        trigger = {
+#            meta_trigger = {
+#                text = {
+#                    is_in_array = { millions_suffix_array = token:[TOKEN] }
+#                }
+#                TOKEN = "[?temp_var_token.GetTokenKey]"
+#            }
+#        }
+#        localization_key = "M"
+#    }
+#
+#    text = {
+#        localization_key = ""
+#    }
+#}
