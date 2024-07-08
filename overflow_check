@@ -150,6 +150,7 @@ add_to_array = {
 }
 
 for_each_loop = {
+	array = var_overflow_check
 	value = v
 	set_temp_variable = { next_decimal = v }
 	add_to_temp_variable = { next_decimal = 1 }
