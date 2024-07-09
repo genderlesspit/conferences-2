@@ -280,43 +280,12 @@ on_actions = {
 
 				# STARTING DEBT
 					set_variable = { THIS.db_state_debt_base = THIS.state_population_k }
-					set_variable = { THIS.db_state_debt_base_factor = -1000 }
-					add_to_variable = { THIS.db_state_debt_base_factor = -917 } #Average Short Term and Long-term debt of an american consumer in 1936
-					multiply_variable = { THIS.db_state_debt_base_factor = 0.4 }
+					set_variable = { THIS.db_state_debt_base_factor = -.3668 } #.4x366.9x-1000
+					multiply_variable = { THIS.db_state_debt_base_factor = PREV.db_national_inflation }
 					multiply_variable = { THIS.db_state_debt_base = THIS.db_state_debt_base_factor }
-					multiply_variable = { THIS.db_state_debt_base = PREV.db_national_inflation }
 					set_variable = { THIS.db_state_consumer_debt_savings = THIS.db_state_debt_base }
-					
-					# OVERFLOW CHECK ON STARTING DEBT
-					if = { 
-						limit = { 
-							OR = {
-								PREV = { has_country_flag = db_economic_scale_million }
-								check_variable = { THIS.db_state_consumer_debt_savings > 1000000 }
-							}
-						}
-						if = {
-							limit = { PREV = { NOT = { has_country_flag = db_economic_scale_million } } }
-							PREV = { set_country_flag = db_economic_scale_million set_country_flag = db_economic_scale_million_implemented }
-						}
-						divide_variable = { THIS.db_state_consumer_debt_savings = 1000 }
-						if = { 
-							limit = { 
-								OR = {
-									PREV = { 
-										has_country_flag = db_economic_scale_million
-										has_country_flag = db_economic_scale_billion 
-									}
-									check_variable = { THIS.db_state_consumer_debt_savings > 1000 }
-								}
-								if = {
-									limit = { PREV = { NOT = { has_country_flag = db_economic_scale_billion } } }
-									PREV = { set_country_flag = db_economic_scale_billion set_country_flag = db_economic_scale_billion_implemented }
-								}
-								divide_variable = { THIS.db_state_consumer_debt_savings = 1000 }
-							}
-						}
-					}
+					PREV = { set_country_flag = db_economic_scale_million }
+					PREV = { set_country_flag = db_economic_scale_million_implemented }
 				
 				# OVERFLOW FAILSAFE
 					if = {
@@ -330,12 +299,12 @@ on_actions = {
 					divide_variable = { THIS.db_state_consumer_debt_savings_per_capita = THIS.db_state_lfpr }
 					
 				# OVERFLOW CHECK DEBT PER CAPITA
-					if = { 
-						limit = { ROOT = { has_country_flag = db_economic_scale_million } }
-						multiply_variable = { THIS.db_national_consumer_debt_savings = 1000000 }
 						if = { 
-							limit = { ROOT = { has_country_flag = db_economic_scale_billion } }
-							multiply_variable = { THIS.db_national_consumer_debt_savings = 1000 }
+							limit = { PREV = { has_country_flag = db_economic_scale_million } }
+							multiply_variable = { THIS.db_state_consumer_debt_savings_per_capita = 1000000 }
+						if = { 
+							limit = { PREV = { has_country_flag = db_economic_scale_billion } }
+							multiply_variable = { THIS.db_state_consumer_debt_savings_per_capita = 1000 }
 						}
 					}
 				}
@@ -363,40 +332,8 @@ on_actions = {
 						NOT = { has_country_flag = db_economic_scale_million_implemented }
 					}
 					set_country_flag = db_economic_scale_million_implemented
-					divide_variable = { THIS.db_state_consumer_debt_savings = 1000000 }
+					every_owned_state = { divide_variable = { THIS.db_state_consumer_debt_savings = 1000000 } }
 					divide_variable = { THIS.db_national_debt_savings = 1000000 }
-					add_to_array = {
-						array = THIS.millions_suffix_array
-						value = token:THIS.db_state_consumer_debt_savings
-					}
-					add_to_array = {
-						array = THIS.millions_suffix_array
-						value = token:THIS.db_national_debt_savings
-					}
-					add_to_array = {
-						array = THIS.millions_suffix_array
-						value = token:THIS.db_national_daily_income_total
-					}
-					add_to_array = {
-						array = THIS.millions_suffix_array
-						value = token:THIS.db_national_total_daily_consumer_spending_total
-					}
-					add_to_array = {
-						array = THIS.millions_suffix_array
-						value = token:THIS.db_national_net_consumer_income_total
-					}
-					add_to_array = {
-						array = THIS.millions_suffix_array
-						value = token:THIS.db_national_daily_taxes_raised
-					}
-					add_to_array = {
-						array = THIS.millions_suffix_array
-						value = token:THIS.db_national_daily_debt_paid_off
-					}
-					add_to_array = {
-						array = THIS.millions_suffix_array
-						value = token:THIS.db_national_total_daily_savings
-					}
 				}
 				if = {
 					limit = {
@@ -405,40 +342,8 @@ on_actions = {
 						NOT = { has_country_flag = db_economic_scale_billion_implemented }
 					}
 					set_country_flag = db_economic_scale_million_implemented
-					divide_variable = { THIS.db_state_consumer_debt_savings = 1000 }
+					every_owned_state = { divide_variable = { THIS.db_state_consumer_debt_savings = 1000 } }
 					divide_variable = { THIS.db_national_debt_savings = 1000 }
-					add_to_array = {
-						array = THIS.billions_suffix_array
-						value = token:THIS.db_state_consumer_debt_savings
-					}
-					add_to_array = {
-						array = THIS.billions_suffix_array
-						value = token:THIS.db_national_debt_savings
-					}
-					add_to_array = {
-						array = THIS.millions_suffix_array
-						value = token:THIS.db_national_daily_income_total
-					}
-					add_to_array = {
-						array = THIS.millions_suffix_array
-						value = token:THIS.db_national_total_daily_consumer_spending_total
-					}
-					add_to_array = {
-						array = THIS.millions_suffix_array
-						value = token:THIS.db_national_net_consumer_income_total
-					}
-					add_to_array = {
-						array = THIS.millions_suffix_array
-						value = token:THIS.db_national_daily_taxes_raised
-					}
-					add_to_array = {
-						array = THIS.millions_suffix_array
-						value = token:THIS.db_national_daily_debt_paid_off
-					}
-					add_to_array = {
-						array = THIS.millions_suffix_array
-						value = token:THIS.db_national_total_daily_savings
-					}
 				}
 				
 			}
@@ -494,7 +399,8 @@ on_actions = {
 						var = THIS.db_state_employment_modifier 
 						min = 0 
 						max = 1 
-					} #between no and double employment
+					} 
+					#between no and double employment
 					
 				# CALCULATE JOBS BASED ON FACTORY OUTPUT 
 					set_variable = { THIS.db_industrial_capacity = PREV.modifier@industrial_capacity_factory }
@@ -543,11 +449,6 @@ on_actions = {
 					set_variable = { THIS.db_state_salary_total = PREV.db_national_minimum_wage }
 					multiply_variable = { THIS.db_state_salary_total = PREV.db_national_work_hours_per_day }
 					multiply_variable = { THIS.db_state_salary_total = THIS.db_state_base_cost_of_living_modifier }
-					clamp_variable = { 
-						var = THIS.db_state_salary_total_modifier 
-						min = PREV.db_national_minimum_wage 
-						max = 9999999 
-					}
 					
 				# MODIFY BASE WAGE BY UNEMPLOYMENT AND NATIONAL MODIFIERS
 					set_variable = { THIS.db_state_salary_total_modifier = 0 }
@@ -556,6 +457,11 @@ on_actions = {
 					divide_variable = {	THIS.db_state_salary_total_modifier = 2 }
 					clamp_variable = { var = THIS.db_state_salary_total_modifier min = 0.1 max = 1 }
 					multiply_variable = { THIS.db_state_salary_total = THIS.db_state_salary_total_modifier }
+					clamp_variable = { 
+						var = THIS.db_state_salary_total_modifier 
+						min = var:PREV.db_national_minimum_wage 
+						max = 9999999 
+					}
 					
 				# CALCULATE DAILY WAGE PER CAPITA AND TOTAL DAILY INCOME
 					set_variable = { THIS.db_state_daily_wage = THIS.db_state_salary_total }
@@ -564,18 +470,19 @@ on_actions = {
 					multiply_variable = { THIS.db_state_salary_total = db_state_total_employed }
 				
 				#OVERFLOW CHECK
+					set_variable = { THIS.db_state_salary_total_scaled = db_state_salary_total }
 					if = { 
 						limit = { 
 							OR = {
 								PREV = { has_country_flag = db_economic_scale_million }
-								check_variable = { THIS.db_state_salary_total > 1000000 }
+								check_variable = { THIS.db_state_salary_total_scaled > 1000000 }
 							}
 						}
 						if = {
 							limit = { PREV = { NOT = { has_country_flag = db_economic_scale_million } } }
 							PREV = { set_country_flag = db_economic_scale_million }
 						}
-						divide_variable = { THIS.db_state_salary_total = 1000 }
+						divide_variable = { THIS.db_state_salary_total_scaled = 1000000 }
 						if = { 
 							limit = { 
 								OR = {
@@ -583,14 +490,14 @@ on_actions = {
 										has_country_flag = db_economic_scale_million
 										has_country_flag = db_economic_scale_billion 
 									}
-									check_variable = { THIS.db_state_salary_total > 1000 }
+									check_variable = { THIS.db_state_salary_total_scaled > 1000 }
 								}
-								if = {
-									limit = { PREV = { NOT = { has_country_flag = db_economic_scale_billion } } }
-									PREV = { set_country_flag = db_economic_scale_billion }
-								}
-								divide_variable = { THIS.db_state_salary_total = 1000 }
 							}
+							if = {
+								limit = { PREV = { NOT = { has_country_flag = db_economic_scale_billion } } }
+								PREV = { set_country_flag = db_economic_scale_billion }
+							}
+							divide_variable = { THIS.db_state_salary_total_scaled = 1000 }
 						}
 					}
 					
@@ -713,7 +620,12 @@ on_actions = {
 						set_variable = { THIS.db_state_consumer_spending_base_debt = THIS.db_state_consumer_debt_savings_per_capita }
 						add_to_variable = { THIS.db_state_consumer_spending_base_debt = THIS.db_state_salary_average_per_capita }
 						divide_variable = { THIS.db_state_consumer_spending_base_debt = PREV.db_national_inflation }
-						divide_variable = { THIS.db_state_consumer_spending_base_debt = -1000 }
+						divide_variable = { THIS.db_state_consumer_spending_base_debt = -2000000 }
+						clamp_variable = { 
+							var = THIS.db_state_consumer_spending_base_debt
+							max = .5
+							min = 0
+						}
 					}
 					
 				#CALCULATE PERCENTAGE OF INCOME SPENT DAILY
@@ -738,19 +650,39 @@ on_actions = {
 				#CALCULATE CONSUMER SPENDING PER CAPITA
 					set_variable = { THIS.db_state_total_daily_consumer_spending_per_capita = THIS.db_state_daily_consumer_spending_percentage_of_income }
 					multiply_variable = { THIS.db_state_total_daily_consumer_spending_per_capita = THIS.db_state_daily_wage }
+				
+				#SCALE TO ECONOMY 
+					set_variable = { THIS.db_state_total_daily_consumer_spending_total = THIS.db_state_total_daily_consumer_spending_per_capita }
+					multiply_variable = { THIS.db_state_total_daily_consumer_spending_total = THIS.db_state_lfpr }
+					set_variable = { THIS.db_state_total_daily_consumer_spending_total_scaled = db_state_total_daily_consumer_spending_total }
+					if = {
+						limit = { PREV = { has_country_flag = db_economic_scale_million } }
+						divide_variable = { THIS.db_state_total_daily_consumer_spending_total_scaled = 1000000 }
+					}
+					if = {
+						limit = { PREV = { has_country_flag = db_economic_scale_million has_country_flag = db_economic_scale_billion } }
+						divide_variable = { THIS.db_state_total_daily_consumer_spending_total_scaled = 1000 }
+					}
 					
 				#CALCULATE TOTAL AMOUNT OF DEBT PAID OFF DAILY
 					set_variable = { THIS.db_state_daily_debt_paid_off = THIS.db_state_consumer_spending_base_debt }
 					multiply_variable = { THIS.db_state_daily_debt_paid_off = -1 }
 					multiply_variable = { THIS.db_state_daily_debt_paid_off = THIS.db_state_daily_wage }
 					multiply_variable = { THIS.db_state_daily_debt_paid_off = THIS.db_state_lfpr }
+					set_variable = { THIS.db_state_daily_debt_paid_off_scaled = THIS.db_state_daily_debt_paid_off }
+					if = {
+						limit = { PREV = { has_country_flag = db_economic_scale_million } }
+						divide_variable = { THIS.db_state_daily_debt_paid_off_scaled = 1000000 }
+					}
+					if = {
+						limit = { PREV = { has_country_flag = db_economic_scale_million has_country_flag = db_economic_scale_billion } }
+						divide_variable = { THIS.db_state_daily_debt_paid_off_scaled = 1000 }
+					}
 					
 				#CALCULATE DAILY NET INCOME
-					set_variable = { THIS.db_state_total_daily_consumer_spending_total = THIS.db_state_total_daily_consumer_spending_per_capita }
-					multiply_variable = { THIS.db_state_total_daily_consumer_spending_total = THIS.db_state_lfpr }
-					set_variable = { THIS.db_state_daily_net_income = THIS.db_state_daily_income_total }
-					add_to_variable = { THIS.db_state_daily_net_income = THIS.db_state_daily_debt_paid_off }
-					subtract_from_variable = { THIS.db_state_daily_net_income = THIS.db_state_total_daily_consumer_spending_total }
+					set_variable = { THIS.db_state_daily_net_income = THIS.db_state_daily_income_total_scaled }
+					add_to_variable = { THIS.db_state_daily_net_income = THIS.db_state_daily_debt_paid_off_scaled }
+					subtract_from_variable = { THIS.db_state_daily_net_income = THIS.db_state_total_daily_consumer_spending_total_scaled }
 				}
 			}
 		}

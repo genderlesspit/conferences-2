@@ -48,7 +48,11 @@ country_event = {
 					divide_variable = { THIS.db_state_daily_interest = 365 }
 					add_to_variable = { THIS.db_state_consumer_debt_savings = THIS.db_state_daily_interest }
 				}
-				
+				if = {
+					limit = { is_ai = no }
+					add_to_variable = { THIS.var_overflow_check^0 = -9 }
+					log = "Subtracted -9 from [?THIS.var_overflow_check^0]"
+				}
 			}
 		}
 	}
@@ -106,10 +110,10 @@ country_event = {
 								}
 								check_variable = { THIS.db_state_consumer_debt_savings > 1000 }
 							}
-							if = {
-								limit = { ROOT = { NOT = { has_country_flag = db_economic_scale_billion } } }
-								ROOT = { set_country_flag = db_economic_scale_billion }
-							}
+						}
+						if = {
+							limit = { ROOT = { NOT = { has_country_flag = db_economic_scale_billion } } }
+							ROOT = { set_country_flag = db_economic_scale_billion }
 						}
 					}
 				}
@@ -121,10 +125,10 @@ country_event = {
 			# OVERFLOW CHECK
 				if = { 
 					limit = { ROOT = { has_country_flag = db_economic_scale_million } }
-					multiply_variable = { THIS.db_national_consumer_debt_savings = 1000000 }
+					multiply_variable = { THIS.db_state_consumer_debt_savings_per_capita = 1000000 }
 					if = { 
 						limit = { ROOT = { has_country_flag = db_economic_scale_billion } }
-						multiply_variable = { THIS.db_national_consumer_debt_savings = 1000 }
+						multiply_variable = { THIS.db_state_consumer_debt_savings_per_capita = 1000 }
 					}
 				}
 			}
