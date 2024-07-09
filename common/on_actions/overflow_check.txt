@@ -4,183 +4,197 @@ on_actions = {
 		effect = {
 			every_country = {
 				limit = { is_ai = no }
-				if = {
-					limit = { NOT = { has_country_flag = var_overflow_check_yes } }
-					add_to_array = { 
-						array = THIS.var_overflow_check
-						value = THIS.var
-						index = 0
-					}
-					add_to_array = { 
-						array = THIS.var_overflow_check
-						value = THIS.var_ten
-						index = 1
-					}
-					add_to_array = { 
-						array = THIS.var_overflow_check
-						value = THIS.var_hundred
-						index = 2
-					}
-					add_to_array = { 
-						array = THIS.var_overflow_check
-						value = THIS.var_thousand
-						index = 3
-					}
-					add_to_array = { 
-						array = THIS.var_overflow_check
-						value = THIS.var_ten_thousand
-						index = 4
-					}
-					add_to_array = { 
-						array = THIS.var_overflow_check
-						value = THIS.var_hundred_thousand
-						index = 5
-					}
-					add_to_array = { 
-						array = THIS.var_overflow_check
-						value = THIS.var_million
-						index = 6
-					}
-					add_to_array = { 
-						array = THIS.var_overflow_check
-						value = THIS.var_ten_million
-						index = 7
-					}
-					add_to_array = { 
-						array = THIS.var_overflow_check
-						value = THIS.var_hundred_million
-						index = 8
-					}
-					add_to_array = { 
-						array = THIS.var_overflow_check
-						value = THIS.var_billion
-						index = 9
-					}
-					add_to_array = { 
-						array = THIS.var_overflow_check
-						value = THIS.var_ten_billion
-						index = 10
-					}
-					add_to_array = { 
-						array = THIS.var_overflow_check
-						value = THIS.var_hundred_billion
-						index = 11
-					}
-					add_to_array = { 
-						array = THIS.var_overflow_check
-						value = THIS.var_trillion
-						index = 12
-					}
-					add_to_array = { 
-						array = THIS.var_overflow_check
-						value = THIS.var_ten_trillion
-						index = 13
-					}
-					add_to_array = { 
-						array = THIS.var_overflow_check
-						value = THIS.var_hundred_trillion
-						index = 14
-					}
-					set_variable = { THIS.var_overflow_check^0 = 999 }
-					set_country_flag = var_overflow_check_yes
-					set_country_flag = var_overflow_check_is_positive
-					for_each_loop = {
-						array = THIS.var_overflow_check
-						value = v
-						log = "[?v] added to array."
-					}
-				}
-				
-				if = {
-					limit = {
-						has_country_flag = var_overflow_check_is_positive
-						check_variable = { THIS.var_overflow_check^0 < 0 }
-						check_variable = { THIS.var_overflow_check^1 < 1 }
-						check_variable = { THIS.var_overflow_check^2 < 1 }
-						check_variable = { THIS.var_overflow_check^3 < 1 }
-						check_variable = { THIS.var_overflow_check^4 < 1 }
-						check_variable = { THIS.var_overflow_check^5 < 1 }
-						check_variable = { THIS.var_overflow_check^6 < 1 }
-						check_variable = { THIS.var_overflow_check^7 < 1 }
-						check_variable = { THIS.var_overflow_check^8 < 1 }
-						check_variable = { THIS.var_overflow_check^9 < 1 }
-						check_variable = { THIS.var_overflow_check^10 < 1 }
-						check_variable = { THIS.var_overflow_check^11 < 1 }
-						check_variable = { THIS.var_overflow_check^12 < 1 }
-						check_variable = { THIS.var_overflow_check^13 < 1 }
-						check_variable = { THIS.var_overflow_check^14 < 1 }
-					}
-					clr_country_flag = var_overflow_check_is_positive
-					set_country_flag = var_overflow_check_is_negative
-					multiply_variable = { THIS.var_overflow_check^0 = -1 }
-				}
-				
-				if = {
-					limit = {
-						has_country_flag = var_overflow_check_is_negative
-						check_variable = { THIS.var_overflow_check^0 < 0 }
-						check_variable = { THIS.var_overflow_check^1 < 1 }
-						check_variable = { THIS.var_overflow_check^2 < 1 }
-						check_variable = { THIS.var_overflow_check^3 < 1 }
-						check_variable = { THIS.var_overflow_check^4 < 1 }
-						check_variable = { THIS.var_overflow_check^5 < 1 }
-						check_variable = { THIS.var_overflow_check^6 < 1 }
-						check_variable = { THIS.var_overflow_check^7 < 1 }
-						check_variable = { THIS.var_overflow_check^8 < 1 }
-						check_variable = { THIS.var_overflow_check^9 < 1 }
-						check_variable = { THIS.var_overflow_check^10 < 1 }
-						check_variable = { THIS.var_overflow_check^11 < 1 }
-						check_variable = { THIS.var_overflow_check^12 < 1 }
-						check_variable = { THIS.var_overflow_check^13 < 1 }
-						check_variable = { THIS.var_overflow_check^14 < 1 }
-					}
-					clr_country_flag = var_overflow_check_is_negative
-					set_country_flag = var_overflow_check_is_positive
-					multiply_variable = { THIS.var_overflow_check^0 = -1 }
-				}
-				
-				for_loop_effect	= { #for positive numbers
-					start = 0
-					end = 14
-					add = 1
-					value = v
+				THIS = { 
+					if = {
 					
-					round_variable = THIS.var_overflow_check^v
-					
-					set_temp_variable = { next_decimal = v }
-					add_to_temp_variable = { next_decimal = 1 }
-					set_temp_variable = { this_decimal = v }
-					set_temp_variable = { last_decimal = v }
-					add_to_temp_variable = { last_decimal = -1 }
-					
-					if = { #	for negative numbers
-						limit = { 
-							check_variable = { THIS.var_overflow_check^this_decimal < 0 } #is this decimal negative?
+						limit = { NOT = { has_country_flag = var_overflow_check_yes } }
+						add_to_array = { 
+							array = THIS.var_overflow_check
+							value = THIS.var
+							index = 0
 						}
-						for_loop_effect = { 
-							start = 14
-							end = 1
-							add = -1
-							value = x
-							if = { 
-								limit = { 
-									check_variable = { THIS.var_overflow_check^this_decimal < 0 }
-								}
-								add_to_variable = { THIS.var_overflow_check^this_decimal = 1 }
-								add_to_variable = { THIS.var_overflow_check^last_decimal = -10 }
-								if = { 
-									limit = { check_variable = { THIS.var_overflow_check^last_decimal < 0 } }
-									add_to_variable = { THIS.var_overflow_check^last_decimal = 1 }
-								}
-								log = "New Total is [?THIS.var_overflow_check^6][?THIS.var_overflow_check^5][?THIS.var_overflow_check^4][?THIS.var_overflow_check^3][?THIS.var_overflow_check^2][?THIS.var_overflow_check^1][?THIS.var_overflow_check^0]"
+						add_to_array = { 
+							array = THIS.var_overflow_check
+							value = THIS.var_ten
+							index = 1
+						}
+						add_to_array = { 
+							array = THIS.var_overflow_check
+							value = THIS.var_hundred
+							index = 2
+						}
+						add_to_array = { 
+							array = THIS.var_overflow_check
+							value = THIS.var_thousand
+							index = 3
+						}
+						add_to_array = { 
+							array = THIS.var_overflow_check
+							value = THIS.var_ten_thousand
+							index = 4
+						}
+						add_to_array = { 
+							array = THIS.var_overflow_check
+							value = THIS.var_hundred_thousand
+							index = 5
+						}
+						add_to_array = { 
+							array = THIS.var_overflow_check
+							value = THIS.var_million
+							index = 6
+						}
+						add_to_array = { 
+							array = THIS.var_overflow_check
+							value = THIS.var_ten_million
+							index = 7
+						}
+						add_to_array = { 
+							array = THIS.var_overflow_check
+							value = THIS.var_hundred_million
+							index = 8
+						}
+						add_to_array = { 
+							array = THIS.var_overflow_check
+							value = THIS.var_billion
+							index = 9
+						}
+						add_to_array = { 
+							array = THIS.var_overflow_check
+							value = THIS.var_ten_billion
+							index = 10
+						}
+						add_to_array = { 
+							array = THIS.var_overflow_check
+							value = THIS.var_hundred_billion
+							index = 11
+						}
+						add_to_array = { 
+							array = THIS.var_overflow_check
+							value = THIS.var_trillion
+							index = 12
+						}
+						add_to_array = { 
+							array = THIS.var_overflow_check
+							value = THIS.var_ten_trillion
+							index = 13
+						}
+						add_to_array = { 
+							array = THIS.var_overflow_check
+							value = THIS.var_hundred_trillion
+							index = 14
+						}
+						add_to_array = { 
+							array = THIS.var_overflow_check
+							value = THIS.var_imaginary_number
+							index = 15
+						}
+						set_variable = { THIS.var_overflow_check^0 = 999 }
+						set_country_flag = var_overflow_check_yes
+						set_country_flag = var_overflow_check_is_positive
+						for_each_loop = {
+							array = THIS.var_overflow_check
+							value = v
+							log = "[?v] added to array."
+						}
+					}
+					
+					if = {
+						limit = { 
+							has_country_flag = THIS.var_overflow_check_is_positive
+							check_variable = THIS.var_overflow_check^0 < 0 
+						}
+						for_loop_effect = {
+							start = 1
+							end = 14
+							add = 1
+							value = y
+							break = is_negative
+							add_to_temp_array = { 
+								array = check_if_negative
+								value = THIS.var_overflow_check^y
+								index = y
+							}
+							find_highest_in_array = {
+								array = check_if_negative
+								value = is_negative
 							}
 						}
+						if = { 
+							limit = { is_negative = 0 }
+						}
+						set_country_flag = THIS.var_overflow_check_is_negative
+						clr_country_flag = THIS.var_overflow_check_is_positive
+						multiply_variable = { THIS.var_overflow_check^0 = -1 }
+						log = "THIS.var_ has gone negative"
 					}
-					else_if = { 
-						limit = { check_variable = { THIS.var_overflow_check^this_decimal > 9  } } #is value 10?
-						add_to_variable = { THIS.var_overflow_check^next_decimal = 1 } #carries over
-						add_to_variable = { THIS.var_overflow_check^this_decimal = -10 } #result is 0
-						log = "New Total is [?THIS.var_overflow_check^6][?THIS.var_overflow_check^5][?THIS.var_overflow_check^4][?THIS.var_overflow_check^3][?THIS.var_overflow_check^2][?THIS.var_overflow_check^1][?THIS.var_overflow_check^0]"
+					
+					if = {
+						limit = { 
+							has_country_flag = THIS.var_overflow_check_is_negative
+							check_variable = THIS.var_overflow_check^0 < 0 
+						}
+						for_loop_effect = {
+							start = 1
+							end = 14
+							add = 1
+							value = y
+							break = is_positive
+							add_to_temp_array = { 
+								array = check_if_positive
+								value = THIS.var_overflow_check^y
+								index = y
+							}
+							find_highest_in_array = {
+								array = check_if_positive
+								value = is_positive
+							}
+						}
+						if = { 
+							limit = { is_negative = 0 }
+						}
+						set_country_flag = var_overflow_check_is_positive
+						clr_country_flag = var_overflow_check_is_negative
+						multiply_variable = { THIS.var_overflow_check^0 = -1 }
+						log = "THIS.var_ has gone positive"
+					}
+					
+					for_loop_effect	= {
+						start = 0
+						end = 14
+						add = 1
+						value = v
+						
+						round_variable = THIS.var_overflow_check^v
+						
+						set_temp_variable = { next_decimal = v }
+						add_to_temp_variable = { next_decimal = 1 }
+						set_temp_variable = { this_decimal = v }
+						set_temp_variable = { last_decimal = v }
+						add_to_temp_variable = { last_decimal = -1 }
+						
+						if = { 
+							limit = { check_variable = { THIS.var_overflow_check^this_decimal > 9  } } #is value 10?
+							add_to_variable = { THIS.var_overflow_check^next_decimal = 1 } #carries over
+							add_to_variable = { THIS.var_overflow_check^this_decimal = -10 } #result is 0
+							log = "New Total is [?THIS.var_overflow_check^6][?THIS.var_overflow_check^5][?THIS.var_overflow_check^4][?THIS.var_overflow_check^3][?THIS.var_overflow_check^2][?THIS.var_overflow_check^1][?THIS.var_overflow_check^0]"
+						}
+						if = {
+							limit = { check_variable = { THIS.var_overflow_check^this_decimal < 0 } }
+							for_loop = {
+								array = THIS.var_overflow_check
+								start = v
+								end = 14  # Only need to loop up to the second last digit
+								value = x
+								
+								set_temp_variable = { borrow_next_decimal = v }
+								add_to_temp_variable = { borrow_next_decimal = 1 }
+								if = {
+									limit = { THIS.var_overflow_check^x < 0 }
+									add_to_variable = { THIS.var_overflow_check^borrow_next_decimal = -1 } # Simulate borrowing from the next higher digit
+									add_to_variable = { THIS.var_overflow_check^x = 10 } # Adjust the current digit accordingly
+								}
+							}
+						}
 					}
 				}
 			}
