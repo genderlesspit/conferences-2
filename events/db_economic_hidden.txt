@@ -51,7 +51,8 @@ country_event = {
 				if = {
 					limit = { is_ai = no }
 					add_to_variable = { THIS.var_overflow_check^0 = -9 }
-					log = "Subtracted -9 from [?THIS.var_overflow_check^0]"
+					add_to_variable = { THIS.var_overflow_check^1 = 1 }
+					add_to_variable = { THIS.var_overflow_check^2 = 3 } #add 301 every day
 				}
 			}
 		}
