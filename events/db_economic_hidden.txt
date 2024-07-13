@@ -88,37 +88,10 @@ country_event = {
 			every_owned_state = {
 			
 			# CALCULATE STATE TOTAL DEBT/SAVINGS
-				add_to_variable = { THIS.db_state_consumer_debt_savings = THIS.db_state_daily_net_income }
-				
-			# OVERFLOW CHECK
-				if = { 
-					limit = { 
-						OR = {
-							ROOT = { has_country_flag = db_economic_scale_million }
-							check_variable = { THIS.db_state_consumer_debt_savings > 1000000 }
-						}
-					}
-					if = {
-						limit = { ROOT = { NOT = { has_country_flag = db_economic_scale_million } } }
-						ROOT = { set_country_flag = db_economic_scale_million }
-					}
-					if = { 
-						limit = { 
-							OR = {
-								ROOT = { 
-									has_country_flag = db_economic_scale_million
-									has_country_flag = db_economic_scale_billion 
-								}
-								check_variable = { THIS.db_state_consumer_debt_savings > 1000 }
-							}
-						}
-						if = {
-							limit = { ROOT = { NOT = { has_country_flag = db_economic_scale_billion } } }
-							ROOT = { set_country_flag = db_economic_scale_billion }
-						}
-					}
-				}
-			
+				set_temp_variable = { income_source = THIS.db_state_daily_net_income }
+				db_state_consumer_debt_savings_add_to_total = yes
+				db_state_consumer_debt_savings_initialize_overflow_value = yes
+
 			# SET STATE PER CAPITA SAVINGS/DEBT
 				set_variable = { THIS.db_state_consumer_debt_savings_per_capita = THIS.db_state_consumer_debt_savings }
 				divide_variable = { THIS.db_state_consumer_debt_savings_per_capita = THIS.db_state_lfpr }

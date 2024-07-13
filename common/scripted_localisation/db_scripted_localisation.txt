@@ -16,7 +16,6 @@ defined_text = {
         trigger = {
             ROOT = {
 				has_country_flag = db_economic_scale_million
-				NOT = { has_country_flag = db_economic_scale_billion }
 			}
         }
         localization_key = "M"
