@@ -147,7 +147,10 @@ scripted_gui = {
     state_economy = {
         window_name = "state_economy_window"
         context_type = selected_state_context
-        parent_window_token = selected_state_view
+        #parent_window_token = selected_state_view
+		visible = {
+			always = yes
+		}
     }
 }
 

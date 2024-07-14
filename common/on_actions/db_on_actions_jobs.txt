@@ -398,21 +398,14 @@ on_actions = {
 			every_state = {
 				if = {
 					limit = { check_variable = { THIS.db_state_debt_base < -1 } }
-					add_to_variable = { THIS.db_state_consumer_debt_savings_overflow_check^6 = 1 }
+					add_to_variable = { THIS.db_state_consumer_debt_savings_overflow_check^3 = 1 }
 					add_to_variable = { THIS.db_state_debt_base = 1 }
 				}
 				else = {
 					clear_variable = THIS.db_state_debt_base
 				}
-			}	
-		}
-	}
-	
-	on_weekly = {
-		effect = {
-			every_state = {
 				db_state_consumer_debt_savings_initialize_overflow_value = yes
-			}
+			}	
 		}
 	}
 	

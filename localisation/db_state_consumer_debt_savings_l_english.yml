@@ -1,4 +1,7 @@
 ﻿l_english:
   db_state_consumer_debt_savings_loc_positive: "§G+[db_state_consumer_debt_savings_overflow_value]§!"
   db_state_consumer_debt_savings_loc_negative: "§R-[db_state_consumer_debt_savings_overflow_value]§!"
-  db_gui_state_economy: "[THIS.db_state_consumer_debt_savings_loc]"
+  db_gui_state_economy: "Debt/Savings: [THIS.db_state_consumer_debt_savings_loc]"
+  db_gui_state_cost_of_living: "Cost of Living: §Y[?THIS.db_state_base_cost_of_living_modifier|%]§!"
+  db_gui_state_lfpr_total: "Tot. in Workforce: §Y[?THIS.db_state_lfpr]K§!"
+  

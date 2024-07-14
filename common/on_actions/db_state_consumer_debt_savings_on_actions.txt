@@ -18,12 +18,12 @@ on_actions = {
                         limit = { check_variable = { THIS.db_state_consumer_debt_savings_overflow_check^this_digit > 9 } }
                         add_to_variable = { THIS.db_state_consumer_debt_savings_overflow_check^next_digit = 1 }
                         add_to_variable = { THIS.db_state_consumer_debt_savings_overflow_check^this_digit = -10 }
-                        log = "THIS.db_state_consumer_debt_savings: Digit overflow found!"
-                        log = "THIS.db_state_consumer_debt_savings: New total is [?THIS.db_state_consumer_debt_savings_overflow_check^6][?THIS.db_state_consumer_debt_savings_overflow_check^5][?THIS.db_state_consumer_debt_savings_overflow_check^4][?THIS.db_state_consumer_debt_savings_overflow_check^3][?THIS.db_state_consumer_debt_savings_overflow_check^2][?THIS.db_state_consumer_debt_savings_overflow_check^1][?THIS.db_state_consumer_debt_savings_overflow_check^0]"
+                        #log = "THIS.db_state_consumer_debt_savings: Digit overflow found!"
+                        #log = "THIS.db_state_consumer_debt_savings: New total is [?THIS.db_state_consumer_debt_savings_overflow_check^6][?THIS.db_state_consumer_debt_savings_overflow_check^5][?THIS.db_state_consumer_debt_savings_overflow_check^4][?THIS.db_state_consumer_debt_savings_overflow_check^3][?THIS.db_state_consumer_debt_savings_overflow_check^2][?THIS.db_state_consumer_debt_savings_overflow_check^1][?THIS.db_state_consumer_debt_savings_overflow_check^0]"
                     }
                     if = {
                         limit = { check_variable = { THIS.db_state_consumer_debt_savings_overflow_check^this_digit < 0 } }
-                        log = "Found negative digit in THIS.db_state_consumer_debt_savings_overflow_check^[?this_digit!]"
+                        #log = "Found negative digit in THIS.db_state_consumer_debt_savings_overflow_check^[?this_digit!]"
                         for_loop_effect = {
                             start = 0
                             add = 1
@@ -38,14 +38,14 @@ on_actions = {
                                 }
                                 set_state_flag = db_state_consumer_debt_savings_overflow_check_borrowable_digit
                                 set_variable = { THIS.db_state_consumer_debt_savings_overflow_check_borrowed_digit = y }
-                                log = "THIS.db_state_consumer_debt_savings: Found borrowable digit!"
+                                #log = "THIS.db_state_consumer_debt_savings: Found borrowable digit!"
                                 clear_variable = THIS.db_state_consumer_debt_savings_overflow_check_borrowed_digit
                                 set_temp_variable = { borrowed_digit = y }
                                 set_temp_variable = { borrowed_digit_last_digit = borrowed_digit }
                                 add_to_temp_variable = { borrowed_digit_last_digit = -1 }
                                 add_to_variable = { THIS.db_state_consumer_debt_savings_overflow_check^borrowed_digit = -1 }
                                 add_to_variable = { THIS.db_state_consumer_debt_savings_overflow_check^borrowed_digit_last_digit = 10 }
-                                log = "THIS.db_state_consumer_debt_savings: New total is [?THIS.db_state_consumer_debt_savings_overflow_check^6][?THIS.db_state_consumer_debt_savings_overflow_check^5][?THIS.db_state_consumer_debt_savings_overflow_check^4][?THIS.db_state_consumer_debt_savings_overflow_check^3][?THIS.db_state_consumer_debt_savings_overflow_check^2][?THIS.db_state_consumer_debt_savings_overflow_check^1][?THIS.db_state_consumer_debt_savings_overflow_check^0]"
+                                #log = "THIS.db_state_consumer_debt_savings: New total is [?THIS.db_state_consumer_debt_savings_overflow_check^6][?THIS.db_state_consumer_debt_savings_overflow_check^5][?THIS.db_state_consumer_debt_savings_overflow_check^4][?THIS.db_state_consumer_debt_savings_overflow_check^3][?THIS.db_state_consumer_debt_savings_overflow_check^2][?THIS.db_state_consumer_debt_savings_overflow_check^1][?THIS.db_state_consumer_debt_savings_overflow_check^0]"
                                 set_temp_variable = { can_borrow_digit = 1 }
                             }
                         }
@@ -55,8 +55,8 @@ on_actions = {
                                 limit = { NOT = { check_variable = { this_digit = 0 } } }
                                 add_to_variable = { THIS.db_state_consumer_debt_savings_overflow_check^last_digit = -10 }
                                 add_to_variable = { THIS.db_state_consumer_debt_savings_overflow_check^this_digit = 1 }
-                                log = "THIS.db_state_consumer_debt_savings: No digit to borrow from. You're getting poorer. Whoops."
-                                log = "THIS.db_state_consumer_debt_savings: New total is [?THIS.db_state_consumer_debt_savings_overflow_check^6][?THIS.db_state_consumer_debt_savings_overflow_check^5][?THIS.db_state_consumer_debt_savings_overflow_check^4][?THIS.db_state_consumer_debt_savings_overflow_check^3][?THIS.db_state_consumer_debt_savings_overflow_check^2][?THIS.db_state_consumer_debt_savings_overflow_check^1][?THIS.db_state_consumer_debt_savings_overflow_check^0]"
+                                #log = "THIS.db_state_consumer_debt_savings: No digit to borrow from. You're getting poorer. Whoops."
+                                #log = "THIS.db_state_consumer_debt_savings: New total is [?THIS.db_state_consumer_debt_savings_overflow_check^6][?THIS.db_state_consumer_debt_savings_overflow_check^5][?THIS.db_state_consumer_debt_savings_overflow_check^4][?THIS.db_state_consumer_debt_savings_overflow_check^3][?THIS.db_state_consumer_debt_savings_overflow_check^2][?THIS.db_state_consumer_debt_savings_overflow_check^1][?THIS.db_state_consumer_debt_savings_overflow_check^0]"
                             }
                             if = {
                                 limit = { check_variable = { this_digit = 0 }
@@ -66,13 +66,13 @@ on_actions = {
                                     set_state_flag = db_state_consumer_debt_savings_overflow_check_is_negative
                                     clr_state_flag = db_state_consumer_debt_savings_overflow_check_is_positive
                                     multiply_variable = { THIS.db_state_consumer_debt_savings_overflow_check^0 = -1 }
-                                    log = "THIS.db_state_consumer_debt_savings has gone negative!"
+                                    #log = "THIS.db_state_consumer_debt_savings has gone negative!"
                                 }
                                 else_if = {
                                     set_state_flag = db_state_consumer_debt_savings_overflow_check_is_positive
                                     clr_state_flag = db_state_consumer_debt_savings_overflow_check_is_negative
                                     multiply_variable = { THIS.db_state_consumer_debt_savings_overflow_check^0 = -1 }
-                                    log = "THIS.db_state_consumer_debt_savings has gone positive!"
+                                    #log = "THIS.db_state_consumer_debt_savings has gone positive!"
                                 }
                             }
                         }
