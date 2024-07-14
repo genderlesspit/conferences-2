@@ -10,58 +10,443 @@
 
 
 defined_text = {
-    name = get_suffix
-    
-    text = { 
-        trigger = {
-            ROOT = {
-				has_country_flag = db_economic_scale_million
-			}
-        }
-        localization_key = "M"
+	name = var_digit_zero
+	
+	text = {
+		trigger = { 
+			check_variable = { THIS.var_overflow_check^0 > -1 }
+			check_variable = { THIS.var_overflow_check^0 < 10 }
+		}
+        localization_key = "[?ROOT.var_overflow_check^0]"
     }
+	text = {
+        localization_key = ""
+    }
+	
+}
 
-    text = { 
-        trigger = {
-            ROOT = {
-				has_country_flag = db_economic_scale_billion
-			}
+defined_text = {
+	name = var_digit_ten
+	
+	text = {
+		trigger = { 
+			check_variable = { THIS.var_overflow_check^1 > -1 }
+			check_variable = { THIS.var_overflow_check^1 < 10 }
+		}
+        localization_key = "[?ROOT.var_overflow_check^1]"
+    }
+	text = {
+        localization_key = ""
+    }
+	
+}
+
+defined_text = {
+	name = var_digit_hundred
+	
+	text = {
+		trigger = { 
+			check_variable = { THIS.var_overflow_check^2 > -1 }
+			check_variable = { THIS.var_overflow_check^2 < 10 }
+		}
+        localization_key = "[?ROOT.var_overflow_check^2]"
+    }
+	text = {
+        localization_key = ""
+    }
+	
+}
+
+
+defined_text = {
+    name = var_digit_thousand
+
+    text = {
+        trigger = { 
+            check_variable = { THIS.var_overflow_check^3 > -1 }
+            check_variable = { THIS.var_overflow_check^3 < 10 }
         }
-        localization_key = "B"
+        localization_key = "[?ROOT.var_overflow_check^3]"
     }
 
     text = {
         localization_key = ""
     }
 }
-#defined_text = {
-#    name = get_suffix
-#    
-#    text = { 
-#        trigger = {
-#            meta_trigger = {
-#                text = {
-#                    is_in_array = { billions_suffix_array = token:[TOKEN] }
-#                }
-#                TOKEN = "[?temp_var_token.GetTokenKey]"
-#            }
-#        }
-#        localization_key = "B"
-#    }
-#
-#    text = { 
-#        trigger = {
-#            meta_trigger = {
-#                text = {
-#                    is_in_array = { millions_suffix_array = token:[TOKEN] }
-#                }
-#                TOKEN = "[?temp_var_token.GetTokenKey]"
-#            }
-#        }
-#        localization_key = "M"
-#    }
-#
-#    text = {
-#        localization_key = ""
-#    }
-#}
+
+
+defined_text = {
+    name = var_digit_ten_thousand
+
+    text = {
+        trigger = { 
+            check_variable = { THIS.var_overflow_check^4 > -1 }
+            check_variable = { THIS.var_overflow_check^4 < 10 }
+        }
+        localization_key = "[?ROOT.var_overflow_check^4]"
+    }
+
+    text = {
+        localization_key = ""
+    }
+}
+
+
+defined_text = {
+    name = var_digit_hundred_thousand
+
+    text = {
+        trigger = { 
+            check_variable = { THIS.var_overflow_check^5 > -1 }
+            check_variable = { THIS.var_overflow_check^5 < 10 }
+        }
+        localization_key = "[?ROOT.var_overflow_check^5]"
+    }
+
+    text = {
+        localization_key = ""
+    }
+}
+
+
+defined_text = {
+    name = var_digit_million
+
+    text = {
+        trigger = { 
+            check_variable = { THIS.var_overflow_check^6 > -1 }
+            check_variable = { THIS.var_overflow_check^6 < 10 }
+        }
+        localization_key = "[?ROOT.var_overflow_check^6]"
+    }
+
+    text = {
+        localization_key = ""
+    }
+}
+
+
+defined_text = {
+    name = var_digit_ten_million
+
+    text = {
+        trigger = { 
+            check_variable = { THIS.var_overflow_check^7 > -1 }
+            check_variable = { THIS.var_overflow_check^7 < 10 }
+        }
+        localization_key = "[?ROOT.var_overflow_check^7]"
+    }
+
+    text = {
+        localization_key = ""
+    }
+}
+
+
+defined_text = {
+    name = var_digit_hundred_million
+
+    text = {
+        trigger = { 
+            check_variable = { THIS.var_overflow_check^8 > -1 }
+            check_variable = { THIS.var_overflow_check^8 < 10 }
+        }
+        localization_key = "[?ROOT.var_overflow_check^8]"
+    }
+
+    text = {
+        localization_key = ""
+    }
+}
+
+
+defined_text = {
+    name = var_digit_billion
+
+    text = {
+        trigger = { 
+            check_variable = { THIS.var_overflow_check^9 > -1 }
+            check_variable = { THIS.var_overflow_check^9 < 10 }
+        }
+        localization_key = "[?ROOT.var_overflow_check^9]"
+    }
+
+    text = {
+        localization_key = ""
+    }
+}
+
+
+defined_text = {
+    name = var_digit_ten_billion
+
+    text = {
+        trigger = { 
+            check_variable = { THIS.var_overflow_check^10 > -1 }
+            check_variable = { THIS.var_overflow_check^10 < 10 }
+        }
+        localization_key = "[?ROOT.var_overflow_check^10]"
+    }
+
+    text = {
+        localization_key = ""
+    }
+}
+
+
+defined_text = {
+    name = var_digit_hundred_billion
+
+    text = {
+        trigger = { 
+            check_variable = { THIS.var_overflow_check^11 > -1 }
+            check_variable = { THIS.var_overflow_check^11 < 10 }
+        }
+        localization_key = "[?ROOT.var_overflow_check^11]"
+    }
+
+    text = {
+        localization_key = ""
+    }
+}
+
+
+defined_text = {
+    name = var_digit_trillion
+
+    text = {
+        trigger = { 
+            check_variable = { THIS.var_overflow_check^12 > -1 }
+            check_variable = { THIS.var_overflow_check^12 < 10 }
+        }
+        localization_key = "[?ROOT.var_overflow_check^12]"
+    }
+
+    text = {
+        localization_key = ""
+    }
+}
+
+
+defined_text = {
+    name = var_digit_ten_trillion
+
+    text = {
+        trigger = { 
+            check_variable = { THIS.var_overflow_check^13 > -1 }
+            check_variable = { THIS.var_overflow_check^13 < 10 }
+        }
+        localization_key = "[?ROOT.var_overflow_check^13]"
+    }
+
+    text = {
+        localization_key = ""
+    }
+}
+
+
+defined_text = {
+    name = var_digit_hundred_trillion
+
+    text = {
+        trigger = { 
+            check_variable = { THIS.var_overflow_check^14 > -1 }
+            check_variable = { THIS.var_overflow_check^14 < 10 }
+        }
+        localization_key = "[?ROOT.var_overflow_check^14]"
+    }
+
+    text = {
+        localization_key = ""
+    }
+}
+
+defined_text = {
+    name = var_overflow_value
+    
+	text = { 
+        trigger = {
+            ROOT = {
+				check_variable = { THIS.var_overflow_check^0 > -1 }
+				check_variable = { THIS.var_overflow_check^1 < 1 }
+				check_variable = { THIS.var_overflow_check^2 < 1 }
+				check_variable = { THIS.var_overflow_check^3 < 1 } #thousand
+				check_variable = { THIS.var_overflow_check^4 < 1 } 
+				check_variable = { THIS.var_overflow_check^5 < 1 }
+				check_variable = { THIS.var_overflow_check^6 < 1 } #million
+				check_variable = { THIS.var_overflow_check^7 < 1 }
+				check_variable = { THIS.var_overflow_check^8 < 1 }
+				check_variable = { THIS.var_overflow_check^9 < 1 } #billion
+				check_variable = { THIS.var_overflow_check^10 < 1 }
+				check_variable = { THIS.var_overflow_check^11 < 1 }
+				check_variable = { THIS.var_overflow_check^12 < 1 } #trillion
+				check_variable = { THIS.var_overflow_check^13 < 1 }
+				check_variable = { THIS.var_overflow_check^14 < 1 }
+			}
+        }
+        localization_key = "[var_digit_thousand].[var_digit_hundred][var_digit_ten][var_digit_zero]K"
+    }
+	
+	text = { 
+        trigger = {
+            ROOT = {
+				check_variable = { THIS.var_overflow_check^4 > 1 } #ten thousand
+				check_variable = { THIS.var_overflow_check^5 < 1 }
+				check_variable = { THIS.var_overflow_check^6 < 1 } #million
+				check_variable = { THIS.var_overflow_check^7 < 1 }
+				check_variable = { THIS.var_overflow_check^8 < 1 }
+				check_variable = { THIS.var_overflow_check^9 < 1 } #billion
+				check_variable = { THIS.var_overflow_check^10 < 1 }
+				check_variable = { THIS.var_overflow_check^11 < 1 }
+				check_variable = { THIS.var_overflow_check^12 < 1 } #trillion
+				check_variable = { THIS.var_overflow_check^13 < 1 }
+				check_variable = { THIS.var_overflow_check^14 < 1 }
+			}
+        }
+        localization_key = "[var_digit_ten_thousand][var_digit_thousand].[var_digit_hundred][var_digit_ten][var_digit_zero]K"
+    }
+	
+	text = { 
+        trigger = {
+            ROOT = {
+				check_variable = { THIS.var_overflow_check^5 > 1 } #hundred thousand
+				check_variable = { THIS.var_overflow_check^6 < 1 } #million
+				check_variable = { THIS.var_overflow_check^7 < 1 }
+				check_variable = { THIS.var_overflow_check^8 < 1 }
+				check_variable = { THIS.var_overflow_check^9 < 1 } #billion
+				check_variable = { THIS.var_overflow_check^10 < 1 }
+				check_variable = { THIS.var_overflow_check^11 < 1 }
+				check_variable = { THIS.var_overflow_check^12 < 1 } #trillion
+				check_variable = { THIS.var_overflow_check^13 < 1 }
+				check_variable = { THIS.var_overflow_check^14 < 1 }
+			}
+        }
+        localization_key = "[var_digit_hundred_thousand][var_digit_ten_thousand][var_digit_thousand].[var_digit_hundred][var_digit_ten][var_digit_zero]K"
+    }
+	text = { 
+        trigger = {
+            ROOT = {
+				check_variable = { THIS.var_overflow_check^6 > 1 } #million
+				check_variable = { THIS.var_overflow_check^7 < 1 }
+				check_variable = { THIS.var_overflow_check^8 < 1 }
+				check_variable = { THIS.var_overflow_check^9 < 1 } #billion
+				check_variable = { THIS.var_overflow_check^10 < 1 }
+				check_variable = { THIS.var_overflow_check^11 < 1 }
+				check_variable = { THIS.var_overflow_check^12 < 1 } #trillion
+				check_variable = { THIS.var_overflow_check^13 < 1 }
+				check_variable = { THIS.var_overflow_check^14 < 1 }
+			}
+        }
+        localization_key = "[var_digit_million].[var_digit_hundred_thousand][var_digit_ten_thousand][var_digit_thousand]M"
+    }
+	text = { 
+        trigger = {
+            ROOT = {
+				check_variable = { THIS.var_overflow_check^7 > 1 } #tenmilly
+				check_variable = { THIS.var_overflow_check^8 < 1 }
+				check_variable = { THIS.var_overflow_check^9 < 1 } #billion
+				check_variable = { THIS.var_overflow_check^10 < 1 }
+				check_variable = { THIS.var_overflow_check^11 < 1 }
+				check_variable = { THIS.var_overflow_check^12 < 1 } #trillion
+				check_variable = { THIS.var_overflow_check^13 < 1 }
+				check_variable = { THIS.var_overflow_check^14 < 1 }
+			}
+        }
+        localization_key = "[var_digit_ten_million][var_digit_million].[var_digit_hundred_thousand][var_digit_ten_thousand][var_digit_thousand]M"
+    }
+	text = { 
+        trigger = {
+            ROOT = {
+				check_variable = { THIS.var_overflow_check^8 < 1 } #hundredmilly
+				check_variable = { THIS.var_overflow_check^9 < 1 } #billion
+				check_variable = { THIS.var_overflow_check^10 < 1 }
+				check_variable = { THIS.var_overflow_check^11 < 1 }
+				check_variable = { THIS.var_overflow_check^12 < 1 } #trillion
+				check_variable = { THIS.var_overflow_check^13 < 1 }
+				check_variable = { THIS.var_overflow_check^14 < 1 }
+			}
+        }
+        localization_key = "[var_digit_hundred_million][var_digit_ten_million][var_digit_million].[var_digit_hundred_thousand][var_digit_ten_thousand][var_digit_thousand]M"
+    }
+	text = { 
+        trigger = {
+            ROOT = {
+				check_variable = { THIS.var_overflow_check^9 > 1 } #billion
+				check_variable = { THIS.var_overflow_check^10 < 1 }
+				check_variable = { THIS.var_overflow_check^11 < 1 }
+				check_variable = { THIS.var_overflow_check^12 < 1 } #trillion
+				check_variable = { THIS.var_overflow_check^13 < 1 }
+				check_variable = { THIS.var_overflow_check^14 < 1 }
+			}
+        }
+        localization_key = "[var_digit_billion].[var_digit_hundred_million][var_digit_ten_million][var_digit_million]B"
+    }
+	text = { 
+        trigger = {
+            ROOT = {
+				check_variable = { THIS.var_overflow_check^10 > 1 } #tenbilly
+				check_variable = { THIS.var_overflow_check^11 < 1 }
+				check_variable = { THIS.var_overflow_check^12 < 1 } #trillion
+				check_variable = { THIS.var_overflow_check^13 < 1 }
+				check_variable = { THIS.var_overflow_check^14 < 1 }
+			}
+        }
+        localization_key = "[var_digit_ten_billion][var_digit_billion].[var_digit_hundred_million][var_digit_ten_million][var_digit_million]B"
+    }
+	text = { 
+        trigger = {
+            ROOT = {
+				check_variable = { THIS.var_overflow_check^11 > 1 } #hundredbilly
+				check_variable = { THIS.var_overflow_check^12 < 1 } #trillion
+				check_variable = { THIS.var_overflow_check^13 < 1 }
+				check_variable = { THIS.var_overflow_check^14 < 1 }
+			}
+        }
+        localization_key = "[var_digit_hundred_billion][var_digit_ten_billion][var_digit_billion].[var_digit_hundred_million][var_digit_ten_million][var_digit_million]B"
+    }
+	text = { 
+        trigger = {
+            ROOT = {
+				check_variable = { THIS.var_overflow_check^12 > 1 } #trillion
+				check_variable = { THIS.var_overflow_check^13 < 1 }
+				check_variable = { THIS.var_overflow_check^14 < 1 }
+			}
+        }
+        localization_key = "[var_digit_trillion].[var_digit_hundred_billion][var_digit_ten_billion][var_digit_billion]T"
+    }
+	text = { 
+        trigger = {
+            ROOT = {
+				check_variable = { THIS.var_overflow_check^13 < 1 } #tentrilly
+				check_variable = { THIS.var_overflow_check^14 < 1 }
+			}
+        }
+        localization_key = "[var_digit_ten_trillion][var_digit_trillion].[var_digit_hundred_billion][var_digit_ten_billion][var_digit_billion]T"
+    }
+	text = { 
+        trigger = {
+            ROOT = {
+				check_variable = { THIS.var_overflow_check^14 > 1 } #hundredtrilly
+			}
+        }
+        localization_key = "[var_digit_hundred_trillion][var_digit_ten_trillion][var_digit_trillion].[var_digit_hundred_billion][var_digit_ten_billion][var_digit_billion]T"
+    }
+}
+
+defined_text = {
+    name = var_loc
+    
+	text = {
+		trigger = {
+			ROOT = { db_state_consumer_debt_savings_overflow_check_is_positive }
+		}
+		localization_key = "§G+[var_overflow_value]§!"
+	}
+	text = {
+		trigger = {
+			ROOT = { db_state_consumer_debt_savings_overflow_check_is_positive }
+		}
+		localization_key = "§R-[var_overflow_value]§!"
+	}
+}
+
