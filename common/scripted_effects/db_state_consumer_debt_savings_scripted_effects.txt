@@ -1,0 +1,32 @@
+﻿db_state_consumer_debt_savings_add_to_total = {
+    add_to_variable = { db_state_consumer_debt_savings_source = THIS.db_state_consumer_debt_savings_add_to_total }
+ #you must specify db_state_consumer_debt_savings_source as a temp variable
+    if = { 
+        limit = { 
+            has_country_flag = db_state_consumer_debt_savings_overflow_check_is_negative 
+        }
+        multiply_variable = { THIS.db_state_consumer_debt_savings_add_to_total = -1 } #forces digit to be positive
+    }
+}
+
+db_state_consumer_debt_savings_initialize_overflow_value = {
+    add_to_temp_array = { divide_by_values = 10 }
+    add_to_temp_array = { divide_by_values = 100 }
+    add_to_temp_array = { divide_by_values = 1000 }
+    add_to_temp_array = { divide_by_values = 10000 }
+    add_to_temp_array = { divide_by_values = 100000 }
+    add_to_temp_array = { divide_by_values = 1000000 }
+
+    set_variable = { THIS.db_state_consumer_debt_savings_add_to_total_digit = 0 }
+
+    for_each_loop = {
+        array = divide_by_values
+        value = v
+        if = {
+            limit = { THIS.db_state_consumer_debt_savings_add_to_total > v }
+            subtract_from_variable = { THIS.db_state_consumer_debt_savings_add_to_total = v }
+        }
+        add_to_variable = { THIS.db_state_consumer_debt_savings_add_to_total_digit = 1 }
+        add_to_variable = { THIS.db_state_consumer_debt_savings_overflow_check^db_state_consumer_debt_savings_add_to_total_digit = 1 }
+    }
+}
