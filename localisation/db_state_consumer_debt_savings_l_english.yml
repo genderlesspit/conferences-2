@@ -1,3 +1,4 @@
 ﻿l_english:
   db_state_consumer_debt_savings_loc_positive: "§G+[db_state_consumer_debt_savings_overflow_value]§!"
   db_state_consumer_debt_savings_loc_negative: "§R-[db_state_consumer_debt_savings_overflow_value]§!"
+  db_gui_state_economy: "[THIS.db_state_consumer_debt_savings_loc]"

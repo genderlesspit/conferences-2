@@ -1,0 +1,23 @@
+guiTypes = { 
+    containerWindowType = {
+        name = "state_economy_window"
+        position = { x = 0 y = 0 }
+
+        #iconType = {
+        #    name ="<icon type>"
+        #    spriteType = "GFX_icon"
+        #    position = { x = 0 y = 0 }
+        #    pdx_tooltip = "<loc key>"
+        #}
+		
+		instantTextboxType = {
+			name = "state_total_debt"
+			position = {x=0 y=0}
+			font = "hoi_24header"
+			text = db_gui_state_economy
+			#maxWidth = 500
+			#maxHeight = 23
+			format = center
+		}
+    }
+}
