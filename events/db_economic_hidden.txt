@@ -7,7 +7,7 @@ country_event = {
 	immediate = {
 		ROOT = {
 			set_country_flag = db_economic_hidden_flag
-			country_event = { id = db_diplomacy_flavor.23 days = 1 }
+			log = "db_economic_hidden: daily event successfully fired!"
 			country_event = { id = db_hidden.2 days = 1 }
 			country_event = { id = db_hidden.3 days = 1 }
 			country_event = { id = db_hidden.4 days = 1 }
@@ -88,9 +88,14 @@ country_event = {
 			every_owned_state = {
 			
 			# CALCULATE STATE TOTAL DEBT/SAVINGS
-				set_temp_variable = { income_source = THIS.db_state_daily_net_income }
-				db_state_consumer_debt_savings_add_to_total = yes
-				db_state_consumer_debt_savings_initialize_overflow_value = yes
+				set_temp_variable = { db_state_consumer_debt_savings_source = THIS.db_state_daily_net_income }
+				if = {
+					limit = { has_state_flag = db_state_consumer_debt_savings_overflow_check_is_negative }
+					multiply_variable = { db_state_consumer_debt_savings_source = -1 } #forces digit to be positive
+				}
+				add_to_variable = { THIS.db_state_consumer_debt_savings_add_to_total = db_state_consumer_debt_savings_source }
+				#db_state_consumer_debt_savings_add_to_total = yes
+				#db_state_consumer_debt_savings_initialize_overflow_value = yes
 
 			# SET STATE PER CAPITA SAVINGS/DEBT
 				set_variable = { THIS.db_state_consumer_debt_savings_per_capita = THIS.db_state_consumer_debt_savings }

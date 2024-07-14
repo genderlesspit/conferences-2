@@ -277,20 +277,106 @@ on_actions = {
 					set_variable = { THIS.db_state_base_cost_of_living_modifier = THIS.db_state_base_wealth }
 					add_to_variable = { THIS.db_state_base_cost_of_living_modifier = .25 }
 					divide_variable = { THIS.db_state_base_cost_of_living_modifier = 10 }
-
+				
 				# STARTING DEBT
 					set_variable = { THIS.db_state_debt_base = THIS.state_population_k }
 					set_variable = { THIS.db_state_debt_base_factor = -.3668 } #.4x366.9x-1000
 					multiply_variable = { THIS.db_state_debt_base_factor = PREV.db_national_inflation }
 					multiply_variable = { THIS.db_state_debt_base = THIS.db_state_debt_base_factor }
-					add_to_variable = { THIS.db_state_debt_base = THIS.db_state_consumer_debt_savings_overflow_check^6 }
-					
+										
+                    add_to_array = {
+                        array = THIS.db_state_consumer_debt_savings_overflow_check
+                        value = THIS.db_state_consumer_debt_savings_var
+                        index = 0
+                    }
+                    add_to_array = {
+                        array = THIS.db_state_consumer_debt_savings_overflow_check
+                        value = THIS.db_state_consumer_debt_savings_var_ten
+                        index = 1
+                    }
+                    add_to_array = {
+                        array = THIS.db_state_consumer_debt_savings_overflow_check
+                        value = THIS.db_state_consumer_debt_savings_var_hundred
+                        index = 2
+                    }
+                    add_to_array = {
+                        array = THIS.db_state_consumer_debt_savings_overflow_check
+                        value = THIS.db_state_consumer_debt_savings_var_thousand
+                        index = 3
+                    }
+                    add_to_array = {
+                        array = THIS.db_state_consumer_debt_savings_overflow_check
+                        value = THIS.db_state_consumer_debt_savings_var_ten_thousand
+                        index = 4
+                    }
+                    add_to_array = {
+                        array = THIS.db_state_consumer_debt_savings_overflow_check
+                        value = THIS.db_state_consumer_debt_savings_var_hundred_thousand
+                        index = 5
+                    }
+                    add_to_array = {
+                        array = THIS.db_state_consumer_debt_savings_overflow_check
+                        value = THIS.db_state_consumer_debt_savings_var_million
+                        index = 6
+                    }
+                    add_to_array = {
+                        array = THIS.db_state_consumer_debt_savings_overflow_check
+                        value = THIS.db_state_consumer_debt_savings_var_ten_million
+                        index = 7
+                    }
+                    add_to_array = {
+                        array = THIS.db_state_consumer_debt_savings_overflow_check
+                        value = THIS.db_state_consumer_debt_savings_var_hundred_million
+                        index = 8
+                    }
+                    add_to_array = {
+                        array = THIS.db_state_consumer_debt_savings_overflow_check
+                        value = THIS.db_state_consumer_debt_savings_var_billion
+                        index = 9
+                    }
+                    add_to_array = {
+                        array = THIS.db_state_consumer_debt_savings_overflow_check
+                        value = THIS.db_state_consumer_debt_savings_var_ten_billion
+                        index = 10
+                    }
+                    add_to_array = {
+                        array = THIS.db_state_consumer_debt_savings_overflow_check
+                        value = THIS.db_state_consumer_debt_savings_var_hundred_billion
+                        index = 11
+                    }
+                    add_to_array = {
+                        array = THIS.db_state_consumer_debt_savings_overflow_check
+                        value = THIS.db_state_consumer_debt_savings_var_trillion
+                        index = 12
+                    }
+                    add_to_array = {
+                        array = THIS.db_state_consumer_debt_savings_overflow_check
+                        value = THIS.db_state_consumer_debt_savings_var_ten_trillion
+                        index = 13
+                    }
+                    add_to_array = {
+                        array = THIS.db_state_consumer_debt_savings_overflow_check
+                        value = THIS.db_state_consumer_debt_savings_var_hundred_trillion
+                        index = 14
+                    }
+                    add_to_array = {
+                        array = THIS.db_state_consumer_debt_savings_overflow_check
+                        value = THIS.db_state_consumer_debt_savings_var_imaginary_number
+                        index = 15
+                    }
+                    set_state_flag = db_state_consumer_debt_savings_overflow_check_is_negative
+                    for_each_loop = {
+                        array = THIS.db_state_consumer_debt_savings_overflow_check
+                        value = v
+                        log = "[?v] added to array."
+                    }
+                }
+
+
 				# CALCULATE NATIONAL TOTAL
 					#add_to_variable = { PREV.db_national_consumer_debt_savings = THIS.db_state_consumer_debt_savings }
 					#set_variable = { THIS.db_state_consumer_debt_savings_per_capita = THIS.db_state_consumer_debt_savings }
 					#divide_variable = { THIS.db_state_consumer_debt_savings_per_capita = THIS.db_state_lfpr }
-		
-				}
 			}
 		}
 	}
@@ -307,6 +393,25 @@ on_actions = {
 					}
 					clr_country_flag = db_economic_hidden_flag
 				}		
+			}
+			#calculate and add base debt 
+			every_state = {
+				if = {
+					limit = { check_variable = { THIS.db_state_debt_base < -1 } }
+					add_to_variable = { THIS.db_state_consumer_debt_savings_overflow_check^6 = 1 }
+					add_to_variable = { THIS.db_state_debt_base = 1 }
+				}
+				else = {
+					clear_variable = THIS.db_state_debt_base
+				}
+			}	
+		}
+	}
+	
+	on_weekly = {
+		effect = {
+			every_state = {
+				db_state_consumer_debt_savings_initialize_overflow_value = yes
 			}
 		}
 	}
@@ -503,13 +608,13 @@ on_actions = {
 				set_variable = { THIS.db_national_interest_rate_modifier = 0 }
 				multiply_variable = { THIS.db_national_interest_rate = THIS.db_national_inflation_since_1936 }
 				add_to_variable = { THIS.db_national_interest_rate = THIS.db_national_interest_rate_modifier }
-			}
 			
 			#NATIONAL JOB GROWTH RATE
 				#set_variable = { THIS.db_national_job_growth_rate = THIS.db_national_demand }
 				#divide_variable = { THIS.db_national_job_growth_rate = 1000 } #make inflation slow
 				#add_to_variable = { THIS.db_national_lfpr_base = THIS.db_national_job_growth_rate }
 				#clamp_variable = { var = THIS.db_national_lfpr_base min = .1 max = .99 }
+			}
 		}
 	}
 

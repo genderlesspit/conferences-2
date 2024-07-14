@@ -1,0 +1,33 @@
+spriteTypes = { 
+	##Icon For: [FROM.GetName] Organizes U.S.–British Staff Conference
+	SpriteType = { 
+		name = "fromgetname_organizes_usbritish_staff_conference-824"
+		texturefile = "gfx/interface/events/conferences-event/fromgetname_organizes_usbritish_staff_conference-824.dds"
+	}
+
+	##Icon For: [FROM.GetName] Suggests the "Sun Tzu"
+	SpriteType = { 
+		name = "fromgetname_suggests_the_sun_tzu-1000"
+		texturefile = "gfx/interface/events/conferences-event/fromgetname_suggests_the_sun_tzu-1000.dds"
+	}
+
+	##Icon For: [FROM.GETName] Suggests the "Jomini"
+	SpriteType = { 
+		name = "fromgetname_suggests_the_jomini-1000"
+		texturefile = "gfx/interface/events/conferences-event/fromgetname_suggests_the_jomini-1000.dds"
+	}
+
+	##Icon For: [FROM.GETName] Accedes to Strategy
+	SpriteType = { 
+		name = "fromgetname_accedes_to_strategy-972"
+		texturefile = "gfx/interface/events/conferences-event/fromgetname_accedes_to_strategy-972.dds"
+	}
+
+	##Icon For: [FROM.GetName] Prolongs Strategic Consensus
+	SpriteType = { 
+		name = "fromgetname_prolongs_strategic_consensus-1010"
+		texturefile = "gfx/interface/events/conferences-event/fromgetname_prolongs_strategic_consensus-1010.dds"
+	}
+
+ 
+ }

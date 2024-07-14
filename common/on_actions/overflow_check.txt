@@ -91,7 +91,7 @@ on_actions = {
 					for_each_loop = {
 						array = THIS.var_overflow_check
 						value = v
-						log = "[?v] added to array."
+						#log = "[?v] added to array."
 					}
 				}	
 				
@@ -113,8 +113,8 @@ on_actions = {
 						limit = { check_variable = { THIS.var_overflow_check^this_digit > 9  } } #is value 10?
 						add_to_variable = { THIS.var_overflow_check^next_digit = 1 } #carries over
 						add_to_variable = { THIS.var_overflow_check^this_digit = -10 } #result is 0
-						log = "var_overflow_check: Digit overflow found!"
-						log = "var_overflow_check: New total is [?THIS.var_overflow_check^6][?THIS.var_overflow_check^5][?THIS.var_overflow_check^4][?THIS.var_overflow_check^3][?THIS.var_overflow_check^2][?THIS.var_overflow_check^1][?THIS.var_overflow_check^0]"
+						#log = "var_overflow_check: Digit overflow found!"
+						#log = "var_overflow_check: New total is [?THIS.var_overflow_check^6][?THIS.var_overflow_check^5][?THIS.var_overflow_check^4][?THIS.var_overflow_check^3][?THIS.var_overflow_check^2][?THIS.var_overflow_check^1][?THIS.var_overflow_check^0]"
 					}
 					if = {
 						limit = { 
@@ -139,7 +139,7 @@ on_actions = {
 								set_country_flag = var_overflow_check_borrowable_digit
 								
 								set_variable = { THIS.var_overflow_check_borrowed_digit = y }
-								log = "var_overflow_check: Found borrowable digit!"
+								#log = "var_overflow_check: Found borrowable digit!"
 								clear_variable = THIS.var_overflow_check_borrowed_digit
 								
 								set_temp_variable = { borrowed_digit = y }
@@ -148,7 +148,7 @@ on_actions = {
 								
 								add_to_variable = { THIS.var_overflow_check^borrowed_digit = -1 } # Simulate borrowing from the next digit > 0 
 								add_to_variable = { THIS.var_overflow_check^borrowed_digit_last_digit = 10 } # Adjust the current digit accordingly
-								log = "var_overflow_check: New total is [?THIS.var_overflow_check^6][?THIS.var_overflow_check^5][?THIS.var_overflow_check^4][?THIS.var_overflow_check^3][?THIS.var_overflow_check^2][?THIS.var_overflow_check^1][?THIS.var_overflow_check^0]"
+								#log = "var_overflow_check: New total is [?THIS.var_overflow_check^6][?THIS.var_overflow_check^5][?THIS.var_overflow_check^4][?THIS.var_overflow_check^3][?THIS.var_overflow_check^2][?THIS.var_overflow_check^1][?THIS.var_overflow_check^0]"
 								
 								set_temp_variable = { can_borrow_digit = 1 } #can borrow digit is true
 							}
@@ -162,8 +162,8 @@ on_actions = {
 								
 								add_to_variable = { THIS.var_overflow_check^last_digit = -10 } # Simulate borrowing from the next higher digit
 								add_to_variable = { THIS.var_overflow_check^this_digit = 1 } # Adjust the current digit accordingly
-								log = "var_overflow_check: No digit to borrow from. You're getting poorer. Whoops."
-								log = "var_overflow_check: New total is [?THIS.var_overflow_check^6][?THIS.var_overflow_check^5][?THIS.var_overflow_check^4][?THIS.var_overflow_check^3][?THIS.var_overflow_check^2][?THIS.var_overflow_check^1][?THIS.var_overflow_check^0]"
+								#log = "var_overflow_check: No digit to borrow from. You're getting poorer. Whoops."
+								#log = "var_overflow_check: New total is [?THIS.var_overflow_check^6][?THIS.var_overflow_check^5][?THIS.var_overflow_check^4][?THIS.var_overflow_check^3][?THIS.var_overflow_check^2][?THIS.var_overflow_check^1][?THIS.var_overflow_check^0]"
 			
 							}
 							if = {
@@ -178,7 +178,7 @@ on_actions = {
 									clr_country_flag = var_overflow_check_is_positive
 									
 									multiply_variable = { THIS.var_overflow_check^0 = -1 }
-									log = "var_overflow_check has gone negative!"
+									#log = "var_overflow_check has gone negative!"
 								}
 								else_if = {
 								
@@ -186,7 +186,7 @@ on_actions = {
 									clr_country_flag = var_overflow_check_is_negative
 									
 									multiply_variable = { THIS.var_overflow_check^0 = -1 }
-									log = "var_overflow_check has gone positive!"
+									#log = "var_overflow_check has gone positive!"
 								}
 							}
 						}
