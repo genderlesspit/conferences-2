@@ -1,0 +1,3 @@
+﻿l_english:
+ var_loc_positive: "§G+[var_overflow_value]§!"
+ var_loc_negative: "§R-[var_overflow_value]§!"

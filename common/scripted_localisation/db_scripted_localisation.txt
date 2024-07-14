@@ -265,32 +265,13 @@ defined_text = {
     name = var_overflow_value
     
 	text = { 
-        trigger = {
-            ROOT = {
-				check_variable = { THIS.var_overflow_check^0 > -1 }
-				check_variable = { THIS.var_overflow_check^1 < 1 }
-				check_variable = { THIS.var_overflow_check^2 < 1 }
-				check_variable = { THIS.var_overflow_check^3 < 1 } #thousand
-				check_variable = { THIS.var_overflow_check^4 < 1 } 
-				check_variable = { THIS.var_overflow_check^5 < 1 }
-				check_variable = { THIS.var_overflow_check^6 < 1 } #million
-				check_variable = { THIS.var_overflow_check^7 < 1 }
-				check_variable = { THIS.var_overflow_check^8 < 1 }
-				check_variable = { THIS.var_overflow_check^9 < 1 } #billion
-				check_variable = { THIS.var_overflow_check^10 < 1 }
-				check_variable = { THIS.var_overflow_check^11 < 1 }
-				check_variable = { THIS.var_overflow_check^12 < 1 } #trillion
-				check_variable = { THIS.var_overflow_check^13 < 1 }
-				check_variable = { THIS.var_overflow_check^14 < 1 }
-			}
-        }
         localization_key = "[var_digit_thousand].[var_digit_hundred][var_digit_ten][var_digit_zero]K"
     }
 	
 	text = { 
         trigger = {
             ROOT = {
-				check_variable = { THIS.var_overflow_check^4 > 1 } #ten thousand
+				check_variable = { THIS.var_overflow_check^4 > 0 } #ten thousand
 				check_variable = { THIS.var_overflow_check^5 < 1 }
 				check_variable = { THIS.var_overflow_check^6 < 1 } #million
 				check_variable = { THIS.var_overflow_check^7 < 1 }
@@ -309,7 +290,7 @@ defined_text = {
 	text = { 
         trigger = {
             ROOT = {
-				check_variable = { THIS.var_overflow_check^5 > 1 } #hundred thousand
+				check_variable = { THIS.var_overflow_check^5 > 0 } #hundred thousand
 				check_variable = { THIS.var_overflow_check^6 < 1 } #million
 				check_variable = { THIS.var_overflow_check^7 < 1 }
 				check_variable = { THIS.var_overflow_check^8 < 1 }
@@ -326,7 +307,7 @@ defined_text = {
 	text = { 
         trigger = {
             ROOT = {
-				check_variable = { THIS.var_overflow_check^6 > 1 } #million
+				check_variable = { THIS.var_overflow_check^6 > 0 } #million
 				check_variable = { THIS.var_overflow_check^7 < 1 }
 				check_variable = { THIS.var_overflow_check^8 < 1 }
 				check_variable = { THIS.var_overflow_check^9 < 1 } #billion
@@ -342,7 +323,7 @@ defined_text = {
 	text = { 
         trigger = {
             ROOT = {
-				check_variable = { THIS.var_overflow_check^7 > 1 } #tenmilly
+				check_variable = { THIS.var_overflow_check^7 > 0 } #tenmilly
 				check_variable = { THIS.var_overflow_check^8 < 1 }
 				check_variable = { THIS.var_overflow_check^9 < 1 } #billion
 				check_variable = { THIS.var_overflow_check^10 < 1 }
@@ -357,7 +338,7 @@ defined_text = {
 	text = { 
         trigger = {
             ROOT = {
-				check_variable = { THIS.var_overflow_check^8 < 1 } #hundredmilly
+				check_variable = { THIS.var_overflow_check^8 > 0 } #hundredmilly
 				check_variable = { THIS.var_overflow_check^9 < 1 } #billion
 				check_variable = { THIS.var_overflow_check^10 < 1 }
 				check_variable = { THIS.var_overflow_check^11 < 1 }
@@ -371,7 +352,7 @@ defined_text = {
 	text = { 
         trigger = {
             ROOT = {
-				check_variable = { THIS.var_overflow_check^9 > 1 } #billion
+				check_variable = { THIS.var_overflow_check^9 > 0 } #billion
 				check_variable = { THIS.var_overflow_check^10 < 1 }
 				check_variable = { THIS.var_overflow_check^11 < 1 }
 				check_variable = { THIS.var_overflow_check^12 < 1 } #trillion
@@ -384,7 +365,7 @@ defined_text = {
 	text = { 
         trigger = {
             ROOT = {
-				check_variable = { THIS.var_overflow_check^10 > 1 } #tenbilly
+				check_variable = { THIS.var_overflow_check^10 > 0 } #tenbilly
 				check_variable = { THIS.var_overflow_check^11 < 1 }
 				check_variable = { THIS.var_overflow_check^12 < 1 } #trillion
 				check_variable = { THIS.var_overflow_check^13 < 1 }
@@ -396,7 +377,7 @@ defined_text = {
 	text = { 
         trigger = {
             ROOT = {
-				check_variable = { THIS.var_overflow_check^11 > 1 } #hundredbilly
+				check_variable = { THIS.var_overflow_check^11 > 0 } #hundredbilly
 				check_variable = { THIS.var_overflow_check^12 < 1 } #trillion
 				check_variable = { THIS.var_overflow_check^13 < 1 }
 				check_variable = { THIS.var_overflow_check^14 < 1 }
@@ -407,7 +388,7 @@ defined_text = {
 	text = { 
         trigger = {
             ROOT = {
-				check_variable = { THIS.var_overflow_check^12 > 1 } #trillion
+				check_variable = { THIS.var_overflow_check^12 > 0 } #trillion
 				check_variable = { THIS.var_overflow_check^13 < 1 }
 				check_variable = { THIS.var_overflow_check^14 < 1 }
 			}
@@ -417,7 +398,7 @@ defined_text = {
 	text = { 
         trigger = {
             ROOT = {
-				check_variable = { THIS.var_overflow_check^13 < 1 } #tentrilly
+				check_variable = { THIS.var_overflow_check^13 > 0 } #tentrilly
 				check_variable = { THIS.var_overflow_check^14 < 1 }
 			}
         }
@@ -426,7 +407,7 @@ defined_text = {
 	text = { 
         trigger = {
             ROOT = {
-				check_variable = { THIS.var_overflow_check^14 > 1 } #hundredtrilly
+				check_variable = { THIS.var_overflow_check^14 > 0 } #hundredtrilly
 			}
         }
         localization_key = "[var_digit_hundred_trillion][var_digit_ten_trillion][var_digit_trillion].[var_digit_hundred_billion][var_digit_ten_billion][var_digit_billion]T"
@@ -438,15 +419,15 @@ defined_text = {
     
 	text = {
 		trigger = {
-			ROOT = { db_state_consumer_debt_savings_overflow_check_is_positive }
+			ROOT = { has_country_flag = var_overflow_check_is_positive }
 		}
-		localization_key = "§G+[var_overflow_value]§!"
+		localization_key = var_loc_positive
 	}
 	text = {
 		trigger = {
-			ROOT = { db_state_consumer_debt_savings_overflow_check_is_positive }
+			ROOT = { has_country_flag = var_overflow_check_is_negative }
 		}
-		localization_key = "§R-[var_overflow_value]§!"
+		localization_key = var_loc_negative
 	}
 }
 
