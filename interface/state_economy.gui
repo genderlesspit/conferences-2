@@ -1,7 +1,7 @@
 guiTypes = { 
     containerWindowType = {
         name = "state_economy_window"
-		size = { height = 300 width = 300 }
+		size = { height = 320 width = 300 }
         position = { x = -505 y = 238 }
 		clipping = yes
 		background = {
@@ -124,6 +124,15 @@ guiTypes = {
 			textureFile = ""
 			font = "hoi_18mbs"
 			text = db_gui_state_cost_of_living
+			format = left
+			maxWidth = 330
+		}
+		instantTextboxType = {
+			name = "state_debt_per_capita"
+			position = { x = 30 y = 270 }
+			textureFile = ""
+			font = "hoi_18mbs"
+			text = "Debt/Savings per Capita: [?THIS.db_consumer_debt_per_capita|^+]"
 			format = left
 			maxWidth = 330
 		}

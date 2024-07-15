@@ -36,8 +36,52 @@ db_state_consumer_debt_savings_initialize_overflow_value = {
         if = {
             limit = { check_variable = { THIS.db_state_consumer_debt_savings_add_to_total < THIS.db_state_consumer_debt_savings_check_digit } }
             subtract_from_variable = { THIS.db_state_consumer_debt_savings_add_to_total = THIS.db_state_consumer_debt_savings_check_digit }
-			 add_to_variable = { THIS.db_state_consumer_debt_savings_overflow_check^v = -1 }
+			add_to_variable = { THIS.db_state_consumer_debt_savings_overflow_check^v = -1 }
         }
 		multiply_variable = { THIS.db_state_consumer_debt_savings_check_digit = 10 }
     }
+}
+
+db_calculate_consumer_debt_per_capita = {
+	set_variable = { THIS.db_consumer_debt_per_capita_multiplier = 1 }
+	set_variable = { THIS.db_consumer_debt_per_capita = 0 }
+	for_loop_effect = {
+		start = 3
+		add = 1
+		end = 9
+		value = v
+		set_temp_variable = { consumer_debt_per_capita_counter = THIS.db_state_consumer_debt_savings_overflow_check^v } 
+		multiply_temp_variable = { consumer_debt_per_capita_counter = THIS.db_consumer_debt_per_capita_multiplier }
+		add_to_variable = { THIS.db_consumer_debt_per_capita = consumer_debt_per_capita_counter }
+		multiply_variable = { THIS.db_consumer_debt_per_capita_multiplier = 10 }
+	}
+	divide_variable = { THIS.db_consumer_debt_per_capita = THIS.state_population_k }
+	multiply_variable = { THIS.db_consumer_debt_per_capita = 1000 }
+	if = {
+		limit = { has_state_flag = db_state_consumer_debt_savings_overflow_check_is_negative }
+		multiply_variable = { THIS.db_consumer_debt_per_capita = -1 } #forces digit to be positive
+	}
+}
+
+db_calculate_base_debt = {
+	if = {
+		limit = { check_variable = { THIS.db_state_debt_base > 0 } }
+		set_variable = { THIS.db_state_base_debt_multiplier = 1 }
+		for_loop_effect = {
+			start = 3
+			add = 1
+			end = 9
+			value = v
+			
+			if = {
+				limit = { check_variable = { THIS.db_state_debt_base > THIS.db_state_base_debt_multiplier } }
+				subtract_from_variable = { THIS.db_state_debt_base = THIS.db_state_base_debt_multiplier }
+				add_to_variable = { THIS.db_state_consumer_debt_savings_overflow_check^v = 1 }
+			}
+			multiply_variable = { THIS.db_state_base_debt_multiplier = 10 }
+		}
+	}
+	else = {
+		clear_variable = THIS.db_state_debt_base
+	}
 }

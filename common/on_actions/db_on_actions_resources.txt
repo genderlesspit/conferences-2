@@ -9,17 +9,17 @@ on_actions = {
 	#		}
 	#	}
 	#}
-	on_daily = { 
-		effect = {
-			every_country = {
-				set_variable = { THIS.db_state_consumer_goods_resource_modifier = THIS.modifier@consumer_goods_expected_value }
-				multiply_variable = { THIS.db_state_consumer_goods_resource_modifier = -1 }
-				every_owned_state = {
-					set_variable = { THIS.db_state_consumer_goods_resource_modifier = PREV.db_state_consumer_goods_resource_modifier }
-				}
-			}
-		}	
-	}
+	#on_daily = { 
+	#	effect = {
+	#		every_country = {
+	#			set_variable = { THIS.db_state_consumer_goods_resource_modifier = THIS.modifier@consumer_goods_expected_value }
+	#			multiply_variable = { THIS.db_state_consumer_goods_resource_modifier = -1 }
+	#			every_owned_state = {
+	#				set_variable = { THIS.db_state_consumer_goods_resource_modifier = PREV.db_state_consumer_goods_resource_modifier }
+	#			}
+	#		}
+	#	}	
+	#}
 ##########################################################################################
 #OIL PRICE CALCULATIONS###################################################################
 ##########################################################################################
@@ -29,7 +29,7 @@ on_actions = {
 ##########################################################################################
 	on_daily = {
 		effect = {
-			set_variable = { global.db_oil_price = 3906 } 
+			set_variable = { global.db_oil_price = 3.906 } #THIS IS IN THOUSANDS
 			set_variable = { global.db_oil_supply = 0 }
 			set_variable = { global.db_oil_demand = 0 }
 			every_country = {

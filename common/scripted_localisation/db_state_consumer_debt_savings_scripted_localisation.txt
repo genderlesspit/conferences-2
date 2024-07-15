@@ -229,7 +229,7 @@ defined_text = {
 			check_variable = { THIS.db_state_consumer_debt_savings_overflow_check^13 < 1 }
 			check_variable = { THIS.db_state_consumer_debt_savings_overflow_check^14 < 1 }
         }
-        localization_key = "[db_state_consumer_debt_savings_digit_ten_thousand][db_state_consumer_debt_savings_digit_thousand].[db_state_consumer_debt_savings_digit_hundred][db_state_consumer_debt_savings_digit_ten][db_state_consumer_debt_savings_digit_zero]K"
+        localization_key = "[db_state_consumer_debt_savings_digit_ten_thousand][db_state_consumer_debt_savings_digit_thousand].[db_state_consumer_debt_savings_digit_hundred][db_state_consumer_debt_savings_digit_ten]K"
     }
 
     text = { 
@@ -247,7 +247,7 @@ defined_text = {
                 check_variable = { THIS.db_state_consumer_debt_savings_overflow_check^14 < 1 }
             }
         }
-        localization_key = "[db_state_consumer_debt_savings_digit_hundred_thousand][db_state_consumer_debt_savings_digit_ten_thousand][db_state_consumer_debt_savings_digit_thousand].[db_state_consumer_debt_savings_digit_hundred][db_state_consumer_debt_savings_digit_ten][db_state_consumer_debt_savings_digit_zero]K"
+        localization_key = "[db_state_consumer_debt_savings_digit_hundred_thousand][db_state_consumer_debt_savings_digit_ten_thousand][db_state_consumer_debt_savings_digit_thousand].[db_state_consumer_debt_savings_digit_hundred][db_state_consumer_debt_savings_digit_ten]K"
     }
 
     text = { 
@@ -264,7 +264,7 @@ defined_text = {
                 check_variable = { THIS.db_state_consumer_debt_savings_overflow_check^14 < 1 }
             }
         }
-        localization_key = "[db_state_consumer_debt_savings_digit_million].[db_state_consumer_debt_savings_digit_hundred_thousand][db_state_consumer_debt_savings_digit_ten_thousand][db_state_consumer_debt_savings_digit_thousand]M"
+        localization_key = "[db_state_consumer_debt_savings_digit_million].[db_state_consumer_debt_savings_digit_hundred_thousand][db_state_consumer_debt_savings_digit_ten_thousand]M"
     }
 
     text = { 
@@ -280,7 +280,7 @@ defined_text = {
                 check_variable = { THIS.db_state_consumer_debt_savings_overflow_check^14 < 1 }
             }
         }
-        localization_key = "[db_state_consumer_debt_savings_digit_ten_million][db_state_consumer_debt_savings_digit_million].[db_state_consumer_debt_savings_digit_hundred_thousand][db_state_consumer_debt_savings_digit_ten_thousand][db_state_consumer_debt_savings_digit_thousand]M"
+        localization_key = "[db_state_consumer_debt_savings_digit_ten_million][db_state_consumer_debt_savings_digit_million].[db_state_consumer_debt_savings_digit_hundred_thousand][db_state_consumer_debt_savings_digit_ten_thousand]M"
     }
 
     text = { 
@@ -295,7 +295,7 @@ defined_text = {
                 check_variable = { THIS.db_state_consumer_debt_savings_overflow_check^14 < 1 }
             }
         }
-        localization_key = "[db_state_consumer_debt_savings_digit_hundred_million][db_state_consumer_debt_savings_digit_ten_million][db_state_consumer_debt_savings_digit_million].[db_state_consumer_debt_savings_digit_hundred_thousand][db_state_consumer_debt_savings_digit_ten_thousand][db_state_consumer_debt_savings_digit_thousand]M"
+        localization_key = "[db_state_consumer_debt_savings_digit_hundred_million][db_state_consumer_debt_savings_digit_ten_million][db_state_consumer_debt_savings_digit_million].[db_state_consumer_debt_savings_digit_hundred_thousand]M"
     }
 
     text = { 
@@ -309,7 +309,7 @@ defined_text = {
                 check_variable = { THIS.db_state_consumer_debt_savings_overflow_check^14 < 1 }
             }
         }
-        localization_key = "[db_state_consumer_debt_savings_digit_billion].[db_state_consumer_debt_savings_digit_hundred_million][db_state_consumer_debt_savings_digit_ten_million][db_state_consumer_debt_savings_digit_million]B"
+        localization_key = "[db_state_consumer_debt_savings_digit_billion].[db_state_consumer_debt_savings_digit_hundred_million][db_state_consumer_debt_savings_digit_ten_million]B"
     }
 
     text = { 
@@ -322,7 +322,7 @@ defined_text = {
                 check_variable = { THIS.db_state_consumer_debt_savings_overflow_check^14 < 1 }
             }
         }
-        localization_key = "[db_state_consumer_debt_savings_digit_ten_billion][db_state_consumer_debt_savings_digit_billion].[db_state_consumer_debt_savings_digit_hundred_million][db_state_consumer_debt_savings_digit_ten_million][db_state_consumer_debt_savings_digit_million]B"
+        localization_key = "[db_state_consumer_debt_savings_digit_ten_billion][db_state_consumer_debt_savings_digit_billion].[db_state_consumer_debt_savings_digit_hundred_million][db_state_consumer_debt_savings_digit_ten_million]B"
     }
 
     text = { 
@@ -334,7 +334,7 @@ defined_text = {
                 check_variable = { THIS.db_state_consumer_debt_savings_overflow_check^14 < 1 }
             }
         }
-        localization_key = "[db_state_consumer_debt_savings_digit_hundred_billion][db_state_consumer_debt_savings_digit_ten_billion][db_state_consumer_debt_savings_digit_billion].[db_state_consumer_debt_savings_digit_hundred_million][db_state_consumer_debt_savings_digit_ten_million][db_state_consumer_debt_savings_digit_million]B"
+        localization_key = "[db_state_consumer_debt_savings_digit_hundred_billion][db_state_consumer_debt_savings_digit_ten_billion][db_state_consumer_debt_savings_digit_billion].[db_state_consumer_debt_savings_digit_hundred_million]B"
     }
 
     text = { 
@@ -345,7 +345,7 @@ defined_text = {
                 check_variable = { THIS.db_state_consumer_debt_savings_overflow_check^14 < 1 }
             }
         }
-        localization_key = "[db_state_consumer_debt_savings_digit_trillion].[db_state_consumer_debt_savings_digit_hundred_billion][db_state_consumer_debt_savings_digit_ten_billion][db_state_consumer_debt_savings_digit_billion]T"
+        localization_key = "[db_state_consumer_debt_savings_digit_trillion].[db_state_consumer_debt_savings_digit_hundred_billion][db_state_consumer_debt_savings_digit_ten_billion]T"
     }
 
     text = { 
@@ -355,7 +355,7 @@ defined_text = {
                 check_variable = { THIS.db_state_consumer_debt_savings_overflow_check^14 < 1 }
             }
         }
-        localization_key = "[db_state_consumer_debt_savings_digit_ten_trillion][db_state_consumer_debt_savings_digit_trillion].[db_state_consumer_debt_savings_digit_hundred_billion][db_state_consumer_debt_savings_digit_ten_billion][db_state_consumer_debt_savings_digit_billion]T"
+        localization_key = "[db_state_consumer_debt_savings_digit_ten_trillion][db_state_consumer_debt_savings_digit_trillion].[db_state_consumer_debt_savings_digit_hundred_billion][db_state_consumer_debt_savings_digit_ten_billion]T"
     }
 
     text = { 
@@ -364,7 +364,7 @@ defined_text = {
                 check_variable = { THIS.db_state_consumer_debt_savings_overflow_check^14 > 0 }
             }
         }
-        localization_key = "[db_state_consumer_debt_savings_digit_hundred_trillion][db_state_consumer_debt_savings_digit_ten_trillion][db_state_consumer_debt_savings_digit_trillion].[db_state_consumer_debt_savings_digit_hundred_billion][db_state_consumer_debt_savings_digit_ten_billion][db_state_consumer_debt_savings_digit_billion]T"
+        localization_key = "[db_state_consumer_debt_savings_digit_hundred_trillion][db_state_consumer_debt_savings_digit_ten_trillion][db_state_consumer_debt_savings_digit_trillion].[db_state_consumer_debt_savings_digit_hundred_billion]T"
     }
 }
 defined_text = {

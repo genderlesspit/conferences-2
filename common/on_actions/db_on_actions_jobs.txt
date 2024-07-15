@@ -275,12 +275,14 @@ on_actions = {
 						max = 1
 					}
 					set_variable = { THIS.db_state_base_cost_of_living_modifier = THIS.db_state_base_wealth }
+					set_variable = { THIS.db_state_cost_of_living = THIS.db_state_base_cost_of_living_modifier }
 					add_to_variable = { THIS.db_state_base_cost_of_living_modifier = .25 }
 					divide_variable = { THIS.db_state_base_cost_of_living_modifier = 10 }
 				
 				# STARTING DEBT
 					set_variable = { THIS.db_state_debt_base = THIS.state_population_k }
-					set_variable = { THIS.db_state_debt_base_factor = -.3668 } #.4x366.9x-1000
+					set_variable = { THIS.db_state_debt_base_factor = 0.915 } #.4x366.9x-1000
+					multiply_variable = { THIS.db_state_debt_base_factor = THIS.db_state_base_cost_of_living_modifier } 
 					multiply_variable = { THIS.db_state_debt_base_factor = PREV.db_national_inflation }
 					multiply_variable = { THIS.db_state_debt_base = THIS.db_state_debt_base_factor }
 										
@@ -370,6 +372,7 @@ on_actions = {
                         value = v
                         log = "[?v] added to array."
                     }
+					#add_to_variable = { THIS.db_state_consumer_debt_savings_overflow_check^3 = THIS.db_state_debt_base }
                 }
 
 
@@ -392,20 +395,24 @@ on_actions = {
 						days = 1
 					}
 					clr_country_flag = db_economic_hidden_flag
+					log = "db_economic_hidden: daily event successfully fired!"
 				}		
 			}
-			#calculate and add base debt 
 			every_state = {
-				if = {
-					limit = { check_variable = { THIS.db_state_debt_base < -1 } }
-					add_to_variable = { THIS.db_state_consumer_debt_savings_overflow_check^3 = 1 }
-					add_to_variable = { THIS.db_state_debt_base = 1 }
-				}
-				else = {
-					clear_variable = THIS.db_state_debt_base
-				}
-				db_state_consumer_debt_savings_initialize_overflow_value = yes
-			}	
+				db_calculate_base_debt = yes
+			}
+			#calculate and add base debt 
+			#every_state = {
+			#	if = {
+			#		limit = { check_variable = { THIS.db_state_debt_base < -1 } }
+			#		add_to_variable = { THIS.db_state_consumer_debt_savings_overflow_check^3 = 1 }
+			#		add_to_variable = { THIS.db_state_debt_base = 1 }
+			#	}
+			#	else = {
+			#		clear_variable = THIS.db_state_debt_base
+			#	}
+			#	db_state_consumer_debt_savings_initialize_overflow_value = yes
+			#}	
 		}
 	}
 	
@@ -596,6 +603,12 @@ on_actions = {
 				divide_variable = { THIS.db_national_inflation_rate = 365 }
 				multiply_variable = { THIS.db_national_inflation_rate_yearly = 365 }
 				
+			#ADD INFLATION RATE TO COST OF LIVING
+				every_owned_state = { 
+					set_variable = { THIS.db_state_cost_of_living = THIS.db_state_base_cost_of_living_modifier }
+					add_to_variable = { THIS.db_state_cost_of_living = PREV.db_national_inflation_since_1936 }					
+				}
+				
 			# CALCULATE INTEREST RATES
 				set_variable = { THIS.db_national_interest_rate = THIS.db_national_interest_rate_base }
 				set_variable = { THIS.db_national_interest_rate_modifier = 0 }
@@ -619,24 +632,24 @@ on_actions = {
 				#BASE SPENDING ON FOOD
 					set_variable = { THIS.db_state_consumer_spending_base_food = 0.3 }
 					add_to_variable = { THIS.db_state_consumer_spending_base_food = PREV.db_national_consumer_goods_food_modifier }
-					multiply_variable = { THIS.db_state_consumer_spending_base_food = PREV.db_national_inflation_since_1936 }
+					#multiply_variable = { THIS.db_state_consumer_spending_base_food = PREV.db_national_inflation_since_1936 }
 					
 				#BASE SPENDING ON HOUSING
 					set_variable = { THIS.db_state_consumer_spending_base_housing = 0.28 } #housing comes after
-					multiply_variable = { THIS.db_state_consumer_spending_base_clothing = THIS.db_state_base_cost_of_living_modifier }
+					multiply_variable = { THIS.db_state_consumer_spending_base_clothing = THIS.db_state_cost_of_living }
 					add_to_variable = { THIS.db_state_consumer_spending_base_housing = PREV.db_national_consumer_goods_housing_modifier }
 					
 				#BASE SPENDING ON CLOTHING/RECREATION/APPLIANCES
 					set_variable = { THIS.db_state_consumer_spending_base_clothing = 0.15 }
 					multiply_variable = { THIS.db_state_consumer_spending_base_clothing = THIS.db_state_base_cost_of_living_modifier }
-					multiply_variable = { THIS.db_state_consumer_spending_base_clothing = PREV.db_national_inflation_since_1936 }
+					#multiply_variable = { THIS.db_state_consumer_spending_base_clothing = PREV.db_national_inflation_since_1936 }
 					add_to_variable = { THIS.db_state_consumer_spending_base_clothing = PREV.db_national_consumer_goods_clothing_modifier }
 					
 				#BASE SPENDING ON MEDICAL
 					set_variable = { THIS.db_state_consumer_spending_base_medical = 0.06 }
 					add_to_variable = { THIS.db_state_consumer_spending_base_medical = PREV.db_national_consumer_goods_medical_modifier }
 					multiply_variable = { THIS.db_state_consumer_spending_base_medical = THIS.db_state_base_cost_of_living_modifier }
-					multiply_variable = { THIS.db_state_consumer_spending_base_medical = PREV.db_national_inflation_since_1936 }
+					#multiply_variable = { THIS.db_state_consumer_spending_base_medical = PREV.db_national_inflation_since_1936 }
 					
 				#BASE SPENDING ON DEBT REPAYMENT
 					if = { 
@@ -644,10 +657,10 @@ on_actions = {
 							#check_variable = { THIS.db_state_consumer_debt_savings_per_capita < 0 } 
 							#check_variable = { THIS.db_state_consumer_debt_savings < 0 }
 						}
-						set_variable = { THIS.db_state_consumer_spending_base_debt = THIS.db_state_consumer_debt_savings_per_capita }
+						set_variable = { THIS.db_state_consumer_spending_base_debt = THIS.db_consumer_debt_per_capita }
 						add_to_variable = { THIS.db_state_consumer_spending_base_debt = THIS.db_state_salary_average_per_capita }
 						divide_variable = { THIS.db_state_consumer_spending_base_debt = PREV.db_national_inflation }
-						divide_variable = { THIS.db_state_consumer_spending_base_debt = -2000000 }
+						divide_variable = { THIS.db_state_consumer_spending_base_debt = -4000 }
 						clamp_variable = { 
 							var = THIS.db_state_consumer_spending_base_debt
 							max = .5
@@ -718,7 +731,7 @@ on_actions = {
 					add_to_variable = { PREV.db_national_total_daily_consumer_spending_total = THIS.db_state_total_daily_consumer_spending_total }
 					add_to_variable = { PREV.db_national_net_consumer_income_total = db_state_daily_net_income }
 					add_to_variable = { PREV.db_national_daily_taxes_raised = THIS.db_state_taxes_raised }
-					add_to_variable = { PREV.db_national_consumer_debt_per_capita_average = THIS.db_state_consumer_debt_savings_per_capita }
+					add_to_variable = { PREV.db_national_consumer_debt_per_capita_average = THIS.db_consumer_debt_per_capita }
 					add_to_variable = { PREV.db_national_daily_debt_paid_off = THIS.db_state_daily_debt_paid_off }
 					add_to_variable = { PREV.db_national_total_daily_savings = THIS.db_state_total_daily_savings }
 				}
