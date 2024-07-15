@@ -483,14 +483,14 @@ on_weekly = {
 
 		#MILITARY COSTS BASED ON ECONOMIC LAW
 			set_variable = { THIS.db_spending_cost_modifier = THIS.db_spending_cost_modifier_base }
-			if = { limit = { has_idea = undisturbed_isolation } multiply_variable = { var = THIS.db_spending_cost_modifier value = 2 } }
-			if = { limit = { has_idea = isolation } multiply_variable = { var = THIS.db_spending_cost_modifier value = 1.5 } }
-			if = { limit = { has_idea = civilian_economy } multiply_variable = { var = THIS.db_spending_cost_modifier value = 1 } }
-			if = { limit = { has_idea = low_economic_mobilisation OR = { has_idea = new_economic_policy } } multiply_variable = { var = THIS.db_spending_cost_modifier value = 0.85 } }
-			if = { limit = { has_idea = partial_economic_mobilisation OR = { has_idea = new_economic_policy_2 } } multiply_variable = { var = THIS.db_spending_cost_modifier value = 0.7 } }
-			if = { limit = { has_idea = low_economic_mobilisation } multiply_variable = { var = THIS.db_spending_cost_modifier value = 0.55 } }
-			if = { limit = { has_idea = war_economy } multiply_variable = { var = THIS.db_spending_cost_modifier value = 0.4 } }
-			if = { limit = { has_idea = tot_economic_mobilisation OR = { has_idea = SPR_collectivized_society } } multiply_variable = { var = THIS.db_spending_cost_modifier value = 0.3 } }
+			if = { limit = { has_idea = undisturbed_isolation } multiply_variable = { THIS.db_spending_cost_modifier = 2 } }
+			if = { limit = { has_idea = isolation } multiply_variable = { THIS.db_spending_cost_modifier = 1.5 } }
+			if = { limit = { has_idea = civilian_economy } multiply_variable = { THIS.db_spending_cost_modifier = 1 } }
+			if = { limit = { has_idea = low_economic_mobilisation OR = { has_idea = new_economic_policy } } multiply_variable = { THIS.db_spending_cost_modifier 0.85 } }
+			if = { limit = { has_idea = partial_economic_mobilisation OR = { has_idea = new_economic_policy_2 } } multiply_variable = { THIS.db_spending_cost_modifier = 0.7 } }
+			if = { limit = { has_idea = low_economic_mobilisation } multiply_variable = { THIS.db_spending_cost_modifier = 0.55 } }
+			if = { limit = { has_idea = war_economy } multiply_variable = { THIS.db_spending_cost_modifier = 0.4 } }
+			if = { limit = { has_idea = tot_economic_mobilisation OR = { has_idea = SPR_collectivized_society } } multiply_variable = { THIS.db_spending_cost_modifier = 0.3 } }
 
 		#CALCULATE WEEKLY MILITARY SPENDING
 			for_loop_effect = {
