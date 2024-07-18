@@ -1,0 +1,141 @@
+guiTypes = { 
+    containerWindowType = {
+        name = "military_spending_window"
+		size = { height = 320 width = 300 }
+        position = { x = -505 y = 238 }
+		clipping = yes
+		background = {
+			name = "military_spending_background"
+			quadTextureSprite = "GFX_tiled_bg"
+		}
+		show_animation_type = decelerated
+		hide_animation_type = accelerated
+		animation_time = 300
+		hide_position = { x = -505 y = 538 }
+		
+		orientation = center
+		moveable = yes
+		
+		containerWindowType = {
+			name = "military_spending_header"
+			size = { height = 300 width = 274 }
+			position = { x = 13 y = -1 }
+			clipping = yes
+			
+			iconType =	{
+				name ="military_spending_header_bg"
+				spriteType = "GFX_diplo_popup_header_bg_large"
+				position = { x= -160 y = 8 }
+				orientation = upper_left
+				alwaystransparent = yes
+			}
+			
+			instantTextboxType = {
+				name = "military_spending_name"
+				position = { x = -25 y = 24 }
+				textureFile = ""
+				font = "hoi_36header"
+				text = "Local Economy"
+				maxWidth = 330
+				maxHeight = 30
+				format = center
+			}
+		}
+		
+		instantTextboxType = {
+			name = "military_spending_debt"
+			position = { x = 30 y = 90 }
+			textureFile = ""
+			font = "hoi_18mbs"
+			text = db_gui_military_spending
+			format = left
+			maxWidth = 330
+		}
+		
+		instantTextboxType = {
+			name = "military_spending_income"
+			position = { x = 30 y = 110 }
+			textureFile = ""
+			font = "hoi_18mbs"
+			text = "Daily Income: [?THIS.db_state_daily_income_total|+^]"
+			format = left
+			maxWidth = 330
+		}
+		
+		instantTextboxType = {
+			name = "military_spending_spending"
+			position = { x = 30 y = 130 }
+			textureFile = ""
+			font = "hoi_18mbs"
+			text = "Daily Spending: [?THIS.db_state_total_daily_consumer_spending_total|-^]"
+			format = left
+			maxWidth = 330
+		}
+		
+		instantTextboxType = {
+			name = "military_spending_net_income"
+			position = { x = 30 y = 150 }
+			textureFile = ""
+			font = "hoi_18mbs"
+			text = "Daily Net Income: [?THIS.db_state_daily_net_income|+^]"
+			format = left
+			maxWidth = 330
+		}
+		
+		instantTextboxType = {
+			name = "military_spending_taxes"
+			position = { x = 30 y = 170 }
+			textureFile = ""
+			font = "hoi_18mbs"
+			text = "Daily Taxes Raised: [?THIS.db_state_taxes_raised|+^]"
+			format = left
+			maxWidth = 330
+		}
+		instantTextboxType = {
+			name = "military_spending_wage"
+			position = { x = 30 y = 190 }
+			textureFile = ""
+			font = "hoi_18mbs"
+			text = "Avg. Daily Wage: [?THIS.db_state_daily_wage|+^]"
+			format = left
+			maxWidth = 330
+		}
+		instantTextboxType = {
+			name = "military_spending_unemployment"
+			position = { x = 30 y = 210 }
+			textureFile = ""
+			font = "hoi_18mbs"
+			text = "Unemployment Rate: [?THIS.db_state_unemployed_percent|-%]"
+			format = left
+			maxWidth = 330
+		}
+		instantTextboxType = {
+			name = "military_spending_lfpr"
+			position = { x = 30 y = 230 }
+			textureFile = ""
+			font = "hoi_18mbs"
+			text = db_gui_state_lfpr_total
+			format = left
+			maxWidth = 330
+		}
+		instantTextboxType = {
+			name = "military_spending_cost"
+			position = { x = 30 y = 250 }
+			textureFile = ""
+			font = "hoi_18mbs"
+			text = db_gui_state_cost_of_living
+			format = left
+			maxWidth = 330
+		}
+		instantTextboxType = {
+			name = "state_debt_per_capita"
+			position = { x = 30 y = 270 }
+			textureFile = ""
+			font = "hoi_18mbs"
+			text = "Debt/Savings per Capita: [?THIS.db_consumer_debt_per_capita|^+]"
+			format = left
+			maxWidth = 330
+		}
+		
+    }
+}
