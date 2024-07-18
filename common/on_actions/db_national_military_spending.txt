@@ -477,39 +477,150 @@ on_actions = {
 
 #Weekly Spending Calculation
 
-on_weekly = {
-	effect = {
-		every_country = {
+	on_weekly = {
+		effect = {
+			every_country = {
 
-		#MILITARY COSTS BASED ON ECONOMIC LAW
-			set_variable = { THIS.db_spending_cost_modifier = THIS.db_spending_cost_modifier_base }
-			if = { limit = { has_idea = undisturbed_isolation } multiply_variable = { THIS.db_spending_cost_modifier = 2 } }
-			if = { limit = { has_idea = isolation } multiply_variable = { THIS.db_spending_cost_modifier = 1.5 } }
-			if = { limit = { has_idea = civilian_economy } multiply_variable = { THIS.db_spending_cost_modifier = 1 } }
-			if = { limit = { has_idea = low_economic_mobilisation OR = { has_idea = new_economic_policy } } multiply_variable = { THIS.db_spending_cost_modifier 0.85 } }
-			if = { limit = { has_idea = partial_economic_mobilisation OR = { has_idea = new_economic_policy_2 } } multiply_variable = { THIS.db_spending_cost_modifier = 0.7 } }
-			if = { limit = { has_idea = low_economic_mobilisation } multiply_variable = { THIS.db_spending_cost_modifier = 0.55 } }
-			if = { limit = { has_idea = war_economy } multiply_variable = { THIS.db_spending_cost_modifier = 0.4 } }
-			if = { limit = { has_idea = tot_economic_mobilisation OR = { has_idea = SPR_collectivized_society } } multiply_variable = { THIS.db_spending_cost_modifier = 0.3 } }
+			#MILITARY COSTS BASED ON ECONOMIC LAW
+				set_variable = { THIS.db_spending_cost_modifier = THIS.db_spending_cost_modifier_base }
+				if = { limit = { has_idea = undisturbed_isolation } multiply_variable = { THIS.db_spending_cost_modifier = 2 } }
+				if = { limit = { has_idea = isolation } multiply_variable = { THIS.db_spending_cost_modifier = 1.5 } }
+				if = { limit = { has_idea = civilian_economy } multiply_variable = { THIS.db_spending_cost_modifier = 1 } }
+				if = { limit = { has_idea = low_economic_mobilisation OR = { has_idea = new_economic_policy } } multiply_variable = { THIS.db_spending_cost_modifier 0.85 } }
+				if = { limit = { has_idea = partial_economic_mobilisation OR = { has_idea = new_economic_policy_2 } } multiply_variable = { THIS.db_spending_cost_modifier = 0.7 } }
+				if = { limit = { has_idea = low_economic_mobilisation } multiply_variable = { THIS.db_spending_cost_modifier = 0.55 } }
+				if = { limit = { has_idea = war_economy } multiply_variable = { THIS.db_spending_cost_modifier = 0.4 } }
+				if = { limit = { has_idea = tot_economic_mobilisation OR = { has_idea = SPR_collectivized_society } } multiply_variable = { THIS.db_spending_cost_modifier = 0.3 } }
 
-		#CALCULATE WEEKLY MILITARY SPENDING
-			for_loop_effect = {
-				start = 0
-				end = 25
-				add = 1
-				value = v
-			
-				set_temp_variable = { spending = THIS.db_military_production^v }
-				multiply_temp_variable = { spending = THIS.db_military_production_cost^v }
-				divide_temp_variable = { spending = 1000 } # quantify by thousands
-				set_variable = { THIS.military_spending_this_week^v = spending }
+			#CALCULATE WEEKLY MILITARY SPENDING
+				for_loop_effect = {
+					start = 0
+					end = 25
+					add = 1
+					value = v
 				
-				set_temp_variable = { new_total_spending = THIS.military_spending_this_week^v }
-				subtract_temp_variable = { new_total_spending = THIS.military_spending_last_week^v )
-				add_to_variable = { THIS.total_military_spending_add_to_total = new_total_spending }
-			
-				set_variable = { THIS.military_spending_last_week^v = THIS.military_spending_this_week^v }
+				
+				#LOCALIZE SPENDING TO COUNTRY
+					set_temp_variable = { spending = THIS.db_military_production^v }
+					multiply_temp_variable = { spending = THIS.db_military_production_cost^v }
+					multiply_temp_variable = { spending = THIS.db_national_inflation }
+					divide_temp_variable = { spending = 1000 } # quantify by thousands
+					set_variable = { THIS.military_spending_this_week^v = spending }
+					
+				#ADD SPENDING TO "ADD_TO_TOTAL"	
+					set_temp_variable = { new_total_spending = THIS.military_spending_this_week^v }
+					subtract_temp_variable = { new_total_spending = THIS.military_spending_last_week^v }
+					add_to_variable = { THIS.total_military_spending_add_to_total = new_total_spending }
+				
+					set_variable = { THIS.military_spending_last_week^v = THIS.military_spending_this_week^v }
+					
+					clamp_variable = {
+						var = THIS.total_military_spending_add_to_total
+						min = 0
+						max = 2000000
+					}
+				}
+				
+			#ADD "ADD_TO_TOTAL" to Total Military Spending
+				db_national_military_spending_initialize_overflow_value = yes
+				
+				every_owned_state = {
+					set_variable = { THIS.db_state_military_staff_spending = 0 }
+					add_to_variable = { THIS.db_state_military_staff_spending = THIS.db_state_military_jobs }
+					multiply_variable = { THIS.db_state_military_staff_spending = THIS.db_state_daily_wage }
+					multiply_variable = { THIS.db_state_military_staff_spending = 7 } #quantify to week
+					add_to_variable = { PREV.national_state_militrary_staff_spending_add_to_total = THIS.db_state_military_staff_spending }
+				}
+				
+				db_national_military_staff_spending_initialize_overflow_value = yes
+				
+				if = {
+					limit = { is_ai = no }
+					log = "Military spending successfully initialized."
+				}
 			}
 		}
 	}
-} 
+
+    on_daily = {
+        effect = {
+            every_state = {
+                for_loop_effect = {
+                    start = 0
+                    end = 14
+                    add = 1
+                    value = v
+                    round_variable = THIS.db_national_military_spending_overflow_check^v
+                    set_temp_variable = { next_digit = v }
+                    add_to_temp_variable = { next_digit = 1 }
+                    set_temp_variable = { this_digit = v }
+                    set_temp_variable = { last_digit = v }
+                    add_to_temp_variable = { last_digit = -1 }
+                    if = {
+                        limit = { check_variable = { THIS.db_national_military_spending_overflow_check^this_digit > 9 } }
+                        add_to_variable = { THIS.db_national_military_spending_overflow_check^next_digit = 1 }
+                        add_to_variable = { THIS.db_national_military_spending_overflow_check^this_digit = -10 }
+                        #log = "THIS.db_national_military_spending: Digit overflow found!"
+                        #log = "THIS.db_national_military_spending: New total is [?THIS.db_national_military_spending_overflow_check^6][?THIS.db_national_military_spending_overflow_check^5][?THIS.db_national_military_spending_overflow_check^4][?THIS.db_national_military_spending_overflow_check^3][?THIS.db_national_military_spending_overflow_check^2][?THIS.db_national_military_spending_overflow_check^1][?THIS.db_national_military_spending_overflow_check^0]"
+                    }
+                    if = {
+                        limit = { check_variable = { THIS.db_national_military_spending_overflow_check^this_digit < 0 } }
+                        #log = "Found negative digit in THIS.db_national_military_spending_overflow_check^[?this_digit!]"
+                        for_loop_effect = {
+                            start = 0
+                            add = 1
+                            end = 14
+                            value = y
+                            break = can_borrow_digit
+                            set_temp_variable = { borrowable_digit = y }
+                            if = {
+                                limit = {
+                                    check_variable = { borrowable_digit > this_digit }
+                                    check_variable = { THIS.db_national_military_spending_overflow_check^y > 0 }
+                                }
+                                set_state_flag = db_national_military_spending_overflow_check_borrowable_digit
+                                set_variable = { THIS.db_national_military_spending_overflow_check_borrowed_digit = y }
+                                #log = "THIS.db_national_military_spending: Found borrowable digit!"
+                                clear_variable = THIS.db_national_military_spending_overflow_check_borrowed_digit
+                                set_temp_variable = { borrowed_digit = y }
+                                set_temp_variable = { borrowed_digit_last_digit = borrowed_digit }
+                                add_to_temp_variable = { borrowed_digit_last_digit = -1 }
+                                add_to_variable = { THIS.db_national_military_spending_overflow_check^borrowed_digit = -1 }
+                                add_to_variable = { THIS.db_national_military_spending_overflow_check^borrowed_digit_last_digit = 10 }
+                                #log = "THIS.db_national_military_spending: New total is [?THIS.db_national_military_spending_overflow_check^6][?THIS.db_national_military_spending_overflow_check^5][?THIS.db_national_military_spending_overflow_check^4][?THIS.db_national_military_spending_overflow_check^3][?THIS.db_national_military_spending_overflow_check^2][?THIS.db_national_military_spending_overflow_check^1][?THIS.db_national_military_spending_overflow_check^0]"
+                                set_temp_variable = { can_borrow_digit = 1 }
+                            }
+                        }
+                        if = {
+                            limit = { NOT = { has_state_flag = db_national_military_spending_overflow_check_borrowable_digit } }
+                            if = {
+                                limit = { NOT = { check_variable = { this_digit = 0 } } }
+                                add_to_variable = { THIS.db_national_military_spending_overflow_check^last_digit = -10 }
+                                add_to_variable = { THIS.db_national_military_spending_overflow_check^this_digit = 1 }
+                                #log = "THIS.db_national_military_spending: No digit to borrow from. You're getting poorer. Whoops."
+                                #log = "THIS.db_national_military_spending: New total is [?THIS.db_national_military_spending_overflow_check^6][?THIS.db_national_military_spending_overflow_check^5][?THIS.db_national_military_spending_overflow_check^4][?THIS.db_national_military_spending_overflow_check^3][?THIS.db_national_military_spending_overflow_check^2][?THIS.db_national_military_spending_overflow_check^1][?THIS.db_national_military_spending_overflow_check^0]"
+                            }
+                            if = {
+                                limit = { check_variable = { this_digit = 0 }
+                                check_variable = { THIS.db_national_military_spending_overflow_check^this_digit < 0 } }
+                                if = {
+                                    limit = { has_state_flag = db_national_military_spending_overflow_check_is_positive }
+                                    set_state_flag = db_national_military_spending_overflow_check_is_negative
+                                    clr_state_flag = db_national_military_spending_overflow_check_is_positive
+                                    multiply_variable = { THIS.db_national_military_spending_overflow_check^0 = -1 }
+                                    #log = "THIS.db_national_military_spending has gone negative!"
+                                }
+                                else_if = {
+                                    set_state_flag = db_national_military_spending_overflow_check_is_positive
+                                    clr_state_flag = db_national_military_spending_overflow_check_is_negative
+                                    multiply_variable = { THIS.db_national_military_spending_overflow_check^0 = -1 }
+                                    #log = "THIS.db_national_military_spending has gone positive!"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

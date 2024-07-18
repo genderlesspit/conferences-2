@@ -1,0 +1,39 @@
+db_national_military_spending_initialize_overflow_value = {
+
+    set_variable = { THIS.db_national_military_spending_check_digit = 1 }
+
+    for_loop_effect = {
+		value = v
+		add = 1
+		start = 3 #starts at 1000
+		end = 9
+		
+        if = {
+            limit = { check_variable = { THIS.db_national_military_spending_add_to_total > THIS.db_national_military_spending_check_digit } }
+            subtract_from_variable = { THIS.db_national_military_spending_add_to_total = THIS.db_national_military_spending_check_digit }
+			add_to_variable = { THIS.db_national_military_spending_overflow_check^v = 1 }
+        }
+		multiply_variable = { THIS.db_national_military_spending_check_digit = 10 }
+    }
+	
+}
+
+db_national_military_staff_spending_initialize_overflow_value = {
+
+    set_variable = { THIS.db_national_military_staff_spending_check_digit = 1 }
+
+    for_loop_effect = {
+		value = v
+		add = 1
+		start = 3 #starts at 1000
+		end = 9
+		
+        if = {
+            limit = { check_variable = { THIS.db_national_military_staff_spending_add_to_total > THIS.db_national_military_staff_spending_check_digit } }
+            subtract_from_variable = { THIS.db_national_military_staff_spending_add_to_total = THIS.db_national_military_staff_spending_check_digit }
+			add_to_variable = { THIS.db_national_military_staff_spending_overflow_check^v = 1 }
+        }
+		multiply_variable = { THIS.db_national_military_staff_spending_check_digit = 10 }
+    }
+	
+}
