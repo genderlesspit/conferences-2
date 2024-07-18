@@ -6,135 +6,138 @@ on_actions = {
 			every_country = {
 				set_variable = { THIS.db_spending_cost_modifier_base = 1 }
 				
+				# ALL BASE COSTS ARE MEASURED IN THOUSANDS
+				
 				#infantry
-				set_variable = { THIS.db_military_production_infantry_cost_base = 83 } #base cost of a infantry weapon
+				set_variable = { THIS.db_military_production_infantry_cost_base = 0.083 } #base cost of a infantry weapon
 				set_variable = { THIS.db_military_production_infantry_cost = THIS.db_military_production_infantry_cost_base }
 				multiply_variable = { THIS.db_military_production_infantry_cost = THIS.db_spending_cost_modifier }
 				
 				#artillery
-				set_variable = { THIS.db_military_production_artillery_cost_base = 83 } #base cost of a artillery weapon
+				set_variable = { THIS.db_military_production_artillery_cost_base = 13 } #base cost of a artillery weapon - The cost of a 75mm M1897 field gun, approximately $13,000.
 				set_variable = { THIS.db_military_production_artillery_cost = THIS.db_military_production_artillery_cost_base }
 				multiply_variable = { THIS.db_military_production_artillery_cost = THIS.db_spending_cost_modifier }
 				
 				#anti_air
-				set_variable = { THIS.db_military_production_anti_air_cost_base = 83 } #base cost of a anti_air weapon
+				set_variable = { THIS.db_military_production_anti_air_cost_base = 10 } #base cost of a anti_air weapon
 				set_variable = { THIS.db_military_production_anti_air_cost = THIS.db_military_production_anti_air_cost_base }
 				multiply_variable = { THIS.db_military_production_anti_air_cost = THIS.db_spending_cost_modifier }
-				
+
 				#anti_tank
-				set_variable = { THIS.db_military_production_anti_tank_cost_base = 83 } #base cost of a anti_tank weapon
+				set_variable = { THIS.db_military_production_anti_tank_cost_base = 5 } #base cost of a anti_tank weapon
 				set_variable = { THIS.db_military_production_anti_tank_cost = THIS.db_military_production_anti_tank_cost_base }
 				multiply_variable = { THIS.db_military_production_anti_tank_cost = THIS.db_spending_cost_modifier }
-				
+
 				#rocket
-				set_variable = { THIS.db_military_production_rocket_cost_base = 83 } #base cost of a rocket weapon
+				set_variable = { THIS.db_military_production_rocket_cost_base = 13.5 } #base cost of a rocket weapon
 				set_variable = { THIS.db_military_production_rocket_cost = THIS.db_military_production_rocket_cost_base }
 				multiply_variable = { THIS.db_military_production_rocket_cost = THIS.db_spending_cost_modifier }
-				
+
 				#support
-				set_variable = { THIS.db_military_production_support_cost_base = 83 } #base cost of a support weapon
+				set_variable = { THIS.db_military_production_support_cost_base = 0.5 } #base cost of a support weapon
 				set_variable = { THIS.db_military_production_support_cost = THIS.db_military_production_support_cost_base }
 				multiply_variable = { THIS.db_military_production_support_cost = THIS.db_spending_cost_modifier }
-				
+
 				#motorized
-				set_variable = { THIS.db_military_production_motorized_cost_base = 83 } #base cost of a motorized weapon
+				set_variable = { THIS.db_military_production_motorized_cost_base = 10 } #base cost of a motorized weapon
 				set_variable = { THIS.db_military_production_motorized_cost = THIS.db_military_production_motorized_cost_base }
 				multiply_variable = { THIS.db_military_production_motorized_cost = THIS.db_spending_cost_modifier }
-				
+
 				#mechanized
-				set_variable = { THIS.db_military_production_mechanized_cost_base = 83 } #base cost of a mechanized weapon
+				set_variable = { THIS.db_military_production_mechanized_cost_base = 20 } #base cost of a mechanized weapon
 				set_variable = { THIS.db_military_production_mechanized_cost = THIS.db_military_production_mechanized_cost_base }
 				multiply_variable = { THIS.db_military_production_mechanized_cost = THIS.db_spending_cost_modifier }
-				
+
 				#capital_ship
-				set_variable = { THIS.db_military_production_capital_ship_cost_base = 83 } #base cost of a capital_ship weapon
+				set_variable = { THIS.db_military_production_capital_ship_cost_base = 70000 } #base cost of a capital_ship weapon
 				set_variable = { THIS.db_military_production_capital_ship_cost = THIS.db_military_production_capital_ship_cost_base }
 				multiply_variable = { THIS.db_military_production_capital_ship_cost = THIS.db_spending_cost_modifier }
-				
+
 				#submarine
-				set_variable = { THIS.db_military_production_submarine_cost_base = 83 } #base cost of a submarine weapon
+				set_variable = { THIS.db_military_production_submarine_cost_base = 5000 } #base cost of a submarine weapon
 				set_variable = { THIS.db_military_production_submarine_cost = THIS.db_military_production_submarine_cost_base }
 				multiply_variable = { THIS.db_military_production_submarine_cost = THIS.db_spending_cost_modifier }
-				
+
 				#carrier
-				set_variable = { THIS.db_military_production_carrier_cost_base = 83 } #base cost of a carrier weapon
+				set_variable = { THIS.db_military_production_carrier_cost_base = 19000 } #base cost of a carrier weapon
 				set_variable = { THIS.db_military_production_carrier_cost = THIS.db_military_production_carrier_cost_base }
 				multiply_variable = { THIS.db_military_production_carrier_cost = THIS.db_spending_cost_modifier }
-				
+
 				#screen_ship
-				set_variable = { THIS.db_military_production_screen_ship_cost_base = 83 } #base cost of a screen_ship weapon
+				set_variable = { THIS.db_military_production_screen_ship_cost_base = 5000 } #base cost of a screen_ship weapon
 				set_variable = { THIS.db_military_production_screen_ship_cost = THIS.db_military_production_screen_ship_cost_base }
 				multiply_variable = { THIS.db_military_production_screen_ship_cost = THIS.db_spending_cost_modifier }
-				
+
 				#fighter
-				set_variable = { THIS.db_military_production_fighter_cost_base = 83 } #base cost of a fighter weapon
+				set_variable = { THIS.db_military_production_fighter_cost_base = 50 } #base cost of a fighter weapon
 				set_variable = { THIS.db_military_production_fighter_cost = THIS.db_military_production_fighter_cost_base }
 				multiply_variable = { THIS.db_military_production_fighter_cost = THIS.db_spending_cost_modifier }
-				
+
 				#heavy_fighter
-				set_variable = { THIS.db_military_production_heavy_fighter_cost_base = 83 } #base cost of a heavy_fighter weapon
+				set_variable = { THIS.db_military_production_heavy_fighter_cost_base = 97 } #base cost of a heavy_fighter weapon
 				set_variable = { THIS.db_military_production_heavy_fighter_cost = THIS.db_military_production_heavy_fighter_cost_base }
 				multiply_variable = { THIS.db_military_production_heavy_fighter_cost = THIS.db_spending_cost_modifier }
-				
+
 				#cas
-				set_variable = { THIS.db_military_production_cas_cost_base = 83 } #base cost of a cas weapon
+				set_variable = { THIS.db_military_production_cas_cost_base = 58 } #base cost of a cas weapon
 				set_variable = { THIS.db_military_production_cas_cost = THIS.db_military_production_cas_cost_base }
 				multiply_variable = { THIS.db_military_production_cas_cost = THIS.db_spending_cost_modifier }
-				
+
 				#interceptor
-				set_variable = { THIS.db_military_production_interceptor_cost_base = 83 } #base cost of a interceptor weapon
+				set_variable = { THIS.db_military_production_interceptor_cost_base = 25 } #base cost of a interceptor weapon
 				set_variable = { THIS.db_military_production_interceptor_cost = THIS.db_military_production_interceptor_cost_base }
 				multiply_variable = { THIS.db_military_production_interceptor_cost = THIS.db_spending_cost_modifier }
-				
+
 				#strategic_bomber
-				set_variable = { THIS.db_military_production_strategic_bomber_cost_base = 83 } #base cost of a strategic_bomber weapon
+				set_variable = { THIS.db_military_production_strategic_bomber_cost_base = 200 } #base cost of a strategic_bomber weapon
 				set_variable = { THIS.db_military_production_strategic_bomber_cost = THIS.db_military_production_strategic_bomber_cost_base }
 				multiply_variable = { THIS.db_military_production_strategic_bomber_cost = THIS.db_spending_cost_modifier }
-				
+
 				#tactical_bomber
-				set_variable = { THIS.db_military_production_tactical_bomber_cost_base = 83 } #base cost of a tactical_bomber weapon
+				set_variable = { THIS.db_military_production_tactical_bomber_cost_base = 110 } #base cost of a tactical_bomber weapon
 				set_variable = { THIS.db_military_production_tactical_bomber_cost = THIS.db_military_production_tactical_bomber_cost_base }
 				multiply_variable = { THIS.db_military_production_tactical_bomber_cost = THIS.db_spending_cost_modifier }
-				
+
 				#naval_bomber
-				set_variable = { THIS.db_military_production_naval_bomber_cost_base = 83 } #base cost of a naval_bomber weapon
+				set_variable = { THIS.db_military_production_naval_bomber_cost_base = 85 } #base cost of a naval_bomber weapon
 				set_variable = { THIS.db_military_production_naval_bomber_cost = THIS.db_military_production_naval_bomber_cost_base }
 				multiply_variable = { THIS.db_military_production_naval_bomber_cost = THIS.db_spending_cost_modifier }
-				
+
 				#maritime_patrol_plane
-				set_variable = { THIS.db_military_production_maritime_patrol_plane_cost_base = 83 } #base cost of a maritime_patrol_plane weapon
+				set_variable = { THIS.db_military_production_maritime_patrol_plane_cost_base = 90 } #base cost of a maritime_patrol_plane weapon
 				set_variable = { THIS.db_military_production_maritime_patrol_plane_cost = THIS.db_military_production_maritime_patrol_plane_cost_base }
 				multiply_variable = { THIS.db_military_production_maritime_patrol_plane_cost = THIS.db_spending_cost_modifier }
-				
+
 				#scout_plane
-				set_variable = { THIS.db_military_production_scout_plane_cost_base = 83 } #base cost of a scout_plane weapon
+				set_variable = { THIS.db_military_production_scout_plane_cost_base = 30 } #base cost of a scout_plane weapon
 				set_variable = { THIS.db_military_production_scout_plane_cost = THIS.db_military_production_scout_plane_cost_base }
 				multiply_variable = { THIS.db_military_production_scout_plane_cost = THIS.db_spending_cost_modifier }
-				
+
 				#air_transport
-				set_variable = { THIS.db_military_production_air_transport_cost_base = 83 } #base cost of a air_transport weapon
+				set_variable = { THIS.db_military_production_air_transport_cost_base = 88 } #base cost of a air_transport weapon
 				set_variable = { THIS.db_military_production_air_transport_cost = THIS.db_military_production_air_transport_cost_base }
 				multiply_variable = { THIS.db_military_production_air_transport_cost = THIS.db_spending_cost_modifier }
-				
+
 				#suicide
 				set_variable = { THIS.db_military_production_suicide_cost_base = 83 } #base cost of a suicide weapon
 				set_variable = { THIS.db_military_production_suicide_cost = THIS.db_military_production_suicide_cost_base }
 				multiply_variable = { THIS.db_military_production_suicide_cost = THIS.db_spending_cost_modifier }
-				
+
 				#missile
 				set_variable = { THIS.db_military_production_missile_cost_base = 83 } #base cost of a missile weapon
 				set_variable = { THIS.db_military_production_missile_cost = THIS.db_military_production_missile_cost_base }
 				multiply_variable = { THIS.db_military_production_missile_cost = THIS.db_spending_cost_modifier }
-				
+
 				#convoy
-				set_variable = { THIS.db_military_production_convoy_cost_base = 83 } #base cost of a convoy weapon
+				set_variable = { THIS.db_military_production_convoy_cost_base = 450 } #base cost of a convoy weapon
 				set_variable = { THIS.db_military_production_convoy_cost = THIS.db_military_production_convoy_cost_base }
 				multiply_variable = { THIS.db_military_production_convoy_cost = THIS.db_spending_cost_modifier }
-				
+
 				#armor
-				set_variable = { THIS.db_military_production_armor_cost_base = 83 } #base cost of a armor weapon
+				set_variable = { THIS.db_military_production_armor_cost_base = 20 } #base cost of a armor weapon
 				set_variable = { THIS.db_military_production_armor_cost = THIS.db_military_production_armor_cost_base }
 				multiply_variable = { THIS.db_military_production_armor_cost = THIS.db_spending_cost_modifier }
+
 				
 				add_to_array = {
 				    array = THIS.db_military_production
