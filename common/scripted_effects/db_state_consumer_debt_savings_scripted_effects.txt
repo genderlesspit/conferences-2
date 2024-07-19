@@ -85,3 +85,41 @@ db_calculate_base_debt = {
 		clear_variable = THIS.db_state_debt_base
 	}
 }
+
+db_startup_calculate_wages = {
+	every_owned_state = {
+		#limit = { is_controlled_by = PREV }
+		
+	# SET BASE WAGE 
+		set_variable = { THIS.db_state_salary_total = PREV.db_national_minimum_wage }
+		multiply_variable = { THIS.db_state_salary_total = PREV.db_national_work_hours_per_day }
+		multiply_variable = { THIS.db_state_salary_total = THIS.db_state_base_cost_of_living_modifier }
+		
+	# MODIFY BASE WAGE BY UNEMPLOYMENT AND NATIONAL MODIFIERS
+		set_variable = { THIS.db_state_salary_total_modifier = 0 }
+		add_to_variable = { THIS.db_state_salary_total_modifier = THIS.db_state_base_wage_modifier }
+		add_to_variable = { THIS.db_state_salary_total_modifier = THIS.db_state_total_unemployed_percent }
+		divide_variable = {	THIS.db_state_salary_total_modifier = 2 }
+		clamp_variable = { var = THIS.db_state_salary_total_modifier min = 0.1 max = 1 }
+		multiply_variable = { THIS.db_state_salary_total = THIS.db_state_salary_total_modifier }
+		clamp_variable = { 
+			var = THIS.db_state_salary_total_modifier 
+			min = var:PREV.db_national_minimum_wage 
+			max = 9999999 
+		}
+		
+	# CALCULATE DAILY WAGE PER CAPITA AND TOTAL DAILY INCOME
+		set_variable = { THIS.db_state_daily_wage = THIS.db_state_salary_total }
+		set_variable = { THIS.db_state_salary_average_per_capita = db_state_daily_wage }
+		multiply_variable = { THIS.db_state_salary_average_per_capita = 365 }
+		multiply_variable = { THIS.db_state_salary_total = db_state_total_employed }
+		
+	# CALCULATE TOTAL DAILY INCOME AND YEARLY SALARY
+		set_variable = { THIS.db_state_daily_income_total = THIS.db_state_salary_total }
+		set_variable = { THIS.db_state_taxes_raised = THIS.db_state_daily_income_total }
+		multiply_variable = { THIS.db_state_taxes_raised = PREV.db_national_taxation_rate }
+		subtract_from_variable = { THIS.db_state_daily_income_total = THIS.db_state_taxes_raised }
+		set_variable = { THIS.db_state_daily_wage_total = THIS.db_state_salary_total }
+		multiply_variable = { THIS.db_state_salary_total = 365 }
+	}
+}

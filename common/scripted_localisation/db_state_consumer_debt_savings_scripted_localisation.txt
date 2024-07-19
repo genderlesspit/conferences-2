@@ -372,13 +372,13 @@ defined_text = {
 
     text = {
         trigger = {
-            THIS = { has_state_flag = db_state_consumer_debt_savings_overflow_check_is_positive }
+            THIS = { check_variable = { THIS.db_state_consumer_debt_savings_overflow_check_is_negative = 0 } }
         }
         localization_key = db_state_consumer_debt_savings_loc_positive
     }
     text = {
         trigger = {
-            THIS = { has_state_flag = db_state_consumer_debt_savings_overflow_check_is_negative }
+            THIS = { check_variable = { THIS.db_state_consumer_debt_savings_overflow_check_is_negative = 1 } }
         }
         localization_key = db_state_consumer_debt_savings_loc_negative
     }

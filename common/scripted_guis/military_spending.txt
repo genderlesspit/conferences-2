@@ -147,9 +147,28 @@ scripted_gui = {
     military_spending = {
         window_name = "military_spending_window"
         context_type = selected_country_context
-        parent_window_token = production_tab
+        #parent_window_token = production_tab
 		visible = {
 			always = yes
+			tag = ROOT
+		}
+		dynamic_lists = {
+			spending_gridbox = {
+					#The array to use. Will call a gui for each index.
+					array = ROOT.military_spending_this_week
+
+					#value of the current array index. Optional. Default value is v.
+					value = v
+
+					#current array index. Optional. Default value is i.
+					index = i
+					
+					#This will change the scope to the value if yes
+					change_scope = no
+
+					#The GUI drawn for each index
+					entry_container = "Example_GUI_Array"
+			}
 		}
     }
 }

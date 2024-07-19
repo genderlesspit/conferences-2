@@ -150,6 +150,7 @@ scripted_gui = {
         #parent_window_token = selected_state_view
 		visible = {
 			always = yes
+			THIS = { is_owned_by = ROOT }
 		}
     }
 }

@@ -1,9 +1,9 @@
-guiTypes = { 
+guiTypes = {
     containerWindowType = {
         name = "military_spending_window"
-		size = { height = 320 width = 300 }
-        position = { x = -505 y = 238 }
-		clipping = yes
+		size = { height = 320 width = 400 }
+        position = { x = 400 y = 0 }
+		clipping = no
 		background = {
 			name = "military_spending_background"
 			quadTextureSprite = "GFX_tiled_bg"
@@ -11,131 +11,80 @@ guiTypes = {
 		show_animation_type = decelerated
 		hide_animation_type = accelerated
 		animation_time = 300
-		hide_position = { x = -505 y = 538 }
+		hide_position = { x = 2000 y = 0 }
 		
 		orientation = center
 		moveable = yes
 		
 		containerWindowType = {
 			name = "military_spending_header"
-			size = { height = 300 width = 274 }
+			size = { height = 300 width = 375 }
 			position = { x = 13 y = -1 }
 			clipping = yes
 			
 			iconType =	{
 				name ="military_spending_header_bg"
 				spriteType = "GFX_diplo_popup_header_bg_large"
-				position = { x= -160 y = 8 }
+				position = { x= -105 y = 8 }
 				orientation = upper_left
 				alwaystransparent = yes
 			}
 			
 			instantTextboxType = {
 				name = "military_spending_name"
-				position = { x = -25 y = 24 }
+				position = { x = -60 y = 24 }
 				textureFile = ""
 				font = "hoi_36header"
-				text = "Local Economy"
-				maxWidth = 330
+				text = "Weekly Production Cost"
+				maxWidth = 500
 				maxHeight = 30
 				format = center
 			}
+			containerWindowType = {
+				name = "spending_gridbox_container"
+				#Orientation = upper_left
+				size = {width=300 height=200}
+				position = {x=0 y=70}
+				verticalScrollbar = "right_vertical_slider"
+				scroll_wheel_factor = 40
+				smooth_scrolling = yes
+						
+				background = {
+					name = "Background"
+					quadTextureSprite = "GFX_tiled_window_transparent"
+				}
+				
+				gridBoxType = {
+					name = "spending_gridbox"
+					position = { x = 0 y = 0 }
+					#The size of the gridbox
+					size = { width = 20 height = 100 }
+					#Orientation = upper_left
+					#The slot size
+					slotsize = {width=100 height=50 }
+					#format = "UPPER_LEFT"
+					#the maximum horizontal gui elements
+					max_slots_horizontal = 1
+					#the maximum vertical gui elements
+					max_slots_vertical = 25
+					add_horizontal = no
+
+				}
+				
+			}
 		}
-		
-		instantTextboxType = {
-			name = "military_spending_debt"
-			position = { x = 30 y = 90 }
-			textureFile = ""
-			font = "hoi_18mbs"
-			text = db_gui_military_spending
-			format = left
-			maxWidth = 330
-		}
-		
-		instantTextboxType = {
-			name = "military_spending_income"
-			position = { x = 30 y = 110 }
-			textureFile = ""
-			font = "hoi_18mbs"
-			text = "Daily Income: [?THIS.db_state_daily_income_total|+^]"
-			format = left
-			maxWidth = 330
-		}
-		
-		instantTextboxType = {
-			name = "military_spending_spending"
-			position = { x = 30 y = 130 }
-			textureFile = ""
-			font = "hoi_18mbs"
-			text = "Daily Spending: [?THIS.db_state_total_daily_consumer_spending_total|-^]"
-			format = left
-			maxWidth = 330
-		}
-		
-		instantTextboxType = {
-			name = "military_spending_net_income"
-			position = { x = 30 y = 150 }
-			textureFile = ""
-			font = "hoi_18mbs"
-			text = "Daily Net Income: [?THIS.db_state_daily_net_income|+^]"
-			format = left
-			maxWidth = 330
-		}
-		
-		instantTextboxType = {
-			name = "military_spending_taxes"
-			position = { x = 30 y = 170 }
-			textureFile = ""
-			font = "hoi_18mbs"
-			text = "Daily Taxes Raised: [?THIS.db_state_taxes_raised|+^]"
-			format = left
-			maxWidth = 330
-		}
-		instantTextboxType = {
-			name = "military_spending_wage"
-			position = { x = 30 y = 190 }
-			textureFile = ""
-			font = "hoi_18mbs"
-			text = "Avg. Daily Wage: [?THIS.db_state_daily_wage|+^]"
-			format = left
-			maxWidth = 330
-		}
-		instantTextboxType = {
-			name = "military_spending_unemployment"
-			position = { x = 30 y = 210 }
-			textureFile = ""
-			font = "hoi_18mbs"
-			text = "Unemployment Rate: [?THIS.db_state_unemployed_percent|-%]"
-			format = left
-			maxWidth = 330
-		}
-		instantTextboxType = {
-			name = "military_spending_lfpr"
-			position = { x = 30 y = 230 }
-			textureFile = ""
-			font = "hoi_18mbs"
-			text = db_gui_state_lfpr_total
-			format = left
-			maxWidth = 330
-		}
-		instantTextboxType = {
-			name = "military_spending_cost"
-			position = { x = 30 y = 250 }
-			textureFile = ""
-			font = "hoi_18mbs"
-			text = db_gui_state_cost_of_living
-			format = left
-			maxWidth = 330
-		}
-		instantTextboxType = {
-			name = "state_debt_per_capita"
-			position = { x = 30 y = 270 }
-			textureFile = ""
-			font = "hoi_18mbs"
-			text = "Debt/Savings per Capita: [?THIS.db_consumer_debt_per_capita|^+]"
-			format = left
-			maxWidth = 330
-		}
-		
     }
+	containerWindowType = {
+		name = "Example_GUI_Array"
+		size = {width=100 height=50}
+		
+		buttonType = {
+			name ="Example_GUI"
+			quadTextureSprite ="GFX_button_261x34"
+			position = { x=0 y=0 }
+			#This will write onto the button the value and index of the array
+			buttonText = "v: [?v] i: [?i]"
+			buttonFont = "hoi_16mbs"
+		}
+	}
 }

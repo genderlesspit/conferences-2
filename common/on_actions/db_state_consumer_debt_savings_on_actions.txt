@@ -62,15 +62,13 @@ on_actions = {
                                 limit = { check_variable = { this_digit = 0 }
                                 check_variable = { THIS.db_state_consumer_debt_savings_overflow_check^this_digit < 0 } }
                                 if = {
-                                    limit = { has_state_flag = db_state_consumer_debt_savings_overflow_check_is_positive }
-                                    set_state_flag = db_state_consumer_debt_savings_overflow_check_is_negative
-                                    clr_state_flag = db_state_consumer_debt_savings_overflow_check_is_positive
+                                    limit = { check_variable = { THIS.db_state_consumer_debt_savings_overflow_check_is_negative = 0 } }
+                                    set_variable = { THIS.db_state_consumer_debt_savings_overflow_check_is_negative = 1 }
                                     multiply_variable = { THIS.db_state_consumer_debt_savings_overflow_check^0 = -1 }
                                     #log = "THIS.db_state_consumer_debt_savings has gone negative!"
                                 }
                                 else_if = {
-                                    set_state_flag = db_state_consumer_debt_savings_overflow_check_is_positive
-                                    clr_state_flag = db_state_consumer_debt_savings_overflow_check_is_negative
+                                    set_variable = { THIS.db_state_consumer_debt_savings_overflow_check_is_negative = 0 }
                                     multiply_variable = { THIS.db_state_consumer_debt_savings_overflow_check^0 = -1 }
                                     #log = "THIS.db_state_consumer_debt_savings has gone positive!"
                                 }
