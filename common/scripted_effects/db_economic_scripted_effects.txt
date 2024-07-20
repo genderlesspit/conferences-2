@@ -293,3 +293,335 @@ db_economic_calculate_jobs = {
 		}
 	}
 }
+
+db_economic_base_inflation = {
+# Define inflation rates for each country
+	USA = {
+		set_variable = { THIS.db_national_inflation = 1.00 }
+	}
+
+	ENG = {
+		set_variable = { THIS.db_national_inflation = 2.03 }
+	}
+
+	PER = {
+		set_variable = { THIS.db_national_inflation = 0.25 }
+	}
+
+	JAP = {
+		set_variable = { THIS.db_national_inflation = 2.11 }
+	}
+
+	TUR = {
+		set_variable = { THIS.db_national_inflation = 1.91 }
+	}
+
+	RAJ = {
+		set_variable = { THIS.db_national_inflation = 2.75 }
+	}
+
+	CAN = {
+		set_variable = { THIS.db_national_inflation = 1.0003 }
+	}
+
+	MEX = {
+		set_variable = { THIS.db_national_inflation = 2.12 }
+	}
+
+	GER = {
+		set_variable = { THIS.db_national_inflation = 4.19 }
+	}
+
+	ARG = {
+		set_variable = { THIS.db_national_inflation = 1.04 }
+	}
+
+	POL = {
+		set_variable = { THIS.db_national_inflation = 3.19 }
+	}
+
+	HOL = {
+		set_variable = { THIS.db_national_inflation = 2.49 }
+	}
+
+	FRA = {
+		set_variable = { THIS.db_national_inflation = 25.52 }
+	}
+
+	SPA = {
+		set_variable = { THIS.db_national_inflation = 5.86 }
+	}
+
+	SWE = {
+		set_variable = { THIS.db_national_inflation = 3.72 }
+	}
+
+	COL = {
+		set_variable = { THIS.db_national_inflation = 1.02 }
+	}
+
+	NOR = {
+		set_variable = { THIS.db_national_inflation = 3.84 }
+	}
+
+	ITA = {
+		set_variable = { THIS.db_national_inflation = 19.38 }
+	}
+
+	DEN = {
+		set_variable = { THIS.db_national_inflation = 3.74 }
+	}
+
+	SWI = {
+		set_variable = { THIS.db_national_inflation = 5.19 }
+	}
+
+	BEL = {
+		set_variable = { THIS.db_national_inflation = 7.18 }
+	}
+
+	AUS = {
+		set_variable = { THIS.db_national_inflation = 7.11 }
+	}
+
+	BRA = {
+		set_variable = { THIS.db_national_inflation = 8.45 }
+	}
+
+	CUB = {
+		set_variable = { THIS.db_national_inflation = 1.0003 }
+	}
+
+	HUN = {
+		set_variable = { THIS.db_national_inflation = 5.73 }
+	}
+
+	POR = {
+		set_variable = { THIS.db_national_inflation = 19.89 }
+	}
+
+	YUG = {
+		set_variable = { THIS.db_national_inflation = 57.14 }
+	}
+
+	CZE = {
+		set_variable = { THIS.db_national_inflation = 33.75 }
+	}
+
+	VEN = {
+		set_variable = { THIS.db_national_inflation = 5.19 }
+	}
+
+	CHL = {
+		set_variable = { THIS.db_national_inflation = 8.29 }
+	}
+
+	FIN = {
+		set_variable = { THIS.db_national_inflation = 39.76 }
+	}
+
+	ECU = {
+		set_variable = { THIS.db_national_inflation = 5.02 }
+	}
+
+	GRE = {
+		set_variable = { THIS.db_national_inflation = 76.62 }
+	}
+
+	BUL = {
+		set_variable = { THIS.db_national_inflation = 138.74 }
+	}
+
+	ROM = {
+		set_variable = { THIS.db_national_inflation = 166.67 }
+	}
+
+	AFG = {
+		set_variable = { THIS.db_national_inflation = 6.00 }
+	}
+
+	ALB = {
+		set_variable = { THIS.db_national_inflation = 12.00 }
+	}
+
+	AST = {
+		set_variable = { THIS.db_national_inflation = 2.50 }
+	}
+
+	BHU = {
+		set_variable = { THIS.db_national_inflation = 4.00 }
+	}
+
+	BOL = {
+		set_variable = { THIS.db_national_inflation = 4.00 }
+	}
+
+	MAL = {
+		set_variable = { THIS.db_national_inflation = 8.00 }
+	}
+
+	CHI = {
+		set_variable = { THIS.db_national_inflation = 10.00 }
+	}
+
+	PRC = {
+		set_variable = { THIS.db_national_inflation = 5.00 }
+	}
+
+	COS = {
+		set_variable = { THIS.db_national_inflation = 6.00 }
+	}
+
+	DOM = {
+		set_variable = { THIS.db_national_inflation = 10.00 }
+	}
+
+	INS = {
+		set_variable = { THIS.db_national_inflation = 6.00 }
+	}
+
+	ELS = {
+		set_variable = { THIS.db_national_inflation = 6.00 }
+	}
+
+	EST = {
+		set_variable = { THIS.db_national_inflation = 10.00 }
+	}
+
+	ETH = {
+		set_variable = { THIS.db_national_inflation = 6.00 }
+	}
+
+	GXC = {
+		set_variable = { THIS.db_national_inflation = 6.00 }
+	}
+
+	GUA = {
+		set_variable = { THIS.db_national_inflation = 6.00 }
+	}
+
+	HAI = {
+		set_variable = { THIS.db_national_inflation = 10.00 }
+	}
+
+	HON = {
+		set_variable = { THIS.db_national_inflation = 6.00 }
+	}
+
+	ICE = {
+		set_variable = { THIS.db_national_inflation = 2.00 }
+	}
+
+	IRQ = {
+		set_variable = { THIS.db_national_inflation = 6.00 }
+	}
+
+	IRE = {
+		set_variable = { THIS.db_national_inflation = 4.00 }
+	}
+
+	LAT = {
+		set_variable = { THIS.db_national_inflation = 8.00 }
+	}
+
+	LIB = {
+		set_variable = { THIS.db_national_inflation = 10.00 }
+	}
+
+	LIT = {
+		set_variable = { THIS.db_national_inflation = 8.00 }
+	}
+
+	LUX = {
+		set_variable = { THIS.db_national_inflation = 8.00 }
+	}
+
+	MAN = {
+		set_variable = { THIS.db_national_inflation = 10.00 }
+	}
+
+	MEN = {
+		set_variable = { THIS.db_national_inflation = 6.00 }
+	}
+
+	MON = {
+		set_variable = { THIS.db_national_inflation = 8.00 }
+	}
+
+	NEP = {
+		set_variable = { THIS.db_national_inflation = 6.00 }
+	}
+
+	NZL = {
+		set_variable = { THIS.db_national_inflation = 2.00 }
+	}
+
+	NIC = {
+		set_variable = { THIS.db_national_inflation = 6.00 }
+	}
+
+	OMA = {
+		set_variable = { THIS.db_national_inflation = 6.00 }
+	}
+
+	PAN = {
+		set_variable = { THIS.db_national_inflation = 6.00 }
+	}
+
+	PHI = {
+		set_variable = { THIS.db_national_inflation = 6.00 }
+	}
+
+	PAR = {
+		set_variable = { THIS.db_national_inflation = 4.00 }
+	}
+
+	SAU = {
+		set_variable = { THIS.db_national_inflation = 6.00 }
+	}
+
+	SHX = {
+		set_variable = { THIS.db_national_inflation = 6.00 }
+	}
+
+	SIA = {
+		set_variable = { THIS.db_national_inflation = 6.00 }
+	}
+
+	SIK = {
+		set_variable = { THIS.db_national_inflation = 6.00 }
+	}
+
+	SAF = {
+		set_variable = { THIS.db_national_inflation = 8.00 }
+	}
+
+	AFA = {
+		set_variable = { THIS.db_national_inflation = 6.00 }
+	}
+
+	TAN = {
+		set_variable = { THIS.db_national_inflation = 6.00 }
+	}
+
+	TIB = {
+		set_variable = { THIS.db_national_inflation = 6.00 }
+	}
+
+	URG = {
+		set_variable = { THIS.db_national_inflation = 6.00 }
+	}
+
+	XSM = {
+		set_variable = { THIS.db_national_inflation = 8.00 }
+	}
+
+	YEM = {
+		set_variable = { THIS.db_national_inflation = 6.00 }
+	}
+
+	YUN = {
+		set_variable = { THIS.db_national_inflation = 8.00 }
+	}
+
+}

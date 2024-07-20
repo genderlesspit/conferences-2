@@ -155,7 +155,7 @@ scripted_gui = {
 		dynamic_lists = {
 			spending_gridbox = {
 					#The array to use. Will call a gui for each index.
-					array = ROOT.military_spending_this_week
+					array = military_spending_this_week
 
 					#value of the current array index. Optional. Default value is v.
 					value = v

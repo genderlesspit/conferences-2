@@ -1,4 +1,25 @@
 #on_actions = {
+	effect = {
+		every_country = {
+			for_each_scope_loop = {
+				array = global.countries
+				set_temp_variable = { inflation = THIS.db_inflation_placeholder }
+				if = {
+					limit = { 
+						NOT = { tag = ROOT }
+						exists = yes
+					}
+					add_to_array = { PREV.db_exchange_rates = inflation }
+				}
+			}
+		}
+	}
+}
+	
+
+
+
+
 	#on_daily = {
 		#effect = {
 			#ROOT is the country that the modifier is applied to and FROM is the target.

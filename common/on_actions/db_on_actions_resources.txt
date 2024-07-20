@@ -1,61 +1,201 @@
 on_actions = {
 ##########################################################################################
-#Modifies resource consumption corresponding to percentage consumer goods expected########
-##########################################################################################
-	#on_startup = {
-	#	effect = {
-	#		every_state = {
-	#			add_dynamic_modifier = { modifier = db_state_oil_consumer_goods_factor scope = THIS }
-	#		}
-	#	}
-	#}
-	#on_daily = { 
-	#	effect = {
-	#		every_country = {
-	#			set_variable = { THIS.db_state_consumer_goods_resource_modifier = THIS.modifier@consumer_goods_expected_value }
-	#			multiply_variable = { THIS.db_state_consumer_goods_resource_modifier = -1 }
-	#			every_owned_state = {
-	#				set_variable = { THIS.db_state_consumer_goods_resource_modifier = PREV.db_state_consumer_goods_resource_modifier }
-	#			}
-	#		}
-	#	}	
-	#}
-##########################################################################################
 #OIL PRICE CALCULATIONS###################################################################
 ##########################################################################################
-#US 1936 - 1.09 per barrel (3032000 barrels produced per day / 846 oil resources in game##
-#1 oil resource is 3583 thousand barrels per day x $ 1.09 = ##############################
-#1 oil resource base price is $3906/day ) ################################################
-##########################################################################################
-	on_daily = {
-		effect = {
-			set_variable = { global.db_oil_price = 3.906 } #THIS IS IN THOUSANDS
-			set_variable = { global.db_oil_supply = 0 }
-			set_variable = { global.db_oil_demand = 0 }
-			every_country = {
-				#base oil price
-				add_to_variable = { global.db_oil_supply = THIS.resource_exported@oil }
-				add_to_variable = { global.db_oil_demand = THIS.resource_imported@oil }
-			}
-			set_variable = { global.db_oil_price_modifier = global.db_oil_demand }
-			divide_variable = { global.db_oil_price_modifier = global.db_oil_supply }
-			multiply_variable = { global.db_oil_price = global.db_oil_price_modifier }
-		}
-	}
+on_daily = {
+    effect = {
+        set_variable = { global.db_oil_price = 3.906 } # THIS IS IN THOUSANDS
+        set_variable = { global.db_oil_supply = 0 }
+        set_variable = { global.db_oil_demand = 0 }
+        every_country = {
+            # base oil price
+            add_to_variable = { global.db_oil_supply = THIS.resource_exported@oil }
+            add_to_variable = { global.db_oil_demand = THIS.resource_imported@oil }
+        }
+        set_variable = { global.db_oil_price_modifier = global.db_oil_demand }
+        divide_variable = { global.db_oil_price_modifier = global.db_oil_supply }
+        multiply_variable = { global.db_oil_price = global.db_oil_price_modifier }
+    }
+}
 
-	on_daily = {
+on_daily = {
+    effect = {
+        every_country = {
+            set_variable = { THIS.db_oil_price = global.db_oil_price }
+            multiply_variable = { THIS.db_oil_price = THIS.db_national_inflation }
+            set_variable = { THIS.db_oil_export_profit = THIS.resource_exported@oil }
+            set_variable = { THIS.db_oil_import_deficit = THIS.resource_imported@oil }
+            subtract_from_variable = { THIS.db_oil_export_profit = THIS.db_oil_import_deficit }
+            multiply_variable = { THIS.db_oil_export_profit = THIS.db_oil_price }
+            
+            # Calculate weekly profit
+            set_variable = { THIS.db_oil_weekly_export_profit = THIS.db_oil_export_profit }
+            multiply_variable = { THIS.db_oil_weekly_export_profit = 7 }
+        }
+    }
+}
+
+##########################################################################################
+#STEEL PRICE CALCULATIONS#################################################################
+##########################################################################################
+on_daily = {
+    effect = {
+        set_variable = { global.db_steel_price = 40 } # Base price in thousands
+        set_variable = { global.db_steel_supply = 0 }
+        set_variable = { global.db_steel_demand = 0 }
+        every_country = {
+            # base steel price
+            add_to_variable = { global.db_steel_supply = THIS.resource_exported@steel }
+            add_to_variable = { global.db_steel_demand = THIS.resource_imported@steel }
+        }
+        set_variable = { global.db_steel_price_modifier = global.db_steel_demand }
+        divide_variable = { global.db_steel_price_modifier = global.db_steel_supply }
+        multiply_variable = { global.db_steel_price = global.db_steel_price_modifier }
+    }
+}
+
+on_daily = {
+    effect = {
+        every_country = {
+            set_variable = { THIS.db_steel_price = global.db_steel_price }
+            multiply_variable = { THIS.db_steel_price = THIS.db_national_inflation }
+            set_variable = { THIS.db_steel_export_profit = THIS.resource_exported@steel }
+            set_variable = { THIS.db_steel_import_deficit = THIS.resource_imported@steel }
+            subtract_from_variable = { THIS.db_steel_export_profit = THIS.db_steel_import_deficit }
+            multiply_variable = { THIS.db_steel_export_profit = THIS.db_steel_price }
+            
+            # Calculate weekly profit
+            set_variable = { THIS.db_steel_weekly_export_profit = THIS.db_steel_export_profit }
+            multiply_variable = { THIS.db_steel_weekly_export_profit = 7 }
+        }
+    }
+}
+
+##########################################################################################
+#CHROMIUM PRICE CALCULATIONS#############################################################
+##########################################################################################
+on_daily = {
+    effect = {
+        set_variable = { global.db_chromium_price = 110 } # Base price in thousands
+        set_variable = { global.db_chromium_supply = 0 }
+        set_variable = { global.db_chromium_demand = 0 }
+        every_country = {
+            # base chromium price
+            add_to_variable = { global.db_chromium_supply = THIS.resource_exported@chromium }
+            add_to_variable = { global.db_chromium_demand = THIS.resource_imported@chromium }
+        }
+        set_variable = { global.db_chromium_price_modifier = global.db_chromium_demand }
+        divide_variable = { global.db_chromium_price_modifier = global.db_chromium_supply }
+        multiply_variable = { global.db_chromium_price = global.db_chromium_price_modifier }
+    }
+}
+
+on_daily = {
+    effect = {
+        every_country = {
+            set_variable = { THIS.db_chromium_price = global.db_chromium_price }
+            multiply_variable = { THIS.db_chromium_price = THIS.db_national_inflation }
+            set_variable = { THIS.db_chromium_export_profit = THIS.resource_exported@chromium }
+            set_variable = { THIS.db_chromium_import_deficit = THIS.resource_imported@chromium }
+            subtract_from_variable = { THIS.db_chromium_export_profit = THIS.db_chromium_import_deficit }
+            multiply_variable = { THIS.db_chromium_export_profit = THIS.db_chromium_price }
+            
+            # Calculate weekly profit
+            set_variable = { THIS.db_chromium_weekly_export_profit = THIS.db_chromium_export_profit }
+            multiply_variable = { THIS.db_chromium_weekly_export_profit = 7 }
+        }
+    }
+}
+
+##########################################################################################
+#ALUMINIUM PRICE CALCULATIONS############################################################
+##########################################################################################
+on_daily = {
+    effect = {
+        set_variable = { global.db_aluminium_price = 90 } # Base price in thousands
+        set_variable = { global.db_aluminium_supply = 0 }
+        set_variable = { global.db_aluminium_demand = 0 }
+        every_country = {
+            # base aluminium price
+            add_to_variable = { global.db_aluminium_supply = THIS.resource_exported@aluminium }
+            add_to_variable = { global.db_aluminium_demand = THIS.resource_imported@aluminium }
+        }
+        set_variable = { global.db_aluminium_price_modifier = global.db_aluminium_demand }
+        divide_variable = { global.db_aluminium_price_modifier = global.db_aluminium_supply }
+        multiply_variable = { global.db_aluminium_price = global.db_aluminium_price_modifier }
+    }
+}
+
+on_daily = {
+    effect = {
+        every_country = {
+            set_variable = { THIS.db_aluminium_price = global.db_aluminium_price }
+            multiply_variable = { THIS.db_aluminium_price = THIS.db_national_inflation }
+            set_variable = { THIS.db_aluminium_export_profit = THIS.resource_exported@aluminium }
+            set_variable = { THIS.db_aluminium_import_deficit = THIS.resource_imported@aluminium }
+            subtract_from_variable = { THIS.db_aluminium_export_profit = THIS.db_aluminium_import_deficit }
+            multiply_variable = { THIS.db_aluminium_export_profit = THIS.db_aluminium_price }
+            
+            # Calculate weekly profit
+            set_variable = { THIS.db_aluminium_weekly_export_profit = THIS.db_aluminium_export_profit }
+            multiply_variable = { THIS.db_aluminium_weekly_export_profit = 7 }
+        }
+    }
+}
+
+##########################################################################################
+#RUBBER PRICE CALCULATIONS################################################################
+##########################################################################################
+on_daily = {
+    effect = {
+        set_variable = { global.db_rubber_price = 0.485 } # Base price in thousands
+        set_variable = { global.db_rubber_supply = 0 }
+        set_variable = { global.db_rubber_demand = 0 }
+        every_country = {
+            # base rubber price
+            add_to_variable = { global.db_rubber_supply = THIS.resource_exported@rubber }
+            add_to_variable = { global.db_rubber_demand = THIS.resource_imported@rubber }
+        }
+        set_variable = { global.db_rubber_price_modifier = global.db_rubber_demand }
+        divide_variable = { global.db_rubber_price_modifier = global.db_rubber_supply }
+        multiply_variable = { global.db_rubber_price = global.db_rubber_price_modifier }
+    }
+}
+
+on_daily = {
+    effect = {
+        every_country = {
+            set_variable = { THIS.db_rubber_price = global.db_rubber_price }
+            multiply_variable = { THIS.db_rubber_price = THIS.db_national_inflation }
+            set_variable = { THIS.db_rubber_export_profit = THIS.resource_exported@rubber }
+            set_variable = { THIS.db_rubber_import_deficit = THIS.resource_imported@rubber }
+            subtract_from_variable = { THIS.db_rubber_export_profit = THIS.db_rubber_import_deficit }
+            multiply_variable = { THIS.db_rubber_export_profit = THIS.db_rubber_price }
+            
+            # Calculate weekly profit
+            set_variable = { THIS.db_rubber_weekly_export_profit = THIS.db_rubber_export_profit }
+            multiply_variable = { THIS.db_rubber_weekly_export_profit = 7 }
+        }
+    }
+}
+##########################################################################################
+
+
+	on_weekly = {
 		effect = {
-			every_country = {
-				set_variable = { THIS.db_oil_price = global.db_oil_price }
-				multiply_variable = { THIS.db_oil_price = THIS.db_national_inflation }
-				set_variable = { THIS.db_oil_export_profit = THIS.resource_exported@oil }
-				set_variable = { THIS.db_oil_import_deficit = THIS.resource_imported@oil }
-				subtract_from_variable = { THIS.db_oil_export_profit = THIS.db_oil_import_deficit }
-				multiply_variable = { THIS.db_oil_export_profit = THIS.db_oil_price }
+			every_country = {			
+				add_to_array = { THIS.db_resource_profit = THIS.db_rubber_weekly_export_profit }
+				add_to_array = { THIS.db_resource_profit = THIS.db_oil_weekly_export_profit }
+				add_to_array = { THIS.db_resource_profit = THIS.db_steel_weekly_export_profit }
+				add_to_array = { THIS.db_resource_profit = THIS.db_chromium_weekly_export_profit }
+				add_to_array = { THIS.db_resource_profit = THIS.db_aluminium_weekly_export_profit }
+				add_to_array = { THIS.db_resource_profit = THIS.db_oil_weekly_export_profit }
+
+				for_loop_effect = {
+					
+				
+				}
 			}
 		}
 	}
-##########################################################################################
-##########################################################################################
-##########################################################################################
 }
